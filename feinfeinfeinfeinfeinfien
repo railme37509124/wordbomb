@@ -1,0 +1,9858 @@
+
+-- ui library by Singularity (V3rm @ King Singularity) (Discord @ Singularity#5490)
+-- scroll to bottom for code, this part is the library and word list (starts at 2032 and 9833).
+--[[
+    CREDITS
+    -->>
+      Altered - Developer
+      Singularity - UI Library
+    <<--
+]]
+
+-- this was designed to work on solara
+
+local ui_options = {
+	main_color = Color3.fromRGB(41, 74, 122),
+	min_size = Vector2.new(400, 300),
+	toggle_key = Enum.KeyCode.RightShift,
+	can_resize = true,
+}
+
+do
+	local imgui = game:GetService("CoreGui"):FindFirstChild("imgui")
+	if imgui then imgui:Destroy() end
+end
+
+local imgui = Instance.new("ScreenGui")
+local Prefabs = Instance.new("Frame")
+local Label = Instance.new("TextLabel")
+local Window = Instance.new("ImageLabel")
+local Resizer = Instance.new("Frame")
+local Bar = Instance.new("Frame")
+local Toggle = Instance.new("ImageButton")
+local Base = Instance.new("ImageLabel")
+local Top = Instance.new("ImageLabel")
+local Tabs = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local TabSelection = Instance.new("ImageLabel")
+local TabButtons = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local Frame = Instance.new("Frame")
+local Tab = Instance.new("Frame")
+local UIListLayout_2 = Instance.new("UIListLayout")
+local TextBox = Instance.new("TextBox")
+local TextBox_Roundify_4px = Instance.new("ImageLabel")
+local Slider = Instance.new("ImageLabel")
+local Title_2 = Instance.new("TextLabel")
+local Indicator = Instance.new("ImageLabel")
+local Value = Instance.new("TextLabel")
+local TextLabel = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+local Circle = Instance.new("ImageLabel")
+local UIListLayout_3 = Instance.new("UIListLayout")
+local Dropdown = Instance.new("TextButton")
+local Indicator_2 = Instance.new("ImageLabel")
+local Box = Instance.new("ImageButton")
+local Objects = Instance.new("ScrollingFrame")
+local UIListLayout_4 = Instance.new("UIListLayout")
+local TextButton_Roundify_4px = Instance.new("ImageLabel")
+local TabButton = Instance.new("TextButton")
+local TextButton_Roundify_4px_2 = Instance.new("ImageLabel")
+local Folder = Instance.new("ImageLabel")
+local Button = Instance.new("TextButton")
+local TextButton_Roundify_4px_3 = Instance.new("ImageLabel")
+local Toggle_2 = Instance.new("ImageLabel")
+local Objects_2 = Instance.new("Frame")
+local UIListLayout_5 = Instance.new("UIListLayout")
+local HorizontalAlignment = Instance.new("Frame")
+local UIListLayout_6 = Instance.new("UIListLayout")
+local Console = Instance.new("ImageLabel")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local Source = Instance.new("TextBox")
+local Comments = Instance.new("TextLabel")
+local Globals = Instance.new("TextLabel")
+local Keywords = Instance.new("TextLabel")
+local RemoteHighlight = Instance.new("TextLabel")
+local Strings = Instance.new("TextLabel")
+local Tokens = Instance.new("TextLabel")
+local Numbers = Instance.new("TextLabel")
+local Info = Instance.new("TextLabel")
+local Lines = Instance.new("TextLabel")
+local ColorPicker = Instance.new("ImageLabel")
+local Palette = Instance.new("ImageLabel")
+local Indicator_3 = Instance.new("ImageLabel")
+local Sample = Instance.new("ImageLabel")
+local Saturation = Instance.new("ImageLabel")
+local Indicator_4 = Instance.new("Frame")
+local Switch = Instance.new("TextButton")
+local TextButton_Roundify_4px_4 = Instance.new("ImageLabel")
+local Title_3 = Instance.new("TextLabel")
+local Button_2 = Instance.new("TextButton")
+local TextButton_Roundify_4px_5 = Instance.new("ImageLabel")
+local DropdownButton = Instance.new("TextButton")
+local Keybind = Instance.new("ImageLabel")
+local Title_4 = Instance.new("TextLabel")
+local Input = Instance.new("TextButton")
+local Input_Roundify_4px = Instance.new("ImageLabel")
+local Windows = Instance.new("Frame")
+
+imgui.Name = "imgui"
+imgui.Parent = game:GetService("CoreGui")
+
+Prefabs.Name = "Prefabs"
+Prefabs.Parent = imgui
+Prefabs.BackgroundColor3 = Color3.new(1, 1, 1)
+Prefabs.Size = UDim2.new(0, 100, 0, 100)
+Prefabs.Visible = false
+
+Label.Name = "Label"
+Label.Parent = Prefabs
+Label.BackgroundColor3 = Color3.new(1, 1, 1)
+Label.BackgroundTransparency = 1
+Label.Size = UDim2.new(0, 200, 0, 20)
+Label.Font = Enum.Font.GothamSemibold
+Label.Text = "Hello, world 123"
+Label.TextColor3 = Color3.new(1, 1, 1)
+Label.TextSize = 14
+Label.TextXAlignment = Enum.TextXAlignment.Left
+
+Window.Name = "Window"
+Window.Parent = Prefabs
+Window.Active = true
+Window.BackgroundColor3 = Color3.new(1, 1, 1)
+Window.BackgroundTransparency = 1
+Window.ClipsDescendants = true
+Window.Position = UDim2.new(0, 20, 0, 20)
+Window.Selectable = true
+Window.Size = UDim2.new(0, 200, 0, 200)
+Window.Image = "rbxassetid://2851926732"
+Window.ImageColor3 = Color3.new(0.0823529, 0.0862745, 0.0901961)
+Window.ScaleType = Enum.ScaleType.Slice
+Window.SliceCenter = Rect.new(12, 12, 12, 12)
+
+Resizer.Name = "Resizer"
+Resizer.Parent = Window
+Resizer.Active = true
+Resizer.BackgroundColor3 = Color3.new(1, 1, 1)
+Resizer.BackgroundTransparency = 1
+Resizer.BorderSizePixel = 0
+Resizer.Position = UDim2.new(1, -20, 1, -20)
+Resizer.Size = UDim2.new(0, 20, 0, 20)
+
+Bar.Name = "Bar"
+Bar.Parent = Window
+Bar.BackgroundColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+Bar.BorderSizePixel = 0
+Bar.Position = UDim2.new(0, 0, 0, 5)
+Bar.Size = UDim2.new(1, 0, 0, 15)
+
+Toggle.Name = "Toggle"
+Toggle.Parent = Bar
+Toggle.BackgroundColor3 = Color3.new(1, 1, 1)
+Toggle.BackgroundTransparency = 1
+Toggle.Position = UDim2.new(0, 5, 0, -2)
+Toggle.Rotation = 90
+Toggle.Size = UDim2.new(0, 20, 0, 20)
+Toggle.ZIndex = 2
+Toggle.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=4731371541"
+
+Base.Name = "Base"
+Base.Parent = Bar
+Base.BackgroundColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+Base.BorderSizePixel = 0
+Base.Position = UDim2.new(0, 0, 0.800000012, 0)
+Base.Size = UDim2.new(1, 0, 0, 10)
+Base.Image = "rbxassetid://2851926732"
+Base.ImageColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+Base.ScaleType = Enum.ScaleType.Slice
+Base.SliceCenter = Rect.new(12, 12, 12, 12)
+
+Top.Name = "Top"
+Top.Parent = Bar
+Top.BackgroundColor3 = Color3.new(1, 1, 1)
+Top.BackgroundTransparency = 1
+Top.Position = UDim2.new(0, 0, 0, -5)
+Top.Size = UDim2.new(1, 0, 0, 10)
+Top.Image = "rbxassetid://2851926732"
+Top.ImageColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+Top.ScaleType = Enum.ScaleType.Slice
+Top.SliceCenter = Rect.new(12, 12, 12, 12)
+
+Tabs.Name = "Tabs"
+Tabs.Parent = Window
+Tabs.BackgroundColor3 = Color3.new(1, 1, 1)
+Tabs.BackgroundTransparency = 1
+Tabs.Position = UDim2.new(0, 15, 0, 60)
+Tabs.Size = UDim2.new(1, -30, 1, -60)
+
+Title.Name = "Title"
+Title.Parent = Window
+Title.BackgroundColor3 = Color3.new(1, 1, 1)
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(0, 30, 0, 3)
+Title.Size = UDim2.new(0, 200, 0, 20)
+Title.Font = Enum.Font.GothamBold
+Title.Text = "Gamer Time"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextSize = 14
+Title.TextXAlignment = Enum.TextXAlignment.Left
+
+TabSelection.Name = "TabSelection"
+TabSelection.Parent = Window
+TabSelection.BackgroundColor3 = Color3.new(1, 1, 1)
+TabSelection.BackgroundTransparency = 1
+TabSelection.Position = UDim2.new(0, 15, 0, 30)
+TabSelection.Size = UDim2.new(1, -30, 0, 25)
+TabSelection.Visible = false
+TabSelection.Image = "rbxassetid://2851929490"
+TabSelection.ImageColor3 = Color3.new(0.145098, 0.14902, 0.156863)
+TabSelection.ScaleType = Enum.ScaleType.Slice
+TabSelection.SliceCenter = Rect.new(4, 4, 4, 4)
+
+TabButtons.Name = "TabButtons"
+TabButtons.Parent = TabSelection
+TabButtons.BackgroundColor3 = Color3.new(1, 1, 1)
+TabButtons.BackgroundTransparency = 1
+TabButtons.Size = UDim2.new(1, 0, 1, 0)
+
+UIListLayout.Parent = TabButtons
+UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 2)
+
+Frame.Parent = TabSelection
+Frame.BackgroundColor3 = Color3.new(0.12549, 0.227451, 0.372549)
+Frame.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0, 0, 1, 0)
+Frame.Size = UDim2.new(1, 0, 0, 2)
+
+Tab.Name = "Tab"
+Tab.Parent = Prefabs
+Tab.BackgroundColor3 = Color3.new(1, 1, 1)
+Tab.BackgroundTransparency = 1
+Tab.Size = UDim2.new(1, 0, 1, 0)
+Tab.Visible = false
+
+UIListLayout_2.Parent = Tab
+UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout_2.Padding = UDim.new(0, 5)
+
+TextBox.Parent = Prefabs
+TextBox.BackgroundColor3 = Color3.new(1, 1, 1)
+TextBox.BackgroundTransparency = 1
+TextBox.BorderSizePixel = 0
+TextBox.Size = UDim2.new(1, 0, 0, 20)
+TextBox.ZIndex = 2
+TextBox.Font = Enum.Font.GothamSemibold
+TextBox.PlaceholderColor3 = Color3.new(0.698039, 0.698039, 0.698039)
+TextBox.PlaceholderText = "Input Text"
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+TextBox.TextSize = 14
+
+TextBox_Roundify_4px.Name = "TextBox_Roundify_4px"
+TextBox_Roundify_4px.Parent = TextBox
+TextBox_Roundify_4px.BackgroundColor3 = Color3.new(1, 1, 1)
+TextBox_Roundify_4px.BackgroundTransparency = 1
+TextBox_Roundify_4px.Size = UDim2.new(1, 0, 1, 0)
+TextBox_Roundify_4px.Image = "rbxassetid://2851929490"
+TextBox_Roundify_4px.ImageColor3 = Color3.new(0.203922, 0.207843, 0.219608)
+TextBox_Roundify_4px.ScaleType = Enum.ScaleType.Slice
+TextBox_Roundify_4px.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Slider.Name = "Slider"
+Slider.Parent = Prefabs
+Slider.BackgroundColor3 = Color3.new(1, 1, 1)
+Slider.BackgroundTransparency = 1
+Slider.Position = UDim2.new(0, 0, 0.178571433, 0)
+Slider.Size = UDim2.new(1, 0, 0, 20)
+Slider.Image = "rbxassetid://2851929490"
+Slider.ImageColor3 = Color3.new(0.145098, 0.14902, 0.156863)
+Slider.ScaleType = Enum.ScaleType.Slice
+Slider.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Title_2.Name = "Title"
+Title_2.Parent = Slider
+Title_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_2.BackgroundTransparency = 1
+Title_2.Position = UDim2.new(0.5, 0, 0.5, -10)
+Title_2.Size = UDim2.new(0, 0, 0, 20)
+Title_2.ZIndex = 2
+Title_2.Font = Enum.Font.GothamBold
+Title_2.Text = "Slider"
+Title_2.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+Title_2.TextSize = 14
+
+Indicator.Name = "Indicator"
+Indicator.Parent = Slider
+Indicator.BackgroundColor3 = Color3.new(1, 1, 1)
+Indicator.BackgroundTransparency = 1
+Indicator.Size = UDim2.new(0, 0, 0, 20)
+Indicator.Image = "rbxassetid://2851929490"
+Indicator.ImageColor3 = Color3.new(0.254902, 0.262745, 0.278431)
+Indicator.ScaleType = Enum.ScaleType.Slice
+Indicator.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Value.Name = "Value"
+Value.Parent = Slider
+Value.BackgroundColor3 = Color3.new(1, 1, 1)
+Value.BackgroundTransparency = 1
+Value.Position = UDim2.new(1, -55, 0.5, -10)
+Value.Size = UDim2.new(0, 50, 0, 20)
+Value.Font = Enum.Font.GothamBold
+Value.Text = "0%"
+Value.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+Value.TextSize = 14
+
+TextLabel.Parent = Slider
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.Position = UDim2.new(1, -20, -0.75, 0)
+TextLabel.Size = UDim2.new(0, 26, 0, 50)
+TextLabel.Font = Enum.Font.GothamBold
+TextLabel.Text = "]"
+TextLabel.TextColor3 = Color3.new(0.627451, 0.627451, 0.627451)
+TextLabel.TextSize = 14
+
+TextLabel_2.Parent = Slider
+TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_2.BackgroundTransparency = 1
+TextLabel_2.Position = UDim2.new(1, -65, -0.75, 0)
+TextLabel_2.Size = UDim2.new(0, 26, 0, 50)
+TextLabel_2.Font = Enum.Font.GothamBold
+TextLabel_2.Text = "["
+TextLabel_2.TextColor3 = Color3.new(0.627451, 0.627451, 0.627451)
+TextLabel_2.TextSize = 14
+
+Circle.Name = "Circle"
+Circle.Parent = Prefabs
+Circle.BackgroundColor3 = Color3.new(1, 1, 1)
+Circle.BackgroundTransparency = 1
+Circle.Image = "rbxassetid://266543268"
+Circle.ImageTransparency = 0.5
+
+UIListLayout_3.Parent = Prefabs
+UIListLayout_3.FillDirection = Enum.FillDirection.Horizontal
+UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout_3.Padding = UDim.new(0, 20)
+
+Dropdown.Name = "Dropdown"
+Dropdown.Parent = Prefabs
+Dropdown.BackgroundColor3 = Color3.new(1, 1, 1)
+Dropdown.BackgroundTransparency = 1
+Dropdown.BorderSizePixel = 0
+Dropdown.Position = UDim2.new(-0.055555556, 0, 0.0833333284, 0)
+Dropdown.Size = UDim2.new(0, 200, 0, 20)
+Dropdown.ZIndex = 2
+Dropdown.Font = Enum.Font.GothamBold
+Dropdown.Text = "      Dropdown"
+Dropdown.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+Dropdown.TextSize = 14
+Dropdown.TextXAlignment = Enum.TextXAlignment.Left
+
+Indicator_2.Name = "Indicator"
+Indicator_2.Parent = Dropdown
+Indicator_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Indicator_2.BackgroundTransparency = 1
+Indicator_2.Position = UDim2.new(0.899999976, -10, 0.100000001, 0)
+Indicator_2.Rotation = -90
+Indicator_2.Size = UDim2.new(0, 15, 0, 15)
+Indicator_2.ZIndex = 2
+Indicator_2.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=4744658743"
+
+Box.Name = "Box"
+Box.Parent = Dropdown
+Box.BackgroundColor3 = Color3.new(1, 1, 1)
+Box.BackgroundTransparency = 1
+Box.Position = UDim2.new(0, 0, 0, 25)
+Box.Size = UDim2.new(1, 0, 0, 150)
+Box.ZIndex = 3
+Box.Image = "rbxassetid://2851929490"
+Box.ImageColor3 = Color3.new(0.129412, 0.133333, 0.141176)
+Box.ScaleType = Enum.ScaleType.Slice
+Box.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Objects.Name = "Objects"
+Objects.Parent = Box
+Objects.BackgroundColor3 = Color3.new(1, 1, 1)
+Objects.BackgroundTransparency = 1
+Objects.BorderSizePixel = 0
+Objects.Size = UDim2.new(1, 0, 1, 0)
+Objects.ZIndex = 3
+Objects.CanvasSize = UDim2.new(0, 0, 0, 0)
+Objects.ScrollBarThickness = 8
+
+UIListLayout_4.Parent = Objects
+UIListLayout_4.SortOrder = Enum.SortOrder.LayoutOrder
+
+TextButton_Roundify_4px.Name = "TextButton_Roundify_4px"
+TextButton_Roundify_4px.Parent = Dropdown
+TextButton_Roundify_4px.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton_Roundify_4px.BackgroundTransparency = 1
+TextButton_Roundify_4px.Size = UDim2.new(1, 0, 1, 0)
+TextButton_Roundify_4px.Image = "rbxassetid://2851929490"
+TextButton_Roundify_4px.ImageColor3 = Color3.new(0.203922, 0.207843, 0.219608)
+TextButton_Roundify_4px.ScaleType = Enum.ScaleType.Slice
+TextButton_Roundify_4px.SliceCenter = Rect.new(4, 4, 4, 4)
+
+TabButton.Name = "TabButton"
+TabButton.Parent = Prefabs
+TabButton.BackgroundColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+TabButton.BackgroundTransparency = 1
+TabButton.BorderSizePixel = 0
+TabButton.Position = UDim2.new(0.185185179, 0, 0, 0)
+TabButton.Size = UDim2.new(0, 71, 0, 20)
+TabButton.ZIndex = 2
+TabButton.Font = Enum.Font.GothamSemibold
+TabButton.Text = "Test tab"
+TabButton.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+TabButton.TextSize = 14
+
+TextButton_Roundify_4px_2.Name = "TextButton_Roundify_4px"
+TextButton_Roundify_4px_2.Parent = TabButton
+TextButton_Roundify_4px_2.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton_Roundify_4px_2.BackgroundTransparency = 1
+TextButton_Roundify_4px_2.Size = UDim2.new(1, 0, 1, 0)
+TextButton_Roundify_4px_2.Image = "rbxassetid://2851929490"
+TextButton_Roundify_4px_2.ImageColor3 = Color3.new(0.203922, 0.207843, 0.219608)
+TextButton_Roundify_4px_2.ScaleType = Enum.ScaleType.Slice
+TextButton_Roundify_4px_2.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Folder.Name = "Folder"
+Folder.Parent = Prefabs
+Folder.BackgroundColor3 = Color3.new(1, 1, 1)
+Folder.BackgroundTransparency = 1
+Folder.Position = UDim2.new(0, 0, 0, 50)
+Folder.Size = UDim2.new(1, 0, 0, 20)
+Folder.Image = "rbxassetid://2851929490"
+Folder.ImageColor3 = Color3.new(0.0823529, 0.0862745, 0.0901961)
+Folder.ScaleType = Enum.ScaleType.Slice
+Folder.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Button.Name = "Button"
+Button.Parent = Folder
+Button.BackgroundColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+Button.BackgroundTransparency = 1
+Button.BorderSizePixel = 0
+Button.Size = UDim2.new(1, 0, 0, 20)
+Button.ZIndex = 2
+Button.Font = Enum.Font.GothamSemibold
+Button.Text = "      Folder"
+Button.TextColor3 = Color3.new(1, 1, 1)
+Button.TextSize = 14
+Button.TextXAlignment = Enum.TextXAlignment.Left
+
+TextButton_Roundify_4px_3.Name = "TextButton_Roundify_4px"
+TextButton_Roundify_4px_3.Parent = Button
+TextButton_Roundify_4px_3.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton_Roundify_4px_3.BackgroundTransparency = 1
+TextButton_Roundify_4px_3.Size = UDim2.new(1, 0, 1, 0)
+TextButton_Roundify_4px_3.Image = "rbxassetid://2851929490"
+TextButton_Roundify_4px_3.ImageColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+TextButton_Roundify_4px_3.ScaleType = Enum.ScaleType.Slice
+TextButton_Roundify_4px_3.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Toggle_2.Name = "Toggle"
+Toggle_2.Parent = Button
+Toggle_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Toggle_2.BackgroundTransparency = 1
+Toggle_2.Position = UDim2.new(0, 5, 0, 0)
+Toggle_2.Size = UDim2.new(0, 20, 0, 20)
+Toggle_2.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=4731371541"
+
+Objects_2.Name = "Objects"
+Objects_2.Parent = Folder
+Objects_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Objects_2.BackgroundTransparency = 1
+Objects_2.Position = UDim2.new(0, 10, 0, 25)
+Objects_2.Size = UDim2.new(1, -10, 1, -25)
+Objects_2.Visible = false
+
+UIListLayout_5.Parent = Objects_2
+UIListLayout_5.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout_5.Padding = UDim.new(0, 5)
+
+HorizontalAlignment.Name = "HorizontalAlignment"
+HorizontalAlignment.Parent = Prefabs
+HorizontalAlignment.BackgroundColor3 = Color3.new(1, 1, 1)
+HorizontalAlignment.BackgroundTransparency = 1
+HorizontalAlignment.Size = UDim2.new(1, 0, 0, 20)
+
+UIListLayout_6.Parent = HorizontalAlignment
+UIListLayout_6.FillDirection = Enum.FillDirection.Horizontal
+UIListLayout_6.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout_6.Padding = UDim.new(0, 5)
+
+Console.Name = "Console"
+Console.Parent = Prefabs
+Console.BackgroundColor3 = Color3.new(1, 1, 1)
+Console.BackgroundTransparency = 1
+Console.Size = UDim2.new(1, 0, 0, 200)
+Console.Image = "rbxassetid://2851928141"
+Console.ImageColor3 = Color3.new(0.129412, 0.133333, 0.141176)
+Console.ScaleType = Enum.ScaleType.Slice
+Console.SliceCenter = Rect.new(8, 8, 8, 8)
+
+ScrollingFrame.Parent = Console
+ScrollingFrame.BackgroundColor3 = Color3.new(1, 1, 1)
+ScrollingFrame.BackgroundTransparency = 1
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Size = UDim2.new(1, 0, 1, 1)
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollingFrame.ScrollBarThickness = 4
+
+Source.Name = "Source"
+Source.Parent = ScrollingFrame
+Source.BackgroundColor3 = Color3.new(1, 1, 1)
+Source.BackgroundTransparency = 1
+Source.Position = UDim2.new(0, 40, 0, 0)
+Source.Size = UDim2.new(1, -40, 0, 10000)
+Source.ZIndex = 3
+Source.ClearTextOnFocus = false
+Source.Font = Enum.Font.Code
+Source.MultiLine = true
+Source.PlaceholderColor3 = Color3.new(0.8, 0.8, 0.8)
+Source.Text = ""
+Source.TextColor3 = Color3.new(1, 1, 1)
+Source.TextSize = 15
+Source.TextStrokeColor3 = Color3.new(1, 1, 1)
+Source.TextWrapped = true
+Source.TextXAlignment = Enum.TextXAlignment.Left
+Source.TextYAlignment = Enum.TextYAlignment.Top
+
+Comments.Name = "Comments"
+Comments.Parent = Source
+Comments.BackgroundColor3 = Color3.new(1, 1, 1)
+Comments.BackgroundTransparency = 1
+Comments.Size = UDim2.new(1, 0, 1, 0)
+Comments.ZIndex = 5
+Comments.Font = Enum.Font.Code
+Comments.Text = ""
+Comments.TextColor3 = Color3.new(0.231373, 0.784314, 0.231373)
+Comments.TextSize = 15
+Comments.TextXAlignment = Enum.TextXAlignment.Left
+Comments.TextYAlignment = Enum.TextYAlignment.Top
+
+Globals.Name = "Globals"
+Globals.Parent = Source
+Globals.BackgroundColor3 = Color3.new(1, 1, 1)
+Globals.BackgroundTransparency = 1
+Globals.Size = UDim2.new(1, 0, 1, 0)
+Globals.ZIndex = 5
+Globals.Font = Enum.Font.Code
+Globals.Text = ""
+Globals.TextColor3 = Color3.new(0.517647, 0.839216, 0.968628)
+Globals.TextSize = 15
+Globals.TextXAlignment = Enum.TextXAlignment.Left
+Globals.TextYAlignment = Enum.TextYAlignment.Top
+
+Keywords.Name = "Keywords"
+Keywords.Parent = Source
+Keywords.BackgroundColor3 = Color3.new(1, 1, 1)
+Keywords.BackgroundTransparency = 1
+Keywords.Size = UDim2.new(1, 0, 1, 0)
+Keywords.ZIndex = 5
+Keywords.Font = Enum.Font.Code
+Keywords.Text = ""
+Keywords.TextColor3 = Color3.new(0.972549, 0.427451, 0.486275)
+Keywords.TextSize = 15
+Keywords.TextXAlignment = Enum.TextXAlignment.Left
+Keywords.TextYAlignment = Enum.TextYAlignment.Top
+
+RemoteHighlight.Name = "RemoteHighlight"
+RemoteHighlight.Parent = Source
+RemoteHighlight.BackgroundColor3 = Color3.new(1, 1, 1)
+RemoteHighlight.BackgroundTransparency = 1
+RemoteHighlight.Size = UDim2.new(1, 0, 1, 0)
+RemoteHighlight.ZIndex = 5
+RemoteHighlight.Font = Enum.Font.Code
+RemoteHighlight.Text = ""
+RemoteHighlight.TextColor3 = Color3.new(0, 0.568627, 1)
+RemoteHighlight.TextSize = 15
+RemoteHighlight.TextXAlignment = Enum.TextXAlignment.Left
+RemoteHighlight.TextYAlignment = Enum.TextYAlignment.Top
+
+Strings.Name = "Strings"
+Strings.Parent = Source
+Strings.BackgroundColor3 = Color3.new(1, 1, 1)
+Strings.BackgroundTransparency = 1
+Strings.Size = UDim2.new(1, 0, 1, 0)
+Strings.ZIndex = 5
+Strings.Font = Enum.Font.Code
+Strings.Text = ""
+Strings.TextColor3 = Color3.new(0.678431, 0.945098, 0.584314)
+Strings.TextSize = 15
+Strings.TextXAlignment = Enum.TextXAlignment.Left
+Strings.TextYAlignment = Enum.TextYAlignment.Top
+
+Tokens.Name = "Tokens"
+Tokens.Parent = Source
+Tokens.BackgroundColor3 = Color3.new(1, 1, 1)
+Tokens.BackgroundTransparency = 1
+Tokens.Size = UDim2.new(1, 0, 1, 0)
+Tokens.ZIndex = 5
+Tokens.Font = Enum.Font.Code
+Tokens.Text = ""
+Tokens.TextColor3 = Color3.new(1, 1, 1)
+Tokens.TextSize = 15
+Tokens.TextXAlignment = Enum.TextXAlignment.Left
+Tokens.TextYAlignment = Enum.TextYAlignment.Top
+
+Numbers.Name = "Numbers"
+Numbers.Parent = Source
+Numbers.BackgroundColor3 = Color3.new(1, 1, 1)
+Numbers.BackgroundTransparency = 1
+Numbers.Size = UDim2.new(1, 0, 1, 0)
+Numbers.ZIndex = 4
+Numbers.Font = Enum.Font.Code
+Numbers.Text = ""
+Numbers.TextColor3 = Color3.new(1, 0.776471, 0)
+Numbers.TextSize = 15
+Numbers.TextXAlignment = Enum.TextXAlignment.Left
+Numbers.TextYAlignment = Enum.TextYAlignment.Top
+
+Info.Name = "Info"
+Info.Parent = Source
+Info.BackgroundColor3 = Color3.new(1, 1, 1)
+Info.BackgroundTransparency = 1
+Info.Size = UDim2.new(1, 0, 1, 0)
+Info.ZIndex = 5
+Info.Font = Enum.Font.Code
+Info.Text = ""
+Info.TextColor3 = Color3.new(0, 0.635294, 1)
+Info.TextSize = 15
+Info.TextXAlignment = Enum.TextXAlignment.Left
+Info.TextYAlignment = Enum.TextYAlignment.Top
+
+Lines.Name = "Lines"
+Lines.Parent = ScrollingFrame
+Lines.BackgroundColor3 = Color3.new(1, 1, 1)
+Lines.BackgroundTransparency = 1
+Lines.BorderSizePixel = 0
+Lines.Size = UDim2.new(0, 40, 0, 10000)
+Lines.ZIndex = 4
+Lines.Font = Enum.Font.Code
+Lines.Text = "1\n"
+Lines.TextColor3 = Color3.new(1, 1, 1)
+Lines.TextSize = 15
+Lines.TextWrapped = true
+Lines.TextYAlignment = Enum.TextYAlignment.Top
+
+ColorPicker.Name = "ColorPicker"
+ColorPicker.Parent = Prefabs
+ColorPicker.BackgroundColor3 = Color3.new(1, 1, 1)
+ColorPicker.BackgroundTransparency = 1
+ColorPicker.Size = UDim2.new(0, 180, 0, 110)
+ColorPicker.Image = "rbxassetid://2851929490"
+ColorPicker.ImageColor3 = Color3.new(0.203922, 0.207843, 0.219608)
+ColorPicker.ScaleType = Enum.ScaleType.Slice
+ColorPicker.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Palette.Name = "Palette"
+Palette.Parent = ColorPicker
+Palette.BackgroundColor3 = Color3.new(1, 1, 1)
+Palette.BackgroundTransparency = 1
+Palette.Position = UDim2.new(0.0500000007, 0, 0.0500000007, 0)
+Palette.Size = UDim2.new(0, 100, 0, 100)
+Palette.Image = "rbxassetid://698052001"
+Palette.ScaleType = Enum.ScaleType.Slice
+Palette.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Indicator_3.Name = "Indicator"
+Indicator_3.Parent = Palette
+Indicator_3.BackgroundColor3 = Color3.new(1, 1, 1)
+Indicator_3.BackgroundTransparency = 1
+Indicator_3.Size = UDim2.new(0, 5, 0, 5)
+Indicator_3.ZIndex = 2
+Indicator_3.Image = "rbxassetid://2851926732"
+Indicator_3.ImageColor3 = Color3.new(0, 0, 0)
+Indicator_3.ScaleType = Enum.ScaleType.Slice
+Indicator_3.SliceCenter = Rect.new(12, 12, 12, 12)
+
+Sample.Name = "Sample"
+Sample.Parent = ColorPicker
+Sample.BackgroundColor3 = Color3.new(1, 1, 1)
+Sample.BackgroundTransparency = 1
+Sample.Position = UDim2.new(0.800000012, 0, 0.0500000007, 0)
+Sample.Size = UDim2.new(0, 25, 0, 25)
+Sample.Image = "rbxassetid://2851929490"
+Sample.ScaleType = Enum.ScaleType.Slice
+Sample.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Saturation.Name = "Saturation"
+Saturation.Parent = ColorPicker
+Saturation.BackgroundColor3 = Color3.new(1, 1, 1)
+Saturation.Position = UDim2.new(0.649999976, 0, 0.0500000007, 0)
+Saturation.Size = UDim2.new(0, 15, 0, 100)
+Saturation.Image = "rbxassetid://3641079629"
+
+Indicator_4.Name = "Indicator"
+Indicator_4.Parent = Saturation
+Indicator_4.BackgroundColor3 = Color3.new(1, 1, 1)
+Indicator_4.BorderSizePixel = 0
+Indicator_4.Size = UDim2.new(0, 20, 0, 2)
+Indicator_4.ZIndex = 2
+
+Switch.Name = "Switch"
+Switch.Parent = Prefabs
+Switch.BackgroundColor3 = Color3.new(1, 1, 1)
+Switch.BackgroundTransparency = 1
+Switch.BorderSizePixel = 0
+Switch.Position = UDim2.new(0.229411766, 0, 0.20714286, 0)
+Switch.Size = UDim2.new(0, 20, 0, 20)
+Switch.ZIndex = 2
+Switch.Font = Enum.Font.SourceSans
+Switch.Text = ""
+Switch.TextColor3 = Color3.new(1, 1, 1)
+Switch.TextSize = 18
+
+TextButton_Roundify_4px_4.Name = "TextButton_Roundify_4px"
+TextButton_Roundify_4px_4.Parent = Switch
+TextButton_Roundify_4px_4.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton_Roundify_4px_4.BackgroundTransparency = 1
+TextButton_Roundify_4px_4.Size = UDim2.new(1, 0, 1, 0)
+TextButton_Roundify_4px_4.Image = "rbxassetid://2851929490"
+TextButton_Roundify_4px_4.ImageColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+TextButton_Roundify_4px_4.ImageTransparency = 0.5
+TextButton_Roundify_4px_4.ScaleType = Enum.ScaleType.Slice
+TextButton_Roundify_4px_4.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Title_3.Name = "Title"
+Title_3.Parent = Switch
+Title_3.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_3.BackgroundTransparency = 1
+Title_3.Position = UDim2.new(1.20000005, 0, 0, 0)
+Title_3.Size = UDim2.new(0, 20, 0, 20)
+Title_3.Font = Enum.Font.GothamSemibold
+Title_3.Text = "Switch"
+Title_3.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+Title_3.TextSize = 14
+Title_3.TextXAlignment = Enum.TextXAlignment.Left
+
+Button_2.Name = "Button"
+Button_2.Parent = Prefabs
+Button_2.BackgroundColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+Button_2.BackgroundTransparency = 1
+Button_2.BorderSizePixel = 0
+Button_2.Size = UDim2.new(0, 91, 0, 20)
+Button_2.ZIndex = 2
+Button_2.Font = Enum.Font.GothamSemibold
+Button_2.TextColor3 = Color3.new(1, 1, 1)
+Button_2.TextSize = 14
+
+TextButton_Roundify_4px_5.Name = "TextButton_Roundify_4px"
+TextButton_Roundify_4px_5.Parent = Button_2
+TextButton_Roundify_4px_5.BackgroundColor3 = Color3.new(1, 1, 1)
+TextButton_Roundify_4px_5.BackgroundTransparency = 1
+TextButton_Roundify_4px_5.Size = UDim2.new(1, 0, 1, 0)
+TextButton_Roundify_4px_5.Image = "rbxassetid://2851929490"
+TextButton_Roundify_4px_5.ImageColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+TextButton_Roundify_4px_5.ScaleType = Enum.ScaleType.Slice
+TextButton_Roundify_4px_5.SliceCenter = Rect.new(4, 4, 4, 4)
+
+DropdownButton.Name = "DropdownButton"
+DropdownButton.Parent = Prefabs
+DropdownButton.BackgroundColor3 = Color3.new(0.129412, 0.133333, 0.141176)
+DropdownButton.BorderSizePixel = 0
+DropdownButton.Size = UDim2.new(1, 0, 0, 20)
+DropdownButton.ZIndex = 3
+DropdownButton.Font = Enum.Font.GothamBold
+DropdownButton.Text = "      Button"
+DropdownButton.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+DropdownButton.TextSize = 14
+DropdownButton.TextXAlignment = Enum.TextXAlignment.Left
+
+Keybind.Name = "Keybind"
+Keybind.Parent = Prefabs
+Keybind.BackgroundColor3 = Color3.new(1, 1, 1)
+Keybind.BackgroundTransparency = 1
+Keybind.Size = UDim2.new(0, 200, 0, 20)
+Keybind.Image = "rbxassetid://2851929490"
+Keybind.ImageColor3 = Color3.new(0.203922, 0.207843, 0.219608)
+Keybind.ScaleType = Enum.ScaleType.Slice
+Keybind.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Title_4.Name = "Title"
+Title_4.Parent = Keybind
+Title_4.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_4.BackgroundTransparency = 1
+Title_4.Size = UDim2.new(0, 0, 1, 0)
+Title_4.Font = Enum.Font.GothamBold
+Title_4.Text = "Keybind"
+Title_4.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+Title_4.TextSize = 14
+Title_4.TextXAlignment = Enum.TextXAlignment.Left
+
+Input.Name = "Input"
+Input.Parent = Keybind
+Input.BackgroundColor3 = Color3.new(1, 1, 1)
+Input.BackgroundTransparency = 1
+Input.BorderSizePixel = 0
+Input.Position = UDim2.new(1, -85, 0, 2)
+Input.Size = UDim2.new(0, 80, 1, -4)
+Input.ZIndex = 2
+Input.Font = Enum.Font.GothamSemibold
+Input.Text = "RShift"
+Input.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+Input.TextSize = 12
+Input.TextWrapped = true
+
+Input_Roundify_4px.Name = "Input_Roundify_4px"
+Input_Roundify_4px.Parent = Input
+Input_Roundify_4px.BackgroundColor3 = Color3.new(1, 1, 1)
+Input_Roundify_4px.BackgroundTransparency = 1
+Input_Roundify_4px.Size = UDim2.new(1, 0, 1, 0)
+Input_Roundify_4px.Image = "rbxassetid://2851929490"
+Input_Roundify_4px.ImageColor3 = Color3.new(0.290196, 0.294118, 0.313726)
+Input_Roundify_4px.ScaleType = Enum.ScaleType.Slice
+Input_Roundify_4px.SliceCenter = Rect.new(4, 4, 4, 4)
+
+Windows.Name = "Windows"
+Windows.Parent = imgui
+Windows.BackgroundColor3 = Color3.new(1, 1, 1)
+Windows.BackgroundTransparency = 1
+Windows.Position = UDim2.new(0, 20, 0, 20)
+Windows.Size = UDim2.new(1, 20, 1, -20)
+
+--[[ Script ]]--
+script.Parent = imgui
+
+local UIS = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local RS = game:GetService("RunService")
+local ps = game:GetService("Players")
+
+local p = ps.LocalPlayer
+local mouse = p:GetMouse()
+
+local Prefabs = script.Parent:WaitForChild("Prefabs")
+local Windows = script.Parent:FindFirstChild("Windows")
+
+local checks = {
+	["binding"] = false,
+}
+
+UIS.InputBegan:Connect(function(input, gameProcessed)
+	if input.KeyCode == ((typeof(ui_options.toggle_key) == "EnumItem") and ui_options.toggle_key or Enum.KeyCode.RightShift) then
+		if script.Parent then
+			if not checks.binding then
+				script.Parent.Enabled = not script.Parent.Enabled
+			end
+		end
+	end
+end)
+
+local function Resize(part, new, _delay)
+	_delay = _delay or 0.5
+	local tweenInfo = TweenInfo.new(_delay, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+	local tween = TweenService:Create(part, tweenInfo, new)
+	tween:Play()
+end
+
+local function rgbtohsv(r, g, b) -- idk who made this function, but thanks
+	r, g, b = r / 255, g / 255, b / 255
+	local max, min = math.max(r, g, b), math.min(r, g, b)
+	local h, s, v
+	v = max
+
+	local d = max - min
+	if max == 0 then
+		s = 0
+	else
+		s = d / max
+	end
+
+	if max == min then
+		h = 0
+	else
+		if max == r then
+			h = (g - b) / d
+			if g < b then
+				h = h + 6
+			end
+		elseif max == g then
+			h = (b - r) / d + 2
+		elseif max == b then
+			h = (r - g) / d + 4
+		end
+		h = h / 6
+	end
+
+	return h, s, v
+end
+
+local function hasprop(object, prop)
+	local a, b = pcall(function()
+		return object[tostring(prop)]
+	end)
+	if a then
+		return b
+	end
+end
+
+local function gNameLen(obj)
+	return obj.TextBounds.X + 15
+end
+
+local function gMouse()
+	return Vector2.new(UIS:GetMouseLocation().X + 1, UIS:GetMouseLocation().Y - 35)
+end
+
+local function ripple(button, x, y)
+	spawn(function()
+		button.ClipsDescendants = true
+
+		local circle = Prefabs:FindFirstChild("Circle"):Clone()
+
+		circle.Parent = button
+		circle.ZIndex = 1000
+
+		local new_x = x - circle.AbsolutePosition.X
+		local new_y = y - circle.AbsolutePosition.Y
+		circle.Position = UDim2.new(0, new_x, 0, new_y)
+
+		local size = 0
+		if button.AbsoluteSize.X > button.AbsoluteSize.Y then
+			 size = button.AbsoluteSize.X * 1.5
+		elseif button.AbsoluteSize.X < button.AbsoluteSize.Y then
+			 size = button.AbsoluteSize.Y * 1.5
+		elseif button.AbsoluteSize.X == button.AbsoluteSize.Y then
+			size = button.AbsoluteSize.X * 1.5
+		end
+
+		circle:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, -size / 2, 0.5, -size / 2), "Out", "Quad", 0.5, false, nil)
+		Resize(circle, {ImageTransparency = 1}, 0.5)
+
+		wait(0.5)
+		circle:Destroy()
+	end)
+end
+
+local windows = 0
+local library = {}
+
+local function format_windows()
+	local ull = Prefabs:FindFirstChild("UIListLayout"):Clone()
+	ull.Parent = Windows
+	local data = {}
+
+	for i,v in next, Windows:GetChildren() do
+		if not (v:IsA("UIListLayout")) then
+			data[v] = v.AbsolutePosition
+		end
+	end
+
+	ull:Destroy()
+
+	for i,v in next, data do
+		i.Position = UDim2.new(0, v.X, 0, v.Y)
+	end
+end
+
+function library:FormatWindows()
+	format_windows()
+end
+
+function library:AddWindow(title, options)
+	windows = windows + 1
+	local dropdown_open = false
+	title = tostring(title or "New Window")
+	options = (typeof(options) == "table") and options or ui_options
+	options.tween_time = 0.1
+
+	local Window = Prefabs:FindFirstChild("Window"):Clone()
+	Window.Parent = Windows
+	Window:FindFirstChild("Title").Text = title
+	Window.Size = UDim2.new(0, options.min_size.X, 0, options.min_size.Y)
+	Window.ZIndex = Window.ZIndex + (windows * 10)
+
+	do -- Altering Window Color
+		local Title = Window:FindFirstChild("Title")
+		local Bar = Window:FindFirstChild("Bar")
+		local Base = Bar:FindFirstChild("Base")
+		local Top = Bar:FindFirstChild("Top")
+		local SplitFrame = Window:FindFirstChild("TabSelection"):FindFirstChild("Frame")
+		local Toggle = Bar:FindFirstChild("Toggle")
+
+		spawn(function()
+			while true do
+				Bar.BackgroundColor3 = options.main_color
+				Base.BackgroundColor3 = options.main_color
+				Base.ImageColor3 = options.main_color
+				Top.ImageColor3 = options.main_color
+				SplitFrame.BackgroundColor3 = options.main_color
+
+				RS.Heartbeat:Wait()
+			end
+		end)
+
+	end
+
+	local Resizer = Window:WaitForChild("Resizer")
+
+	local window_data = {}
+	Window.Draggable = true
+
+	do -- Resize Window
+		local oldIcon = mouse.Icon
+		local Entered = false
+		Resizer.MouseEnter:Connect(function()
+			Window.Draggable = false
+			if options.can_resize then
+				oldIcon = mouse.Icon
+				-- mouse.Icon = "http://www.roblox.com/asset?id=4745131330"
+			end
+			Entered = true
+		end)
+
+		Resizer.MouseLeave:Connect(function()
+			Entered = false
+			if options.can_resize then
+				mouse.Icon = oldIcon
+			end
+			Window.Draggable = true
+		end)
+
+		local Held = false
+		UIS.InputBegan:Connect(function(inputObject)
+			if inputObject.UserInputType == Enum.UserInputType.MouseButton1 then
+				Held = true
+
+				spawn(function() -- Loop check
+					if Entered and Resizer.Active and options.can_resize then
+						while Held and Resizer.Active do
+
+							local mouse_location = gMouse()
+							local x = mouse_location.X - Window.AbsolutePosition.X
+							local y = mouse_location.Y - Window.AbsolutePosition.Y
+
+							--
+							if x >= options.min_size.X and y >= options.min_size.Y then
+								Resize(Window, {Size = UDim2.new(0, x, 0, y)}, options.tween_time)
+							elseif x >= options.min_size.X then
+								Resize(Window, {Size = UDim2.new(0, x, 0, options.min_size.Y)}, options.tween_time)
+							elseif y >= options.min_size.Y then
+								Resize(Window, {Size = UDim2.new(0, options.min_size.X, 0, y)}, options.tween_time)
+							else
+								Resize(Window, {Size = UDim2.new(0, options.min_size.X, 0, options.min_size.Y)}, options.tween_time)
+							end
+
+							RS.Heartbeat:Wait()
+						end
+					end
+				end)
+			end
+		end)
+		UIS.InputEnded:Connect(function(inputObject)
+			if inputObject.UserInputType == Enum.UserInputType.MouseButton1 then
+				Held = false
+			end
+		end)
+	end
+
+	do -- [Open / Close] Window
+		local open_close = Window:FindFirstChild("Bar"):FindFirstChild("Toggle")
+		local open = true
+		local canopen = true
+
+		local oldwindowdata = {}
+		local oldy = Window.AbsoluteSize.Y
+		open_close.MouseButton1Click:Connect(function()
+			if canopen then
+				canopen = false
+
+				if open then
+					-- Close
+
+					oldwindowdata = {}
+					for i,v in next, Window:FindFirstChild("Tabs"):GetChildren() do
+						oldwindowdata[v] = v.Visible
+						v.Visible = false
+					end
+
+					Resizer.Active = false
+
+					oldy = Window.AbsoluteSize.Y
+					Resize(open_close, {Rotation = 0}, options.tween_time)
+					Resize(Window, {Size = UDim2.new(0, Window.AbsoluteSize.X, 0, 26)}, options.tween_time)
+					open_close.Parent:FindFirstChild("Base").Transparency = 1
+
+				else
+					-- Open
+
+					for i,v in next, oldwindowdata do
+						i.Visible = v
+					end
+
+					Resizer.Active = true
+
+					Resize(open_close, {Rotation = 90}, options.tween_time)
+					Resize(Window, {Size = UDim2.new(0, Window.AbsoluteSize.X, 0, oldy)}, options.tween_time)
+					open_close.Parent:FindFirstChild("Base").Transparency = 0
+
+				end
+
+				open = not open
+				wait(options.tween_time)
+				canopen = true
+
+			end
+		end)
+	end
+
+	do -- UI Elements
+		local tabs = Window:FindFirstChild("Tabs")
+		local tab_selection = Window:FindFirstChild("TabSelection")
+		local tab_buttons = tab_selection:FindFirstChild("TabButtons")
+
+		do -- Add Tab
+			function window_data:AddTab(tab_name)
+				local tab_data = {}
+				tab_name = tostring(tab_name or "New Tab")
+				tab_selection.Visible = true
+
+				local new_button = Prefabs:FindFirstChild("TabButton"):Clone()
+				new_button.Parent = tab_buttons
+				new_button.Text = tab_name
+				new_button.Size = UDim2.new(0, gNameLen(new_button), 0, 20)
+				new_button.ZIndex = new_button.ZIndex + (windows * 10)
+				new_button:GetChildren()[1].ZIndex = new_button:GetChildren()[1].ZIndex + (windows * 10)
+
+				local new_tab = Prefabs:FindFirstChild("Tab"):Clone()
+				new_tab.Parent = tabs
+				new_tab.ZIndex = new_tab.ZIndex + (windows * 10)
+
+				local function show()
+					if dropdown_open then return end
+					for i, v in next, tab_buttons:GetChildren() do
+						if not (v:IsA("UIListLayout")) then
+							v:GetChildren()[1].ImageColor3 = Color3.fromRGB(52, 53, 56)
+							Resize(v, {Size = UDim2.new(0, v.AbsoluteSize.X, 0, 20)}, options.tween_time)
+						end
+					end
+					for i, v in next, tabs:GetChildren() do
+						v.Visible = false
+					end
+
+					Resize(new_button, {Size = UDim2.new(0, new_button.AbsoluteSize.X, 0, 25)}, options.tween_time)
+					new_button:GetChildren()[1].ImageColor3 = Color3.fromRGB(73, 75, 79)
+					new_tab.Visible = true
+				end
+
+				new_button.MouseButton1Click:Connect(function()
+					show()
+				end)
+
+				function tab_data:Show()
+					show()
+				end
+
+				do -- Tab Elements
+
+					function tab_data:AddLabel(label_text) -- [Label]
+						label_text = tostring(label_text or "New Label")
+
+						local label = Prefabs:FindFirstChild("Label"):Clone()
+
+						label.Parent = new_tab
+						label.Text = label_text
+						label.Size = UDim2.new(0, gNameLen(label), 0, 20)
+						label.ZIndex = label.ZIndex + (windows * 10)
+
+						return label
+					end
+
+					function tab_data:AddButton(button_text, callback) -- [Button]
+						button_text = tostring(button_text or "New Button")
+						callback = typeof(callback) == "function" and callback or function()end
+
+						local button = Prefabs:FindFirstChild("Button"):Clone()
+
+						button.Parent = new_tab
+						button.Text = button_text
+						button.Size = UDim2.new(0, gNameLen(button), 0, 20)
+						button.ZIndex = button.ZIndex + (windows * 10)
+						button:GetChildren()[1].ZIndex = button:GetChildren()[1].ZIndex + (windows * 10)
+
+						spawn(function()
+							while true do
+								if button and button:GetChildren()[1] then
+									button:GetChildren()[1].ImageColor3 = options.main_color
+								end
+								RS.Heartbeat:Wait()
+							end
+						end)
+
+						button.MouseButton1Click:Connect(function()
+							ripple(button, mouse.X, mouse.Y)
+							pcall(callback)
+						end)
+
+						return button
+					end
+
+					function tab_data:AddSwitch(switch_text, callback) -- [Switch]
+						local switch_data = {}
+
+						switch_text = tostring(switch_text or "New Switch")
+						callback = typeof(callback) == "function" and callback or function()end
+
+						local switch = Prefabs:FindFirstChild("Switch"):Clone()
+
+						switch.Parent = new_tab
+						switch:FindFirstChild("Title").Text = switch_text
+
+						switch:FindFirstChild("Title").ZIndex = switch:FindFirstChild("Title").ZIndex + (windows * 10)
+						switch.ZIndex = switch.ZIndex + (windows * 10)
+						switch:GetChildren()[1].ZIndex = switch:GetChildren()[1].ZIndex + (windows * 10)
+
+						spawn(function()
+							while true do
+								if switch and switch:GetChildren()[1] then
+									switch:GetChildren()[1].ImageColor3 = options.main_color
+								end
+								RS.Heartbeat:Wait()
+							end
+						end)
+
+						local toggled = false
+						switch.MouseButton1Click:Connect(function()
+							toggled = not toggled
+							switch.Text = toggled and utf8.char(10003) or ""
+							pcall(callback, toggled)
+						end)
+
+						function switch_data:Set(bool)
+							toggled = (typeof(bool) == "boolean") and bool or false
+							switch.Text = toggled and utf8.char(10003) or ""
+							pcall(callback,toggled)
+						end
+
+						return switch_data, switch
+					end
+
+					function tab_data:AddTextBox(textbox_text, callback, textbox_options)
+						textbox_text = tostring(textbox_text or "New TextBox")
+						callback = typeof(callback) == "function" and callback or function()end
+						textbox_options = typeof(textbox_options) == "table" and textbox_options or {["clear"] = true}
+						textbox_options = {
+							["clear"] = ((textbox_options.clear) == true)
+						}
+
+						local textbox = Prefabs:FindFirstChild("TextBox"):Clone()
+
+						textbox.Parent = new_tab
+						textbox.PlaceholderText = textbox_text
+						textbox.ZIndex = textbox.ZIndex + (windows * 10)
+						textbox:GetChildren()[1].ZIndex = textbox:GetChildren()[1].ZIndex + (windows * 10)
+
+						textbox.FocusLost:Connect(function(ep)
+							if ep then
+								if #textbox.Text > 0 then
+									pcall(callback, textbox.Text)
+									if textbox_options.clear then
+										textbox.Text = ""
+									end
+								end
+							end
+						end)
+
+						return textbox
+					end
+
+					function tab_data:AddSlider(slider_text, callback, slider_options)
+						local slider_data = {}
+
+						slider_text = tostring(slider_text or "New Slider")
+						callback = typeof(callback) == "function" and callback or function()end
+						slider_options = typeof(slider_options) == "table" and slider_options or {}
+						slider_options = {
+							["min"] = slider_options.min or 0,
+							["max"] = slider_options.max or 100,
+							["readonly"] = slider_options.readonly or false,
+						}
+
+						local slider = Prefabs:FindFirstChild("Slider"):Clone()
+
+						slider.Parent = new_tab
+						slider.ZIndex = slider.ZIndex + (windows * 10)
+
+						local title = slider:FindFirstChild("Title")
+						local indicator = slider:FindFirstChild("Indicator")
+						local value = slider:FindFirstChild("Value")
+						title.ZIndex = title.ZIndex + (windows * 10)
+						indicator.ZIndex = indicator.ZIndex + (windows * 10)
+						value.ZIndex = value.ZIndex + (windows * 10)
+
+						title.Text = slider_text
+
+						do -- Slider Math
+							local Entered = false
+							slider.MouseEnter:Connect(function()
+								Entered = true
+								Window.Draggable = false
+							end)
+							slider.MouseLeave:Connect(function()
+								Entered = false
+								Window.Draggable = true
+							end)
+
+							local Held = false
+							UIS.InputBegan:Connect(function(inputObject)
+								if inputObject.UserInputType == Enum.UserInputType.MouseButton1 then
+									Held = true
+
+									spawn(function() -- Loop check
+										if Entered and not slider_options.readonly then
+											while Held and (not dropdown_open) do
+												local mouse_location = gMouse()
+												local x = (slider.AbsoluteSize.X - (slider.AbsoluteSize.X - ((mouse_location.X - slider.AbsolutePosition.X)) + 1)) / slider.AbsoluteSize.X
+
+												local min = 0
+												local max = 1
+
+												local size = min
+												if x >= min and x <= max then
+													size = x
+												elseif x < min then
+													size = min
+												elseif x > max then
+													size = max
+												end
+
+												Resize(indicator, {Size = UDim2.new(size or min, 0, 0, 20)}, options.tween_time)
+												local p = math.floor((size or min) * 100)
+
+												local maxv = slider_options.max
+												local minv = slider_options.min
+												local diff = maxv - minv
+
+												local sel_value = math.floor(((diff / 100) * p) + minv)
+
+												value.Text = tostring(sel_value)
+												pcall(callback, sel_value)
+
+												RS.Heartbeat:Wait()
+											end
+										end
+									end)
+								end
+							end)
+							UIS.InputEnded:Connect(function(inputObject)
+								if inputObject.UserInputType == Enum.UserInputType.MouseButton1 then
+									Held = false
+								end
+							end)
+
+							function slider_data:Set(new_value)
+								new_value = tonumber(new_value) or 0
+								new_value = (((new_value >= 0 and new_value <= 100) and new_value) / 100)
+
+								Resize(indicator, {Size = UDim2.new(new_value or 0, 0, 0, 20)}, options.tween_time)
+								local p = math.floor((new_value or 0) * 100)
+
+								local maxv = slider_options.max
+								local minv = slider_options.min
+								local diff = maxv - minv
+
+								local sel_value = math.floor(((diff / 100) * p) + minv)
+
+								value.Text = tostring(sel_value)
+								pcall(callback, sel_value)
+							end
+
+							slider_data:Set(slider_options["min"])
+						end
+
+						return slider_data, slider
+					end
+
+					function tab_data:AddKeybind(keybind_name, callback, keybind_options)
+						local keybind_data = {}
+
+						keybind_name = tostring(keybind_name or "New Keybind")
+						callback = typeof(callback) == "function" and callback or function()end
+						keybind_options = typeof(keybind_options) == "table" and keybind_options or {}
+						keybind_options = {
+							["standard"] = keybind_options.standard or Enum.KeyCode.RightShift,
+						}
+
+						local keybind = Prefabs:FindFirstChild("Keybind"):Clone()
+						local input = keybind:FindFirstChild("Input")
+						local title = keybind:FindFirstChild("Title")
+						keybind.ZIndex = keybind.ZIndex + (windows * 10)
+						input.ZIndex = input.ZIndex + (windows * 10)
+						input:GetChildren()[1].ZIndex = input:GetChildren()[1].ZIndex + (windows * 10)
+						title.ZIndex = title.ZIndex + (windows * 10)
+
+						keybind.Parent = new_tab
+						title.Text = "  " .. keybind_name
+						keybind.Size = UDim2.new(0, gNameLen(title) + 80, 0, 20)
+
+						local shortkeys = { -- thanks to stroketon for helping me out with this
+				            RightControl = 'RightCtrl',
+				            LeftControl = 'LeftCtrl',
+				            LeftShift = 'LShift',
+				            RightShift = 'RShift',
+				            MouseButton1 = "Mouse1",
+				            MouseButton2 = "Mouse2"
+				        }
+
+						local keybind = keybind_options.standard
+
+						function keybind_data:SetKeybind(Keybind)
+							local key = shortkeys[Keybind.Name] or Keybind.Name
+							input.Text = key
+							keybind = Keybind
+						end
+
+						UIS.InputBegan:Connect(function(a, b)
+							if checks.binding then
+								spawn(function()
+									wait()
+									checks.binding = false
+								end)
+								return
+							end
+							if a.KeyCode == keybind and not b then
+								pcall(callback, keybind)
+							end
+						end)
+
+						keybind_data:SetKeybind(keybind_options.standard)
+
+						input.MouseButton1Click:Connect(function()
+							if checks.binding then return end
+							input.Text = "..."
+							checks.binding = true
+							local a, b = UIS.InputBegan:Wait()
+							keybind_data:SetKeybind(a.KeyCode)
+						end)
+
+						return keybind_data, keybind
+					end
+
+					function tab_data:AddDropdown(dropdown_name, callback)
+						local dropdown_data = {}
+						dropdown_name = tostring(dropdown_name or "New Dropdown")
+						callback = typeof(callback) == "function" and callback or function()end
+
+						local dropdown = Prefabs:FindFirstChild("Dropdown"):Clone()
+						local box = dropdown:FindFirstChild("Box")
+						local objects = box:FindFirstChild("Objects")
+						local indicator = dropdown:FindFirstChild("Indicator")
+						dropdown.ZIndex = dropdown.ZIndex + (windows * 10)
+						box.ZIndex = box.ZIndex + (windows * 10)
+						objects.ZIndex = objects.ZIndex + (windows * 10)
+						indicator.ZIndex = indicator.ZIndex + (windows * 10)
+						dropdown:GetChildren()[3].ZIndex = dropdown:GetChildren()[3].ZIndex + (windows * 10)
+
+						dropdown.Parent = new_tab
+						dropdown.Text = "      " .. dropdown_name
+						box.Size = UDim2.new(1, 0, 0, 0)
+
+						local open = false
+						dropdown.MouseButton1Click:Connect(function()
+							open = not open
+
+							local len = (#objects:GetChildren() - 1) * 20
+							if #objects:GetChildren() - 1 >= 10 then
+								len = 10 * 20
+								objects.CanvasSize = UDim2.new(0, 0, (#objects:GetChildren() - 1) * 0.1, 0)
+							end
+
+							if open then -- Open
+								if dropdown_open then return end
+								dropdown_open = true
+								Resize(box, {Size = UDim2.new(1, 0, 0, len)}, options.tween_time)
+								Resize(indicator, {Rotation = 90}, options.tween_time)
+							else -- Close
+								dropdown_open = false
+								Resize(box, {Size = UDim2.new(1, 0, 0, 0)}, options.tween_time)
+								Resize(indicator, {Rotation = -90}, options.tween_time)
+							end
+
+						end)
+
+						function dropdown_data:Add(n)
+							local object_data = {}
+							n = tostring(n or "New Object")
+
+							local object = Prefabs:FindFirstChild("DropdownButton"):Clone()
+
+							object.Parent = objects
+							object.Text = n
+							object.ZIndex = object.ZIndex + (windows * 10)
+
+							object.MouseEnter:Connect(function()
+								object.BackgroundColor3 = options.main_color
+							end)
+							object.MouseLeave:Connect(function()
+								object.BackgroundColor3 = Color3.fromRGB(33, 34, 36)
+							end)
+
+							if open then
+								local len = (#objects:GetChildren() - 1) * 20
+								if #objects:GetChildren() - 1 >= 10 then
+									len = 10 * 20
+									objects.CanvasSize = UDim2.new(0, 0, (#objects:GetChildren() - 1) * 0.1, 0)
+								end
+								Resize(box, {Size = UDim2.new(1, 0, 0, len)}, options.tween_time)
+							end
+
+							object.MouseButton1Click:Connect(function()
+								if dropdown_open then
+									dropdown.Text = "      [ " .. n .. " ]"
+									dropdown_open = false
+									open = false
+									Resize(box, {Size = UDim2.new(1, 0, 0, 0)}, options.tween_time)
+									Resize(indicator, {Rotation = -90}, options.tween_time)
+									pcall(callback, n)
+								end
+							end)
+
+							function object_data:Remove()
+								object:Destroy()
+							end
+
+							return object, object_data
+						end
+
+						return dropdown_data, dropdown
+					end
+
+					function tab_data:AddColorPicker(callback)
+						local color_picker_data = {}
+						callback = typeof(callback) == "function" and callback or function()end
+
+						local color_picker = Prefabs:FindFirstChild("ColorPicker"):Clone()
+
+						color_picker.Parent = new_tab
+						color_picker.ZIndex = color_picker.ZIndex + (windows * 10)
+
+						local palette = color_picker:FindFirstChild("Palette")
+						local sample = color_picker:FindFirstChild("Sample")
+						local saturation = color_picker:FindFirstChild("Saturation")
+						palette.ZIndex = palette.ZIndex + (windows * 10)
+						sample.ZIndex = sample.ZIndex + (windows * 10)
+						saturation.ZIndex = saturation.ZIndex + (windows * 10)
+
+						do -- Color Picker Math
+							local h = 0
+							local s = 1
+							local v = 1
+
+							local function update()
+								local color = Color3.fromHSV(h, s, v)
+								sample.ImageColor3 = color
+								saturation.ImageColor3 = Color3.fromHSV(h, 1, 1)
+								pcall(callback, color)
+							end
+
+							do
+								local color = Color3.fromHSV(h, s, v)
+								sample.ImageColor3 = color
+								saturation.ImageColor3 = Color3.fromHSV(h, 1, 1)
+							end
+
+							local Entered1, Entered2 = false, false
+							palette.MouseEnter:Connect(function()
+								Window.Draggable = false
+								Entered1 = true
+							end)
+							palette.MouseLeave:Connect(function()
+								Window.Draggable = true
+								Entered1 = false
+							end)
+							saturation.MouseEnter:Connect(function()
+								Window.Draggable = false
+								Entered2 = true
+							end)
+							saturation.MouseLeave:Connect(function()
+								Window.Draggable = true
+								Entered2 = false
+							end)
+
+							local palette_indicator = palette:FindFirstChild("Indicator")
+							local saturation_indicator = saturation:FindFirstChild("Indicator")
+							palette_indicator.ZIndex = palette_indicator.ZIndex + (windows * 10)
+							saturation_indicator.ZIndex = saturation_indicator.ZIndex + (windows * 10)
+
+							local Held = false
+							UIS.InputBegan:Connect(function(inputObject)
+								if inputObject.UserInputType == Enum.UserInputType.MouseButton1 then
+									Held = true
+
+									spawn(function() -- Loop check
+										while Held and Entered1 and (not dropdown_open) do -- Palette
+											local mouse_location = gMouse()
+
+											local x = ((palette.AbsoluteSize.X - (mouse_location.X - palette.AbsolutePosition.X)) + 1)
+											local y = ((palette.AbsoluteSize.Y - (mouse_location.Y - palette.AbsolutePosition.Y)) + 1.5)
+
+											local color = Color3.fromHSV(x / 100, y / 100, 0)
+											h = x / 100
+											s = y / 100
+
+											Resize(palette_indicator, {Position = UDim2.new(0, math.abs(x - 100) - (palette_indicator.AbsoluteSize.X / 2), 0, math.abs(y - 100) - (palette_indicator.AbsoluteSize.Y / 2))}, options.tween_time)
+
+											update()
+											RS.Heartbeat:Wait()
+										end
+
+										while Held and Entered2 and (not dropdown_open) do -- Saturation
+											local mouse_location = gMouse()
+											local y = ((palette.AbsoluteSize.Y - (mouse_location.Y - palette.AbsolutePosition.Y)) + 1.5)
+											v = y / 100
+
+											Resize(saturation_indicator, {Position = UDim2.new(0, 0, 0, math.abs(y - 100))}, options.tween_time)
+
+											update()
+											RS.Heartbeat:Wait()
+										end
+									end)
+								end
+							end)
+							UIS.InputEnded:Connect(function(inputObject)
+								if inputObject.UserInputType == Enum.UserInputType.MouseButton1 then
+									Held = false
+								end
+							end)
+
+							function color_picker_data:Set(color)
+								color = typeof(color) == "Color3" and color or Color3.new(1, 1, 1)
+								local h2, s2, v2 = rgbtohsv(color.r * 255, color.g * 255, color.b * 255)
+								sample.ImageColor3 = color
+								saturation.ImageColor3 = Color3.fromHSV(h2, 1, 1)
+								pcall(callback, color)
+							end
+						end
+
+						return color_picker_data, color_picker
+					end
+
+					function tab_data:AddConsole(console_options)
+						local console_data = {}
+
+						console_options = typeof(console_options) == "table" and console_options or {["readonly"] = true,["full"] = false,}
+						console_options = {
+							["y"] = tonumber(console_options.y) or 200,
+							["source"] = console_options.source or "Logs",
+							["readonly"] = ((console_options.readonly) == true),
+							["full"] = ((console_options.full) == true),
+						}
+
+						local console = Prefabs:FindFirstChild("Console"):Clone()
+
+						console.Parent = new_tab
+						console.ZIndex = console.ZIndex + (windows * 10)
+						console.Size = UDim2.new(1, 0, console_options.full and 1 or 0, console_options.y)
+
+						local sf = console:GetChildren()[1]
+						local Source = sf:FindFirstChild("Source")
+						local Lines = sf:FindFirstChild("Lines")
+						Source.ZIndex = Source.ZIndex + (windows * 10)
+						Lines.ZIndex = Lines.ZIndex + (windows * 10)
+
+						Source.TextEditable = not console_options.readonly
+
+						do -- Syntax Zindex
+							for i,v in next, Source:GetChildren() do
+								v.ZIndex = v.ZIndex + (windows * 10) + 1
+							end
+						end
+						Source.Comments.ZIndex = Source.Comments.ZIndex + 1
+
+						do -- Highlighting (thanks to whoever made this)
+							local lua_keywords = {"and", "break", "do", "else", "elseif", "end", "false", "for", "function", "goto", "if", "in", "local", "nil", "not", "or", "repeat", "return", "then", "true", "until", "while"}
+							local global_env = {"getrawmetatable", "newcclosure", "islclosure", "setclipboard", "game", "workspace", "script", "math", "string", "table", "print", "wait", "BrickColor", "Color3", "next", "pairs", "ipairs", "select", "unpack", "Instance", "Vector2", "Vector3", "CFrame", "Ray", "UDim2", "Enum", "assert", "error", "warn", "tick", "loadstring", "_G", "shared", "getfenv", "setfenv", "newproxy", "setmetatable", "getmetatable", "os", "debug", "pcall", "ypcall", "xpcall", "rawequal", "rawset", "rawget", "tonumber", "tostring", "type", "typeof", "_VERSION", "coroutine", "delay", "require", "spawn", "LoadLibrary", "settings", "stats", "time", "UserSettings", "version", "Axes", "ColorSequence", "Faces", "ColorSequenceKeypoint", "NumberRange", "NumberSequence", "NumberSequenceKeypoint", "gcinfo", "elapsedTime", "collectgarbage", "PhysicalProperties", "Rect", "Region3", "Region3int16", "UDim", "Vector2int16", "Vector3int16", "load", "fire", "Fire"}
+
+							local Highlight = function(string, keywords)
+							    local K = {}
+							    local S = string
+							    local Token =
+							    {
+							        ["="] = true,
+							        ["."] = true,
+							        [","] = true,
+							        ["("] = true,
+							        [")"] = true,
+							        ["["] = true,
+							        ["]"] = true,
+							        ["{"] = true,
+							        ["}"] = true,
+							        [":"] = true,
+							        ["*"] = true,
+							        ["/"] = true,
+							        ["+"] = true,
+							        ["-"] = true,
+							        ["%"] = true,
+									[";"] = true,
+									["~"] = true
+							    }
+							    for i, v in pairs(keywords) do
+							        K[v] = true
+							    end
+							    S = S:gsub(".", function(c)
+							        if Token[c] ~= nil then
+							            return "\32"
+							        else
+							            return c
+							        end
+							    end)
+							    S = S:gsub("%S+", function(c)
+							        if K[c] ~= nil then
+							            return c
+							        else
+							            return (" "):rep(#c)
+							        end
+							    end)
+
+							    return S
+							end
+
+							local hTokens = function(string)
+							    local Token =
+							    {
+							        ["="] = true,
+							        ["."] = true,
+							        [","] = true,
+							        ["("] = true,
+							        [")"] = true,
+							        ["["] = true,
+							        ["]"] = true,
+							        ["{"] = true,
+							        ["}"] = true,
+							        [":"] = true,
+							        ["*"] = true,
+							        ["/"] = true,
+							        ["+"] = true,
+							        ["-"] = true,
+							        ["%"] = true,
+									[";"] = true,
+									["~"] = true
+							    }
+							    local A = ""
+							    string:gsub(".", function(c)
+							        if Token[c] ~= nil then
+							            A = A .. c
+							        elseif c == "\n" then
+							            A = A .. "\n"
+									elseif c == "\t" then
+										A = A .. "\t"
+							        else
+							            A = A .. "\32"
+							        end
+							    end)
+
+							    return A
+							end
+
+							local strings = function(string)
+							    local highlight = ""
+							    local quote = false
+							    string:gsub(".", function(c)
+							        if quote == false and c == "\34" then
+							            quote = true
+							        elseif quote == true and c == "\34" then
+							            quote = false
+							        end
+							        if quote == false and c == "\34" then
+							            highlight = highlight .. "\34"
+							        elseif c == "\n" then
+							            highlight = highlight .. "\n"
+									elseif c == "\t" then
+									    highlight = highlight .. "\t"
+							        elseif quote == true then
+							            highlight = highlight .. c
+							        elseif quote == false then
+							            highlight = highlight .. "\32"
+							        end
+							    end)
+
+							    return highlight
+							end
+
+							local info = function(string)
+							    local highlight = ""
+							    local quote = false
+							    string:gsub(".", function(c)
+							        if quote == false and c == "[" then
+							            quote = true
+							        elseif quote == true and c == "]" then
+							            quote = false
+							        end
+							        if quote == false and c == "\]" then
+							            highlight = highlight .. "\]"
+							        elseif c == "\n" then
+							            highlight = highlight .. "\n"
+									elseif c == "\t" then
+									    highlight = highlight .. "\t"
+							        elseif quote == true then
+							            highlight = highlight .. c
+							        elseif quote == false then
+							            highlight = highlight .. "\32"
+							        end
+							    end)
+
+							    return highlight
+							end
+
+							local comments = function(string)
+							    local ret = ""
+							    string:gsub("[^\r\n]+", function(c)
+							        local comm = false
+							        local i = 0
+							        c:gsub(".", function(n)
+							            i = i + 1
+							            if c:sub(i, i + 1) == "--" then
+							                comm = true
+							            end
+							            if comm == true then
+							                ret = ret .. n
+							            else
+							                ret = ret .. "\32"
+							            end
+							        end)
+							        ret = ret
+							    end)
+
+							    return ret
+							end
+
+							local numbers = function(string)
+							    local A = ""
+							    string:gsub(".", function(c)
+							        if tonumber(c) ~= nil then
+							            A = A .. c
+							        elseif c == "\n" then
+							            A = A .. "\n"
+									elseif c == "\t" then
+										A = A .. "\t"
+							        else
+							            A = A .. "\32"
+							        end
+							    end)
+
+							    return A
+							end
+
+							local highlight_lua = function(type)
+								if type == "Text" then
+									Source.Text = Source.Text:gsub("\13", "")
+									Source.Text = Source.Text:gsub("\t", "      ")
+									local s = Source.Text
+
+									Source.Keywords.Text = Highlight(s, lua_keywords)
+									Source.Globals.Text = Highlight(s, global_env)
+									Source.RemoteHighlight.Text = Highlight(s, {"FireServer", "fireServer", "InvokeServer", "invokeServer"})
+									Source.Tokens.Text = hTokens(s)
+									Source.Numbers.Text = numbers(s)
+									Source.Strings.Text = strings(s)
+									Source.Comments.Text = comments(s)
+
+									local lin = 1
+									s:gsub("\n", function()
+										lin = lin + 1
+									end)
+
+									Lines.Text = ""
+									for i = 1, lin do
+										Lines.Text = Lines.Text .. i .. "\n"
+									end
+
+									sf.CanvasSize = UDim2.new(0, 0, lin * 0.153846154, 0)
+								end
+
+							local highlight_logs = function(type)
+							end
+								if type == "Text" then
+									Source.Text = Source.Text:gsub("\13", "")
+									Source.Text = Source.Text:gsub("\t", "      ")
+									local s = Source.Text
+
+									Source.Info.Text = info(s)
+
+									local lin = 1
+									s:gsub("\n", function()
+										lin = lin + 1
+									end)
+
+									sf.CanvasSize = UDim2.new(0, 0, lin * 0.153846154, 0)
+								end
+							end
+
+							if console_options.source == "Lua" then
+								highlight_lua("Text")
+								Source.Changed:Connect(highlight_lua)
+							elseif console_options.source == "Logs" then
+								Lines.Visible = false
+
+								--highlight_logs("Text")
+								Source.Changed:Connect(highlight_logs)
+							end
+
+							function console_data:Set(code)
+								Source.Text = tostring(code)
+							end
+
+							function console_data:Get()
+								return Source.Text
+							end
+
+							function console_data:Log(msg)
+								Source.Text = Source.Text .. "[*] " .. tostring(msg) .. "\n"
+							end
+
+						end
+
+						return console_data, console
+					end
+
+					function tab_data:AddHorizontalAlignment()
+						local ha_data = {}
+
+						local ha = Prefabs:FindFirstChild("HorizontalAlignment"):Clone()
+						ha.Parent = new_tab
+
+						function ha_data:AddButton(...)
+							local data, object
+							local ret = {tab_data:AddButton(...)}
+							if typeof(ret[1]) == "table" then
+								data = ret[1]
+								object = ret[2]
+								object.Parent = ha
+								return data, object
+							else
+								object = ret[1]
+								object.Parent = ha
+								return object
+							end
+						end
+
+						return ha_data, ha
+					end
+
+					function tab_data:AddFolder(folder_name) -- [Folder]
+						local folder_data = {}
+
+						folder_name = tostring(folder_name or "New Folder")
+
+						local folder = Prefabs:FindFirstChild("Folder"):Clone()
+						local button = folder:FindFirstChild("Button")
+						local objects = folder:FindFirstChild("Objects")
+						local toggle = button:FindFirstChild("Toggle")
+						folder.ZIndex = folder.ZIndex + (windows * 10)
+						button.ZIndex = button.ZIndex + (windows * 10)
+						objects.ZIndex = objects.ZIndex + (windows * 10)
+						toggle.ZIndex = toggle.ZIndex + (windows * 10)
+						button:GetChildren()[1].ZIndex = button:GetChildren()[1].ZIndex + (windows * 10)
+
+						folder.Parent = new_tab
+						button.Text = "      " .. folder_name
+
+						spawn(function()
+							while true do
+								if button and button:GetChildren()[1] then
+									button:GetChildren()[1].ImageColor3 = options.main_color
+								end
+								RS.Heartbeat:Wait()
+							end
+						end)
+
+						local function gFolderLen()
+							local n = 25
+							for i,v in next, objects:GetChildren() do
+								if not (v:IsA("UIListLayout")) then
+									n = n + v.AbsoluteSize.Y + 5
+								end
+							end
+							return n
+						end
+
+						local open = false
+						button.MouseButton1Click:Connect(function()
+							if open then -- Close
+								Resize(toggle, {Rotation = 0}, options.tween_time)
+								objects.Visible = false
+							else -- Open
+								Resize(toggle, {Rotation = 90}, options.tween_time)
+								objects.Visible = true
+							end
+
+							open = not open
+						end)
+
+						spawn(function()
+							while true do
+								Resize(folder, {Size = UDim2.new(1, 0, 0, (open and gFolderLen() or 20))}, options.tween_time)
+								wait()
+							end
+						end)
+
+						for i,v in next, tab_data do
+							folder_data[i] = function(...)
+								local data, object
+								local ret = {v(...)}
+								if typeof(ret[1]) == "table" then
+									data = ret[1]
+									object = ret[2]
+									object.Parent = objects
+									return data, object
+								else
+									object = ret[1]
+									object.Parent = objects
+									return object
+								end
+							end
+						end
+
+						return folder_data, folder
+					end
+
+				end
+
+				return tab_data, new_tab
+			end
+		end
+	end
+
+	do
+		for i, v in next, Window:GetDescendants() do
+			if hasprop(v, "ZIndex") then
+				v.ZIndex = v.ZIndex + (windows * 10)
+			end
+		end
+	end
+
+	return window_data, Window
+end
+
+local AutoType = false
+local TypeSpeed = 111
+local MinLength = 1
+Window = library:AddWindow("Word Bomb")
+Typer = Window:AddTab("Typer")
+Console = Window:AddTab("Console")
+Logger = Console:AddConsole({full = false, source = "Lua"})
+Logger:Log("Script was loaded successfully")
+_t1 = Typer:AddSwitch("Auto Type", function(callback)
+    AutoType = callback
+    Logger:Log("Auto Typer ".. (AutoType == true and "enabled" or "disabled"))
+end)
+_t2 = Typer:AddSlider("Type Speed [MS]", function(value)
+    TypeSpeed = value
+end, {min = 30, max = 300})
+
+_t3 = Typer:AddSlider("Minimum Word Length", function(value)
+    if value ~= MinLength then -- prevents flooding the console
+        Logger:Log("Min word length set to "..value)
+    end
+    MinLength = value
+end, {min = 1, max = 15})
+
+local keycodeMap = {
+    ["0"] = 0x30,
+    ["1"] = 0x31,
+    ["2"] = 0x32,
+    ["3"] = 0x33,
+    ["4"] = 0x34,
+    ["5"] = 0x35,
+    ["6"] = 0x36,
+    ["7"] = 0x37,
+    ["8"] = 0x38,
+    ["9"] = 0x39,
+    ["a"] = 0x41,
+    ["b"] = 0x42,
+    ["c"] = 0x43,
+    ["d"] = 0x44,
+    ["e"] = 0x45,
+    ["f"] = 0x46,
+    ["g"] = 0x47,
+    ["h"] = 0x48,
+    ["i"] = 0x49,
+    ["j"] = 0x4A,
+    ["k"] = 0x4B,
+    ["l"] = 0x4C,
+    ["m"] = 0x4D,
+    ["n"] = 0x4E,
+    ["o"] = 0x4F,
+    ["p"] = 0x50,
+    ["q"] = 0x51,
+    ["r"] = 0x52,
+    ["s"] = 0x53,
+    ["t"] = 0x54,
+    ["u"] = 0x55,
+    ["v"] = 0x56,
+    ["w"] = 0x57,
+    ["x"] = 0x58,
+    ["y"] = 0x59,
+    ["z"] = 0x5A,
+    ["enter"] = 0x0D,
+    ["shift"] = 0x10,
+    ["ctrl"] = 0x11,
+    ["alt"] = 0x12,
+    ["pause"] = 0x13,
+    ["capslock"] = 0x14,
+    ["spacebar"] = 0x20,
+    ["space"] = 0x20,
+    ["pageup"] = 0x21,
+    ["pagedown"] = 0x22,
+    ["end"] = 0x23,
+    ["home"] = 0x24,
+    ["left"] = 0x25,
+    ["up"] = 0x26,
+    ["right"] = 0x27,
+    ["down"] = 0x28,
+    ["insert"] = 0x2D,
+    ["delete"] = 0x2E,
+    ["f1"] = 0x70,
+    ["f2"] = 0x71,
+    ["f3"] = 0x72,
+    ["f4"] = 0x73,
+    ["f5"] = 0x74,
+    ["f6"] = 0x75,
+    ["f7"] = 0x76,
+    ["f8"] = 0x77,
+    ["f9"] = 0x78,
+    ["f10"] = 0x79,
+    ["f11"] = 0x7A,
+    ["f12"] = 0x7B,
+}
+
+local nounlist = {
+    "aardvark",
+    "abacus",
+    "abbey",
+    "abdomen",
+    "ability",
+    "abolishment",
+    "abroad",
+    "abuse",
+    "accelerant",
+    "accelerator",
+    "access",
+    "accident",
+    "accommodation",
+    "accompanist",
+    "accordion",
+    "account",
+    "accountant",
+    "achiever",
+    "acid",
+    "acknowledgment",
+    "acoustic",
+    "acoustics",
+    "acrylic",
+    "act",
+    "action",
+    "activity",
+    "actor",
+    "actress",
+    "acupuncture",
+    "ad",
+    "adapter",
+    "addiction",
+    "addition",
+    "address",
+    "adjustment",
+    "administration",
+    "adrenalin",
+    "adult",
+    "adulthood",
+    "advance",
+    "advancement",
+    "advantage",
+    "advertisement",
+    "advertising",
+    "advice",
+    "affair",
+    "affect",
+    "aftermath",
+    "afternoon",
+    "aftershave",
+    "aftershock",
+    "afterthought",
+    "age",
+    "agency",
+    "agenda",
+    "agent",
+    "aggression",
+    "aglet",
+    "agreement",
+    "aid",
+    "air",
+    "airbag",
+    "airbus",
+    "airfare",
+    "airforce",
+    "airline",
+    "airmail",
+    "airplane",
+    "airport",
+    "airship",
+    "alarm",
+    "alb",
+    "albatross",
+    "alcohol",
+    "alcove",
+    "alder",
+    "algebra",
+    "alibi",
+    "allergist",
+    "alley",
+    "alligator",
+    "alloy",
+    "almanac",
+    "almond",
+    "alpaca",
+    "alpenglow",
+    "alpenhorn",
+    "alpha",
+    "alphabet",
+    "alternative",
+    "altitude",
+    "alto",
+    "aluminium",
+    "aluminum",
+    "ambassador",
+    "ambition",
+    "ambulance",
+    "amendment",
+    "amount",
+    "amusement",
+    "anagram",
+    "analgesia",
+    "analog",
+    "analogue",
+    "analogy",
+    "analysis",
+    "analyst",
+    "anatomy",
+    "anesthesiology",
+    "anethesiologist",
+    "anger",
+    "angiosperm",
+    "angle",
+    "angora",
+    "angstrom",
+    "anguish",
+    "animal",
+    "anime",
+    "ankle",
+    "anklet",
+    "annual",
+    "anorak",
+    "answer",
+    "ant",
+    "anteater",
+    "antechamber",
+    "antelope",
+    "anthony",
+    "anthropology",
+    "antler",
+    "anxiety",
+    "anybody",
+    "anything",
+    "anywhere",
+    "apartment",
+    "ape",
+    "aperitif",
+    "apology",
+    "apparatus",
+    "apparel",
+    "appeal",
+    "appearance",
+    "appendix",
+    "applause",
+    "apple",
+    "applewood",
+    "appliance",
+    "application",
+    "appointment",
+    "approval",
+    "apron",
+    "apse",
+    "aquifer",
+    "arch",
+    "archaeology",
+    "archeology",
+    "archer",
+    "architect",
+    "architecture",
+    "arch-rival",
+    "area",
+    "argument",
+    "arithmetic",
+    "arm",
+    "armadillo",
+    "armament",
+    "armchair",
+    "armoire",
+    "armor",
+    "arm-rest",
+    "army",
+    "arrival",
+    "arrow",
+    "art",
+    "artichoke",
+    "article",
+    "artificer",
+    "ascot",
+    "ash",
+    "ashram",
+    "ashtray",
+    "aside",
+    "ask",
+    "asparagus",
+    "aspect",
+    "asphalt",
+    "assignment",
+    "assist",
+    "assistance",
+    "assistant",
+    "associate",
+    "association",
+    "assumption",
+    "asterisk",
+    "astrakhan",
+    "astrolabe",
+    "astrologer",
+    "astrology",
+    "astronomy",
+    "atelier",
+    "athlete",
+    "athletics",
+    "atmosphere",
+    "atom",
+    "atrium",
+    "attachment",
+    "attack",
+    "attempt",
+    "attendant",
+    "attention",
+    "attenuation",
+    "attic",
+    "attitude",
+    "attorney",
+    "attraction",
+    "audience",
+    "auditorium",
+    "aunt",
+    "author",
+    "authorisation",
+    "authority",
+    "authorization",
+    "automaton",
+    "avalanche",
+    "avenue",
+    "average",
+    "award",
+    "awareness",
+    "azimuth",
+    "babe",
+    "baboon",
+    "babushka",
+    "baby",
+    "back",
+    "backbone",
+    "backdrop",
+    "background",
+    "backpack",
+    "bacon",
+    "bad",
+    "badge",
+    "badger",
+    "bafflement",
+    "bag",
+    "bagel",
+    "baggage",
+    "bagpipe",
+    "bail",
+    "bait",
+    "bake",
+    "baker",
+    "bakery",
+    "bakeware",
+    "balaclava",
+    "balalaika",
+    "balance",
+    "balcony",
+    "ball",
+    "ballet",
+    "balloon",
+    "ballpark",
+    "bamboo",
+    "banana",
+    "band",
+    "bandana",
+    "bandanna",
+    "bandolier",
+    "bangle",
+    "banjo",
+    "bank",
+    "bankbook",
+    "banker",
+    "banquette",
+    "baobab",
+    "bar",
+    "barbeque",
+    "barber",
+    "barbiturate",
+    "barge",
+    "baritone",
+    "barium",
+    "barn",
+    "barometer",
+    "barracks",
+    "barstool",
+    "base",
+    "baseball",
+    "basement",
+    "basin",
+    "basis",
+    "basket",
+    "basketball",
+    "bass",
+    "bassinet",
+    "bassoon",
+    "bat",
+    "bath",
+    "bather",
+    "bathhouse",
+    "bathrobe",
+    "bathroom",
+    "bathtub",
+    "batter",
+    "battery",
+    "batting",
+    "battle",
+    "battleship",
+    "bay",
+    "bayou",
+    "beach",
+    "bead",
+    "beak",
+    "beam",
+    "bean",
+    "beanie",
+    "beanstalk",
+    "bear",
+    "beard",
+    "beast",
+    "beat",
+    "beautiful",
+    "beauty",
+    "beaver",
+    "bed",
+    "bedroom",
+    "bee",
+    "beech",
+    "beef",
+    "beer",
+    "beet",
+    "beetle",
+    "beggar",
+    "beginner",
+    "beginning",
+    "begonia",
+    "behavior",
+    "beheading",
+    "behest",
+    "being",
+    "belfry",
+    "belief",
+    "believe",
+    "bell",
+    "belligerency",
+    "bellows",
+    "belly",
+    "belt",
+    "bench",
+    "bend",
+    "beneficiary",
+    "benefit",
+    "bengal",
+    "beret",
+    "berry",
+    "bestseller",
+    "best-seller",
+    "bet",
+    "beverage",
+    "beyond",
+    "bibliography",
+    "bicycle",
+    "bid",
+    "bidet",
+    "bifocals",
+    "big",
+    "big-rig",
+    "bijou",
+    "bike",
+    "bikini",
+    "bill",
+    "billboard",
+    "bin",
+    "biology",
+    "biplane",
+    "birch",
+    "bird",
+    "birdbath",
+    "birdcage",
+    "birdhouse",
+    "bird-watcher",
+    "birth",
+    "birthday",
+    "bit",
+    "bite",
+    "bitter",
+    "black",
+    "blackberry",
+    "blackboard",
+    "blackfish",
+    "bladder",
+    "blade",
+    "blame",
+    "blank",
+    "blanket",
+    "blazer",
+    "blight",
+    "blind",
+    "blinker",
+    "blister",
+    "blizzard",
+    "block",
+    "blocker",
+    "blood",
+    "bloodflow",
+    "bloom",
+    "bloomers",
+    "blossom",
+    "blouse",
+    "blow",
+    "blowgun",
+    "blowhole",
+    "blue",
+    "blueberry",
+    "boar",
+    "board",
+    "boat",
+    "boat-building",
+    "boatload",
+    "boatyard",
+    "bobcat",
+    "body",
+    "bog",
+    "bolero",
+    "bolt",
+    "bomb",
+    "bomber",
+    "bondsman",
+    "bone",
+    "bongo",
+    "bonnet",
+    "bonsai",
+    "bonus",
+    "boogeyman",
+    "book",
+    "bookcase",
+    "bookend",
+    "booklet",
+    "booster",
+    "boot",
+    "bootee",
+    "bootie",
+    "boots",
+    "booty",
+    "border",
+    "bore",
+    "bosom",
+    "boss",
+    "botany",
+    "bother",
+    "bottle",
+    "bottling",
+    "bottom",
+    "bottom-line",
+    "boudoir",
+    "bough",
+    "boundary",
+    "bow",
+    "bower",
+    "bowl",
+    "bowler",
+    "bowling",
+    "bowtie",
+    "box",
+    "boxer",
+    "boxspring",
+    "boy",
+    "boyfriend",
+    "bra",
+    "brace",
+    "bracelet",
+    "bracket",
+    "brain",
+    "brake",
+    "branch",
+    "brand",
+    "brandy",
+    "brass",
+    "brassiere",
+    "bratwurst",
+    "brave",
+    "bread",
+    "breadcrumb",
+    "break",
+    "breakfast",
+    "breakpoint",
+    "breast",
+    "breastplate",
+    "breath",
+    "breeze",
+    "bribery",
+    "brick",
+    "bricklaying",
+    "bridge",
+    "brief",
+    "briefs",
+    "brilliant",
+    "british",
+    "broad",
+    "broccoli",
+    "brochure",
+    "broiler",
+    "broker",
+    "brome",
+    "bronchitis",
+    "bronco",
+    "bronze",
+    "brooch",
+    "brood",
+    "brook",
+    "broom",
+    "brother",
+    "brother-in-law",
+    "brow",
+    "brown",
+    "brush",
+    "brushfire",
+    "brushing",
+    "bubble",
+    "bucket",
+    "buckle",
+    "bud",
+    "buddy",
+    "budget",
+    "buffer",
+    "buffet",
+    "bug",
+    "buggy",
+    "bugle",
+    "building",
+    "bulb",
+    "bull",
+    "bulldozer",
+    "bullet",
+    "bull-fighter",
+    "bumper",
+    "bun",
+    "bunch",
+    "bungalow",
+    "bunghole",
+    "bunkhouse",
+    "burglar",
+    "burlesque",
+    "burn",
+    "burn-out",
+    "burst",
+    "bus",
+    "bush",
+    "business",
+    "bust",
+    "bustle",
+    "butane",
+    "butcher",
+    "butter",
+    "button",
+    "buy",
+    "buyer",
+    "buzzard",
+    "cabana",
+    "cabbage",
+    "cabin",
+    "cabinet",
+    "cable",
+    "caboose",
+    "cacao",
+    "cactus",
+    "caddy",
+    "cadet",
+    "cafe",
+    "caftan",
+    "cake",
+    "calcification",
+    "calculation",
+    "calculator",
+    "calculus",
+    "calendar",
+    "calf",
+    "calico",
+    "call",
+    "calm",
+    "camel",
+    "cameo",
+    "camera",
+    "camp",
+    "campaign",
+    "campanile",
+    "can",
+    "canal",
+    "cancel",
+    "cancer",
+    "candelabra",
+    "candidate",
+    "candle",
+    "candy",
+    "cane",
+    "cannon",
+    "canoe",
+    "canon",
+    "canopy",
+    "canteen",
+    "canvas",
+    "cap",
+    "cape",
+    "capital",
+    "capitulation",
+    "capon",
+    "cappelletti",
+    "cappuccino",
+    "captain",
+    "caption",
+    "car",
+    "caravan",
+    "carbon",
+    "card",
+    "cardboard",
+    "cardigan",
+    "care",
+    "career",
+    "cargo",
+    "carload",
+    "carnation",
+    "carol",
+    "carotene",
+    "carp",
+    "carpenter",
+    "carpet",
+    "carport",
+    "carriage",
+    "carrier",
+    "carrot",
+    "carry",
+    "cart",
+    "cartilage",
+    "cartload",
+    "cartoon",
+    "cartridge",
+    "cascade",
+    "case",
+    "casement",
+    "cash",
+    "cashier",
+    "casino",
+    "casserole",
+    "cassock",
+    "cast",
+    "castanet",
+    "castanets",
+    "castle",
+    "cat",
+    "catacomb",
+    "catamaran",
+    "catch",
+    "category",
+    "caterpillar",
+    "cathedral",
+    "catsup",
+    "cattle",
+    "cauliflower",
+    "cause",
+    "caution",
+    "cave",
+    "c-clamp",
+    "cd",
+    "ceiling",
+    "celebration",
+    "celeriac",
+    "celery",
+    "celeste",
+    "cell",
+    "cellar",
+    "cello",
+    "celsius",
+    "cement",
+    "cemetery",
+    "cenotaph",
+    "census",
+    "cent",
+    "center",
+    "centimeter",
+    "centurion",
+    "century",
+    "cephalopod",
+    "ceramic",
+    "cereal",
+    "certification",
+    "cesspool",
+    "chafe",
+    "chain",
+    "chainstay",
+    "chair",
+    "chairlift",
+    "chairman",
+    "chairperson",
+    "chaise",
+    "chalet",
+    "chalice",
+    "chalk",
+    "challenge",
+    "champion",
+    "championship",
+    "chance",
+    "chandelier",
+    "change",
+    "channel",
+    "chaos",
+    "chap",
+    "chapel",
+    "chapter",
+    "character",
+    "chard",
+    "charge",
+    "charity",
+    "charlatan",
+    "charles",
+    "charm",
+    "chart",
+    "chastity",
+    "chasuble",
+    "chateau",
+    "chauffeur",
+    "chauvinist",
+    "check",
+    "checkroom",
+    "cheek",
+    "cheetah",
+    "chef",
+    "chemical",
+    "chemistry",
+    "cheque",
+    "cherries",
+    "cherry",
+    "chess",
+    "chest",
+    "chick",
+    "chicken",
+    "chicory",
+    "chief",
+    "chiffonier",
+    "child",
+    "childhood",
+    "children",
+    "chill",
+    "chime",
+    "chimpanzee",
+    "chin",
+    "chino",
+    "chip",
+    "chipmunk",
+    "chit-chat",
+    "chivalry",
+    "chive",
+    "chocolate",
+    "choice",
+    "choker",
+    "chop",
+    "chopstick",
+    "chord",
+    "chowder",
+    "chrome",
+    "chromolithograph",
+    "chronograph",
+    "chronometer",
+    "chub",
+    "chug",
+    "church",
+    "churn",
+    "cicada",
+    "cigarette",
+    "cinema",
+    "circle",
+    "circulation",
+    "circumference",
+    "cirrus",
+    "citizenship",
+    "city",
+    "civilisation",
+    "claim",
+    "clam",
+    "clank",
+    "clapboard",
+    "clarinet",
+    "clasp",
+    "class",
+    "classic",
+    "classroom",
+    "clause",
+    "clave",
+    "clavicle",
+    "clavier",
+    "cleaner",
+    "cleat",
+    "cleavage",
+    "clef",
+    "cleric",
+    "clerk",
+    "click",
+    "client",
+    "cliff",
+    "climate",
+    "climb",
+    "clip",
+    "clipper",
+    "cloak",
+    "cloakroom",
+    "clock",
+    "clockwork",
+    "clogs",
+    "cloister",
+    "close",
+    "closet",
+    "cloth",
+    "clothes",
+    "clothing",
+    "cloud",
+    "cloudburst",
+    "cloudy",
+    "clove",
+    "clover",
+    "club",
+    "clue",
+    "clutch",
+    "coach",
+    "coal",
+    "coast",
+    "coat",
+    "cob",
+    "cobweb",
+    "cockpit",
+    "cockroach",
+    "cocktail",
+    "cocoa",
+    "cod",
+    "code",
+    "codon",
+    "codpiece",
+    "coevolution",
+    "coffee",
+    "coffin",
+    "coil",
+    "coin",
+    "coinsurance",
+    "coke",
+    "cold",
+    "coliseum",
+    "collar",
+    "collection",
+    "college",
+    "collision",
+    "colloquia",
+    "colon",
+    "colonisation",
+    "colony",
+    "color",
+    "colt",
+    "column",
+    "columnist",
+    "comb",
+    "combat",
+    "combination",
+    "combine",
+    "comfort",
+    "comic",
+    "comma",
+    "command",
+    "comment",
+    "commerce",
+    "commercial",
+    "commission",
+    "committee",
+    "common",
+    "communicant",
+    "communication",
+    "community",
+    "company",
+    "comparison",
+    "compassion",
+    "competition",
+    "competitor",
+    "complaint",
+    "complement",
+    "complex",
+    "component",
+    "comportment",
+    "composer",
+    "composition",
+    "compost",
+    "comprehension",
+    "compulsion",
+    "computer",
+    "comradeship",
+    "concentrate",
+    "concept",
+    "concern",
+    "concert",
+    "conclusion",
+    "concrete",
+    "condition",
+    "condominium",
+    "condor",
+    "conductor",
+    "cone",
+    "confectionery",
+    "conference",
+    "confidence",
+    "confirmation",
+    "conflict",
+    "confusion",
+    "conga",
+    "congo",
+    "congress",
+    "congressman",
+    "congressperson",
+    "conifer",
+    "connection",
+    "consent",
+    "consequence",
+    "consideration",
+    "consist",
+    "console",
+    "consonant",
+    "conspirator",
+    "constant",
+    "constellation",
+    "construction",
+    "consul",
+    "consulate",
+    "contact",
+    "contact lens",
+    "contagion",
+    "content",
+    "contest",
+    "context",
+    "continent",
+    "contract",
+    "contrail",
+    "contrary",
+    "contribution",
+    "control",
+    "convection",
+    "conversation",
+    "convert",
+    "convertible",
+    "cook",
+    "cookie",
+    "cooking",
+    "coonskin",
+    "cope",
+    "cop-out",
+    "copper",
+    "co-producer",
+    "copy",
+    "copyright",
+    "copywriter",
+    "cord",
+    "corduroy",
+    "cork",
+    "cormorant",
+    "corn",
+    "corner",
+    "cornerstone",
+    "cornet",
+    "corral",
+    "correspondent",
+    "corridor",
+    "corruption",
+    "corsage",
+    "cost",
+    "costume",
+    "cot",
+    "cottage",
+    "cotton",
+    "couch",
+    "cougar",
+    "cough",
+    "council",
+    "councilman",
+    "councilor",
+    "councilperson",
+    "count",
+    "counter",
+    "counter-force",
+    "countess",
+    "country",
+    "county",
+    "couple",
+    "courage",
+    "course",
+    "court",
+    "cousin",
+    "covariate",
+    "cover",
+    "coverall",
+    "cow",
+    "cowbell",
+    "cowboy",
+    "crab",
+    "crack",
+    "cracker",
+    "crackers",
+    "cradle",
+    "craft",
+    "craftsman",
+    "crash",
+    "crate",
+    "cravat",
+    "craw",
+    "crawdad",
+    "crayfish",
+    "crayon",
+    "crazy",
+    "cream",
+    "creative",
+    "creator",
+    "creature",
+    "creche",
+    "credenza",
+    "credit",
+    "creditor",
+    "creek",
+    "creme brulee",
+    "crest",
+    "crew",
+    "crib",
+    "cribbage",
+    "cricket",
+    "cricketer",
+    "crime",
+    "criminal",
+    "crinoline",
+    "criteria",
+    "criterion",
+    "criticism",
+    "crocodile",
+    "crocus",
+    "croissant",
+    "crook",
+    "crop",
+    "cross",
+    "cross-contamination",
+    "cross-stitch",
+    "crotch",
+    "croup",
+    "crow",
+    "crowd",
+    "crown",
+    "crude",
+    "crush",
+    "cry",
+    "crystallography",
+    "cub",
+    "cuckoo",
+    "cucumber",
+    "cuff-links",
+    "cultivar",
+    "cultivator",
+    "culture",
+    "culvert",
+    "cummerbund",
+    "cup",
+    "cupboard",
+    "cupcake",
+    "cupola",
+    "curio",
+    "curl",
+    "curler",
+    "currency",
+    "current",
+    "cursor",
+    "curtain",
+    "curve",
+    "cushion",
+    "custard",
+    "customer",
+    "cut",
+    "cuticle",
+    "cutlet",
+    "cutover",
+    "cutting",
+    "cyclamen",
+    "cycle",
+    "cyclone",
+    "cylinder",
+    "cymbal",
+    "cymbals",
+    "cynic",
+    "cyst",
+    "cytoplasm",
+    "dad",
+    "daffodil",
+    "dagger",
+    "dahlia",
+    "daisy",
+    "damage",
+    "dame",
+    "dance",
+    "dancer",
+    "dancing",
+    "danger",
+    "daniel",
+    "dare",
+    "dark",
+    "dart",
+    "dash",
+    "dashboard",
+    "data",
+    "database",
+    "date",
+    "daughter",
+    "david",
+    "day",
+    "daybed",
+    "dead",
+    "deadline",
+    "deal",
+    "dealer",
+    "dear",
+    "death",
+    "deathwatch",
+    "debate",
+    "debt",
+    "debtor",
+    "decade",
+    "decimal",
+    "decision",
+    "deck",
+    "declination",
+    "decongestant",
+    "decrease",
+    "decryption",
+    "dedication",
+    "deep",
+    "deer",
+    "defense",
+    "deficit",
+    "definition",
+    "deformation",
+    "degree",
+    "delay",
+    "delete",
+    "delight",
+    "delivery",
+    "demand",
+    "demur",
+    "den",
+    "denim",
+    "dentist",
+    "deodorant",
+    "department",
+    "departure",
+    "dependent",
+    "deployment",
+    "deposit",
+    "depression",
+    "depressive",
+    "depth",
+    "deputy",
+    "derby",
+    "derrick",
+    "description",
+    "desert",
+    "design",
+    "designer",
+    "desire",
+    "desk",
+    "dessert",
+    "destiny",
+    "destroyer",
+    "destruction",
+    "detail",
+    "detainment",
+    "detective",
+    "detention",
+    "determination",
+    "development",
+    "deviance",
+    "device",
+    "devil",
+    "dew",
+    "dhow",
+    "diadem",
+    "diamond",
+    "diaphragm",
+    "diarist",
+    "dibble",
+    "dickey",
+    "dictaphone",
+    "diction",
+    "dictionary",
+    "diet",
+    "difference",
+    "differential",
+    "difficulty",
+    "dig",
+    "digestion",
+    "digger",
+    "digital",
+    "dignity",
+    "dilapidation",
+    "dill",
+    "dime",
+    "dimension",
+    "dimple",
+    "diner",
+    "dinghy",
+    "dinner",
+    "dinosaur",
+    "diploma",
+    "dipstick",
+    "direction",
+    "director",
+    "dirndl",
+    "dirt",
+    "disadvantage",
+    "disarmament",
+    "disaster",
+    "discipline",
+    "disco",
+    "disconnection",
+    "discount",
+    "discovery",
+    "discrepancy",
+    "discussion",
+    "disease",
+    "disembodiment",
+    "disengagement",
+    "disguise",
+    "disgust",
+    "dish",
+    "dishes",
+    "dishwasher",
+    "disk",
+    "display",
+    "disposer",
+    "distance",
+    "distribution",
+    "distributor",
+    "district",
+    "divan",
+    "diver",
+    "divide",
+    "divider",
+    "diving",
+    "division",
+    "dock",
+    "doctor",
+    "document",
+    "doe",
+    "dog",
+    "dogsled",
+    "dogwood",
+    "doll",
+    "dollar",
+    "dolman",
+    "dolphin",
+    "domain",
+    "donkey",
+    "door",
+    "doorknob",
+    "doorpost",
+    "dory",
+    "dot",
+    "double",
+    "doubling",
+    "doubt",
+    "doubter",
+    "downforce",
+    "downgrade",
+    "downtown",
+    "draft",
+    "drag",
+    "dragon",
+    "dragonfly",
+    "dragster",
+    "drain",
+    "drake",
+    "drama",
+    "dramaturge",
+    "draw",
+    "drawbridge",
+    "drawer",
+    "drawing",
+    "dream",
+    "dredger",
+    "dress",
+    "dresser",
+    "dressing",
+    "drill",
+    "drink",
+    "drive",
+    "driver",
+    "driveway",
+    "driving",
+    "drizzle",
+    "dromedary",
+    "drop",
+    "drug",
+    "drum",
+    "drummer",
+    "drunk",
+    "dry",
+    "dryer",
+    "duck",
+    "duckling",
+    "dud",
+    "due",
+    "duffel",
+    "dugout",
+    "dulcimer",
+    "dumbwaiter",
+    "dump",
+    "dump truck",
+    "dune buggy",
+    "dungarees",
+    "dungeon",
+    "duplexer",
+    "dust",
+    "dust storm",
+    "duster",
+    "duty",
+    "dwarf",
+    "dwelling",
+    "dynamo",
+    "eagle",
+    "ear",
+    "eardrum",
+    "earmuffs",
+    "earplug",
+    "earrings",
+    "earth",
+    "earthquake",
+    "earthworm",
+    "ease",
+    "easel",
+    "east",
+    "eat",
+    "eave",
+    "eavesdropper",
+    "e-book",
+    "ecclesia",
+    "eclipse",
+    "ecliptic",
+    "economics",
+    "economy",
+    "ecumenist",
+    "eddy",
+    "edge",
+    "edger",
+    "editor",
+    "editorial",
+    "education",
+    "edward",
+    "eel",
+    "effacement",
+    "effect",
+    "effective",
+    "efficacy",
+    "efficiency",
+    "effort",
+    "egg",
+    "egghead",
+    "eggnog",
+    "eggplant",
+    "eight",
+    "ejector",
+    "elbow",
+    "election",
+    "electricity",
+    "electrocardiogram",
+    "element",
+    "elephant",
+    "elevator",
+    "elixir",
+    "elk",
+    "ellipse",
+    "elm",
+    "elongation",
+    "embossing",
+    "emergence",
+    "emergency",
+    "emergent",
+    "emery",
+    "emotion",
+    "emphasis",
+    "employ",
+    "employee",
+    "employer",
+    "employment",
+    "empowerment",
+    "emu",
+    "encirclement",
+    "encyclopedia",
+    "end",
+    "endothelium",
+    "enemy",
+    "energy",
+    "engine",
+    "engineer",
+    "engineering",
+    "enigma",
+    "enjoyment",
+    "enquiry",
+    "entertainment",
+    "enthusiasm",
+    "entrance",
+    "entry",
+    "environment",
+    "envy",
+    "epauliere",
+    "epee",
+    "ephemera",
+    "ephemeris",
+    "epoch",
+    "eponym",
+    "epoxy",
+    "equal",
+    "equinox",
+    "equipment",
+    "equivalent",
+    "era",
+    "e-reader",
+    "error",
+    "escape",
+    "ese",
+    "espadrille",
+    "espalier",
+    "essay",
+    "establishment",
+    "estate",
+    "estimate",
+    "estrogen",
+    "estuary",
+    "ethernet",
+    "ethics",
+    "euphonium",
+    "eurocentrism",
+    "europe",
+    "evaluator",
+    "evening",
+    "evening-wear",
+    "event",
+    "eviction",
+    "evidence",
+    "evocation",
+    "evolution",
+    "exam",
+    "examination",
+    "examiner",
+    "example",
+    "exchange",
+    "excitement",
+    "exclamation",
+    "excuse",
+    "executor",
+    "exercise",
+    "exhaust",
+    "ex-husband",
+    "exile",
+    "existence",
+    "exit",
+    "expansion",
+    "expansionism",
+    "experience",
+    "expert",
+    "explanation",
+    "exposition",
+    "expression",
+    "extension",
+    "extent",
+    "external",
+    "extreme",
+    "ex-wife",
+    "eye",
+    "eyeball",
+    "eyebrow",
+    "eyebrows",
+    "eyeglasses",
+    "eyelash",
+    "eyelashes",
+    "eyelid",
+    "eyelids",
+    "eyeliner",
+    "eyestrain",
+    "face",
+    "facelift",
+    "facet",
+    "facilities",
+    "facsimile",
+    "fact",
+    "factor",
+    "factory",
+    "faculty",
+    "fahrenheit",
+    "fail",
+    "failure",
+    "fairies",
+    "fairy",
+    "faith",
+    "fall",
+    "falling-out",
+    "fame",
+    "familiar",
+    "family",
+    "fan",
+    "fang",
+    "fanlight",
+    "fanny",
+    "fanny-pack",
+    "farm",
+    "farmer",
+    "fascia",
+    "fat",
+    "father",
+    "father-in-law",
+    "fatigues",
+    "faucet",
+    "fault",
+    "fawn",
+    "fax",
+    "fear",
+    "feast",
+    "feather",
+    "feature",
+    "fedelini",
+    "fedora",
+    "fee",
+    "feed",
+    "feedback",
+    "feel",
+    "feeling",
+    "feet",
+    "felony",
+    "female",
+    "fen",
+    "fence",
+    "fencing",
+    "fender",
+    "ferry",
+    "ferryboat",
+    "fertilizer",
+    "few",
+    "fiber",
+    "fiberglass",
+    "fibre",
+    "fiction",
+    "fiddle",
+    "field",
+    "fifth",
+    "fight",
+    "fighter",
+    "figure",
+    "figurine",
+    "file",
+    "fill",
+    "filly",
+    "film",
+    "filth",
+    "final",
+    "finance",
+    "find",
+    "finding",
+    "fine",
+    "finger",
+    "fingernail",
+    "finish",
+    "finisher",
+    "fir",
+    "fire",
+    "fireman",
+    "fireplace",
+    "firewall",
+    "fish",
+    "fishbone",
+    "fisherman",
+    "fishery",
+    "fishing",
+    "fishmonger",
+    "fishnet",
+    "fisting",
+    "fix",
+    "fixture",
+    "flag",
+    "flame",
+    "flanker",
+    "flare",
+    "flash",
+    "flat",
+    "flatboat",
+    "flavor",
+    "flax",
+    "fleck",
+    "fleece",
+    "flesh",
+    "flight",
+    "flintlock",
+    "flip-flops",
+    "flock",
+    "flood",
+    "floor",
+    "floozie",
+    "flour",
+    "flow",
+    "flower",
+    "flu",
+    "flugelhorn",
+    "fluke",
+    "flute",
+    "fly",
+    "flytrap",
+    "foam",
+    "fob",
+    "focus",
+    "fog",
+    "fold",
+    "folder",
+    "following",
+    "fondue",
+    "font",
+    "food",
+    "foot",
+    "football",
+    "footnote",
+    "footrest",
+    "foot-rest",
+    "footstool",
+    "foray",
+    "force",
+    "forearm",
+    "forebear",
+    "forecast",
+    "forehead",
+    "forest",
+    "forestry",
+    "forever",
+    "forgery",
+    "fork",
+    "form",
+    "formal",
+    "format",
+    "former",
+    "fort",
+    "fortnight",
+    "fortress",
+    "fortune",
+    "forum",
+    "foundation",
+    "fountain",
+    "fowl",
+    "fox",
+    "foxglove",
+    "fragrance",
+    "frame",
+    "fratricide",
+    "fraudster",
+    "frazzle",
+    "freckle",
+    "freedom",
+    "freeplay",
+    "freeze",
+    "freezer",
+    "freight",
+    "freighter",
+    "freon",
+    "fresco",
+    "friction",
+    "fridge",
+    "friend",
+    "friendship",
+    "frigate",
+    "fringe",
+    "frock",
+    "frog",
+    "front",
+    "frost",
+    "frown",
+    "fruit",
+    "frustration",
+    "fuel",
+    "fulfillment",
+    "full",
+    "fun",
+    "function",
+    "fundraising",
+    "funeral",
+    "funny",
+    "fur",
+    "furnace",
+    "furniture",
+    "fusarium",
+    "futon",
+    "future",
+    "gaffer",
+    "gain",
+    "gaiters",
+    "gale",
+    "gall-bladder",
+    "gallery",
+    "galley",
+    "gallon",
+    "galn",
+    "galoshes",
+    "game",
+    "gamebird",
+    "gamma-ray",
+    "gander",
+    "gap",
+    "garage",
+    "garb",
+    "garbage",
+    "garden",
+    "garlic",
+    "garment",
+    "garter",
+    "gas",
+    "gasoline",
+    "gastropod",
+    "gate",
+    "gateway",
+    "gather",
+    "gauge",
+    "gauntlet",
+    "gazebo",
+    "gazelle",
+    "gear",
+    "gearshift",
+    "geese",
+    "gelding",
+    "gem",
+    "gemsbok",
+    "gender",
+    "gene",
+    "general",
+    "genetics",
+    "geography",
+    "geology",
+    "geometry",
+    "george",
+    "geranium",
+    "gerbil",
+    "geyser",
+    "gherkin",
+    "ghost",
+    "giant",
+    "gift",
+    "gigantism",
+    "ginseng",
+    "giraffe",
+    "girdle",
+    "girl",
+    "girlfriend",
+    "git",
+    "give",
+    "glad",
+    "gladiolus",
+    "gland",
+    "glass",
+    "glasses",
+    "glen",
+    "glider",
+    "gliding",
+    "glockenspiel",
+    "glove",
+    "gloves",
+    "glue",
+    "glut",
+    "go",
+    "goal",
+    "goat",
+    "gobbler",
+    "god",
+    "godmother",
+    "goggles",
+    "go-kart",
+    "gold",
+    "goldfish",
+    "golf",
+    "gondola",
+    "gong",
+    "good",
+    "goodbye",
+    "good-bye",
+    "goodie",
+    "goose",
+    "gopher",
+    "gore-tex",
+    "gorilla",
+    "gosling",
+    "gossip",
+    "governance",
+    "government",
+    "governor",
+    "gown",
+    "grab",
+    "grab-bag",
+    "grade",
+    "grain",
+    "gram",
+    "grammar",
+    "grand",
+    "granddaughter",
+    "grandfather",
+    "grandmom",
+    "grandmother",
+    "grandson",
+    "granny",
+    "grape",
+    "grapefruit",
+    "graph",
+    "graphic",
+    "grass",
+    "grasshopper",
+    "grassland",
+    "gratitude",
+    "gray",
+    "grease",
+    "great",
+    "great-grandfather",
+    "great-grandmother",
+    "greek",
+    "green",
+    "greenhouse",
+    "grenade",
+    "grey",
+    "grief",
+    "grill",
+    "grip",
+    "grit",
+    "grocery",
+    "ground",
+    "group",
+    "grouper",
+    "grouse",
+    "growth",
+    "guarantee",
+    "guard",
+    "guess",
+    "guest",
+    "guestbook",
+    "guidance",
+    "guide",
+    "guilt",
+    "guilty",
+    "guitar",
+    "guitarist",
+    "gum",
+    "gumshoes",
+    "gun",
+    "gutter",
+    "guy",
+    "gym",
+    "gymnast",
+    "gymnastics",
+    "gynaecology",
+    "gyro",
+    "habit",
+    "hacienda",
+    "hacksaw",
+    "hackwork",
+    "hail",
+    "hair",
+    "haircut",
+    "half",
+    "half-brother",
+    "half-sister",
+    "halibut",
+    "hall",
+    "hallway",
+    "hamaki",
+    "hamburger",
+    "hammer",
+    "hammock",
+    "hamster",
+    "hand",
+    "handball",
+    "hand-holding",
+    "handicap",
+    "handle",
+    "handlebar",
+    "handmaiden",
+    "handsaw",
+    "hang",
+    "happiness",
+    "harbor",
+    "harbour",
+    "hardboard",
+    "hardcover",
+    "hardening",
+    "hardhat",
+    "hard-hat",
+    "hardware",
+    "harm",
+    "harmonica",
+    "harmony",
+    "harp",
+    "harpooner",
+    "harpsichord",
+    "hassock",
+    "hat",
+    "hatbox",
+    "hatchet",
+    "hate",
+    "hatred",
+    "haunt",
+    "haversack",
+    "hawk",
+    "hay",
+    "head",
+    "headlight",
+    "headline",
+    "headrest",
+    "health",
+    "hearing",
+    "heart",
+    "heartache",
+    "hearth",
+    "hearthside",
+    "heart-throb",
+    "heartwood",
+    "heat",
+    "heater",
+    "heaven",
+    "heavy",
+    "hedge",
+    "hedgehog",
+    "heel",
+    "height",
+    "heirloom",
+    "helen",
+    "helicopter",
+    "helium",
+    "hell",
+    "hellcat",
+    "hello",
+    "helmet",
+    "helo",
+    "help",
+    "hemp",
+    "hen",
+    "herb",
+    "heron",
+    "herring",
+    "hexagon",
+    "heyday",
+    "hide",
+    "high",
+    "highlight",
+    "high-rise",
+    "highway",
+    "hill",
+    "hip",
+    "hippodrome",
+    "hippopotamus",
+    "hire",
+    "history",
+    "hit",
+    "hive",
+    "hobbies",
+    "hobbit",
+    "hobby",
+    "hockey",
+    "hoe",
+    "hog",
+    "hold",
+    "hole",
+    "holiday",
+    "home",
+    "homework",
+    "homogenate",
+    "homonym",
+    "honesty",
+    "honey",
+    "honeybee",
+    "honoree",
+    "hood",
+    "hoof",
+    "hook",
+    "hope",
+    "hops",
+    "horn",
+    "hornet",
+    "horror",
+    "horse",
+    "hose",
+    "hosiery",
+    "hospice",
+    "hospital",
+    "hospitality",
+    "host",
+    "hostel",
+    "hostess",
+    "hot",
+    "hot-dog",
+    "hotel",
+    "hour",
+    "hourglass",
+    "house",
+    "houseboat",
+    "housework",
+    "housing",
+    "hovel",
+    "hovercraft",
+    "howitzer",
+    "hub",
+    "hubcap",
+    "hugger",
+    "human",
+    "humidity",
+    "humor",
+    "humour",
+    "hunger",
+    "hunt",
+    "hurdler",
+    "hurricane",
+    "hurry",
+    "hurt",
+    "husband",
+    "hut",
+    "hutch",
+    "hyacinth",
+    "hybridisation",
+    "hydrant",
+    "hydraulics",
+    "hydrofoil",
+    "hydrogen",
+    "hyena",
+    "hygienic",
+    "hyphenation",
+    "hypochondria",
+    "hypothermia",
+    "ice",
+    "icebreaker",
+    "icecream",
+    "ice-cream",
+    "icicle",
+    "icon",
+    "idea",
+    "ideal",
+    "if",
+    "igloo",
+    "ikebana",
+    "illegal",
+    "image",
+    "imagination",
+    "impact",
+    "implement",
+    "importance",
+    "impress",
+    "impression",
+    "imprisonment",
+    "improvement",
+    "impudence",
+    "impulse",
+    "inbox",
+    "incandescence",
+    "inch",
+    "incident",
+    "income",
+    "increase",
+    "independence",
+    "independent",
+    "index",
+    "indication",
+    "indigence",
+    "individual",
+    "industry",
+    "inevitable",
+    "infancy",
+    "inflammation",
+    "inflation",
+    "influence",
+    "information",
+    "infusion",
+    "inglenook",
+    "ingrate",
+    "initial",
+    "initiative",
+    "in-joke",
+    "injury",
+    "injustice",
+    "ink",
+    "in-laws",
+    "inlay",
+    "inn",
+    "innervation",
+    "innocence",
+    "innocent",
+    "input",
+    "inquiry",
+    "inscription",
+    "insect",
+    "inside",
+    "insolence",
+    "inspection",
+    "inspector",
+    "instance",
+    "instruction",
+    "instrument",
+    "instrumentalist",
+    "instrumentation",
+    "insulation",
+    "insurance",
+    "insurgence",
+    "intelligence",
+    "intention",
+    "interaction",
+    "interactive",
+    "interest",
+    "interferometer",
+    "interior",
+    "interloper",
+    "internal",
+    "international",
+    "internet",
+    "interpreter",
+    "intervenor",
+    "interview",
+    "interviewer",
+    "intestine",
+    "intestines",
+    "introduction",
+    "invention",
+    "inventor",
+    "inventory",
+    "investment",
+    "invite",
+    "invoice",
+    "iridescence",
+    "iris",
+    "iron",
+    "ironclad",
+    "irony",
+    "island",
+    "issue",
+    "it",
+    "item",
+    "jackal",
+    "jacket",
+    "jaguar",
+    "jail",
+    "jailhouse",
+    "jam",
+    "james",
+    "jar",
+    "jasmine",
+    "jaw",
+    "jealousy",
+    "jeans",
+    "jeep",
+    "jeff",
+    "jelly",
+    "jellyfish",
+    "jet",
+    "jewel",
+    "jewelry",
+    "jiffy",
+    "job",
+    "jockey",
+    "jodhpurs",
+    "joey",
+    "jogging",
+    "join",
+    "joint",
+    "joke",
+    "jot",
+    "journey",
+    "joy",
+    "judge",
+    "judgment",
+    "judo",
+    "juggernaut",
+    "juice",
+    "jumbo",
+    "jump",
+    "jumper",
+    "jumpsuit",
+    "junior",
+    "junk",
+    "junker",
+    "junket",
+    "jury",
+    "justice",
+    "jute",
+    "kale",
+    "kamikaze",
+    "kangaroo",
+    "karate",
+    "karen",
+    "kayak",
+    "kazoo",
+    "keep",
+    "kendo",
+    "ketch",
+    "ketchup",
+    "kettle",
+    "kettledrum",
+    "key",
+    "keyboard",
+    "keyboarding",
+    "keystone",
+    "kick",
+    "kick-off",
+    "kid",
+    "kidney",
+    "kidneys",
+    "kielbasa",
+    "kill",
+    "kilogram",
+    "kilometer",
+    "kilt",
+    "kimono",
+    "kind",
+    "kindness",
+    "king",
+    "kingfish",
+    "kiosk",
+    "kiss",
+    "kitchen",
+    "kite",
+    "kitten",
+    "kitty",
+    "kleenex",
+    "klomps",
+    "knee",
+    "kneejerk",
+    "knickers",
+    "knife",
+    "knife-edge",
+    "knight",
+    "knitting",
+    "knot",
+    "knowledge",
+    "knuckle",
+    "koala",
+    "kohlrabi",
+    "lab",
+    "laborer",
+    "labour",
+    "lace",
+    "lack",
+    "lacquerware",
+    "ladder",
+    "lady",
+    "ladybug",
+    "lake",
+    "lamb",
+    "lamp",
+    "lan",
+    "lanai",
+    "land",
+    "landform",
+    "landmine",
+    "landscape",
+    "language",
+    "lantern",
+    "lap",
+    "laparoscope",
+    "lapdog",
+    "laptop",
+    "larch",
+    "larder",
+    "lark",
+    "laryngitis",
+    "lasagna",
+    "latency",
+    "latex",
+    "lathe",
+    "latte",
+    "laugh",
+    "laughter",
+    "laundry",
+    "lava",
+    "law",
+    "lawn",
+    "lawsuit",
+    "lawyer",
+    "lay",
+    "layer",
+    "lead",
+    "leader",
+    "leadership",
+    "leading",
+    "leaf",
+    "league",
+    "leaker",
+    "learning",
+    "leash",
+    "leather",
+    "leave",
+    "leaver",
+    "lecture",
+    "leek",
+    "leg",
+    "legal",
+    "legging",
+    "legume",
+    "lei",
+    "leisure",
+    "lemon",
+    "lemonade",
+    "lemur",
+    "length",
+    "lentil",
+    "leprosy",
+    "lesson",
+    "let",
+    "letter",
+    "lettuce",
+    "level",
+    "lever",
+    "leverage",
+    "license",
+    "lie",
+    "lier",
+    "life",
+    "lift",
+    "light",
+    "lighting",
+    "lightning",
+    "lilac",
+    "lily",
+    "limit",
+    "limo",
+    "line",
+    "linen",
+    "liner",
+    "linguistics",
+    "link",
+    "linseed",
+    "lion",
+    "lip",
+    "lipstick",
+    "liquid",
+    "liquor",
+    "lisa",
+    "list",
+    "listen",
+    "literature",
+    "litigation",
+    "litter",
+    "liver",
+    "livestock",
+    "living",
+    "lizard",
+    "llama",
+    "load",
+    "loaf",
+    "loafer",
+    "loan",
+    "lobotomy",
+    "lobster",
+    "local",
+    "location",
+    "lock",
+    "locker",
+    "locket",
+    "locomotive",
+    "locust",
+    "loft",
+    "log",
+    "loggia",
+    "logic",
+    "loincloth",
+    "loneliness",
+    "long",
+    "look",
+    "loss",
+    "lot",
+    "lotion",
+    "lounge",
+    "lout",
+    "love",
+    "low",
+    "loyalty",
+    "luck",
+    "luggage",
+    "lumber",
+    "lumberman",
+    "lunch",
+    "luncheonette",
+    "lunchroom",
+    "lung",
+    "lunge",
+    "lute",
+    "luttuce",
+    "lycra",
+    "lye",
+    "lymphocyte",
+    "lynx",
+    "lyocell",
+    "lyre",
+    "lyric",
+    "macadamia",
+    "macaroni",
+    "machine",
+    "machinery",
+    "macrame",
+    "macrofauna",
+    "maelstrom",
+    "maestro",
+    "magazine",
+    "magic",
+    "maid",
+    "maiden",
+    "mail",
+    "mailbox",
+    "mailman",
+    "main",
+    "maintenance",
+    "major",
+    "major-league",
+    "make",
+    "makeup",
+    "male",
+    "mall",
+    "mallet",
+    "mambo",
+    "mammoth",
+    "man",
+    "management",
+    "manager",
+    "mandarin",
+    "mandolin",
+    "mangrove",
+    "manhunt",
+    "maniac",
+    "manicure",
+    "mankind",
+    "manner",
+    "manor",
+    "mansard",
+    "manservant",
+    "mansion",
+    "mantel",
+    "mantle",
+    "mantua",
+    "manufacturer",
+    "manx",
+    "many",
+    "map",
+    "maple",
+    "maraca",
+    "maracas",
+    "marble",
+    "mare",
+    "margin",
+    "mariachi",
+    "marimba",
+    "mark",
+    "market",
+    "marketing",
+    "marksman",
+    "marriage",
+    "marsh",
+    "marshland",
+    "marxism",
+    "mascara",
+    "mask",
+    "mass",
+    "massage",
+    "master",
+    "mastication",
+    "mastoid",
+    "mat",
+    "match",
+    "mate",
+    "material",
+    "math",
+    "mathematics",
+    "matter",
+    "mattock",
+    "mattress",
+    "maximum",
+    "maybe",
+    "mayonnaise",
+    "mayor",
+    "meal",
+    "meaning",
+    "measles",
+    "measure",
+    "measurement",
+    "meat",
+    "mechanic",
+    "media",
+    "medicine",
+    "medium",
+    "meet",
+    "meeting",
+    "megaliac",
+    "melody",
+    "member",
+    "membership",
+    "memory",
+    "men",
+    "menorah",
+    "mention",
+    "menu",
+    "mercury",
+    "mess",
+    "message",
+    "metal",
+    "metallurgist",
+    "meteor",
+    "meteorology",
+    "meter",
+    "methane",
+    "method",
+    "methodology",
+    "metro",
+    "metronome",
+    "mezzanine",
+    "mice",
+    "microlending",
+    "microwave",
+    "mid-course",
+    "middle",
+    "middleman",
+    "midi",
+    "midline",
+    "midnight",
+    "midwife",
+    "might",
+    "migrant",
+    "mile",
+    "milk",
+    "milkshake",
+    "millennium",
+    "millimeter",
+    "millisecond",
+    "mime",
+    "mimosa",
+    "mind",
+    "mine",
+    "mini",
+    "minibus",
+    "minimum",
+    "minion",
+    "mini-skirt",
+    "minister",
+    "minor",
+    "minor-league",
+    "mint",
+    "minute",
+    "mirror",
+    "miscarriage",
+    "miscommunication",
+    "misfit",
+    "misogyny",
+    "misplacement",
+    "misreading",
+    "miss",
+    "missile",
+    "mission",
+    "mist",
+    "mistake",
+    "mister",
+    "miter",
+    "mitten",
+    "mix",
+    "mixer",
+    "mixture",
+    "moat",
+    "mobile",
+    "moccasins",
+    "mocha",
+    "mode",
+    "model",
+    "modem",
+    "mole",
+    "mom",
+    "moment",
+    "monastery",
+    "monasticism",
+    "money",
+    "monger",
+    "monitor",
+    "monkey",
+    "monocle",
+    "monotheism",
+    "monsoon",
+    "monster",
+    "month",
+    "mood",
+    "moon",
+    "moonscape",
+    "moonshine",
+    "mop",
+    "morning",
+    "morsel",
+    "mortgage",
+    "mortise",
+    "mosque",
+    "mosquito",
+    "most",
+    "motel",
+    "moth",
+    "mother",
+    "mother-in-law",
+    "motion",
+    "motor",
+    "motorboat",
+    "motorcar",
+    "motorcycle",
+    "mound",
+    "mountain",
+    "mouse",
+    "mouser",
+    "mousse",
+    "moustache",
+    "mouth",
+    "mouton",
+    "move",
+    "mover",
+    "movie",
+    "mower",
+    "mud",
+    "mug",
+    "mukluk",
+    "mule",
+    "multimedia",
+    "muscle",
+    "musculature",
+    "museum",
+    "music",
+    "music-box",
+    "music-making",
+    "mustache",
+    "mustard",
+    "mutt",
+    "mycoplasma",
+    "n",
+    "nail",
+    "name",
+    "naming",
+    "nanoparticle",
+    "napkin",
+    "nasty",
+    "nation",
+    "national",
+    "native",
+    "natural",
+    "naturalisation",
+    "nature",
+    "neat",
+    "necessary",
+    "neck",
+    "necklace",
+    "necktie",
+    "need",
+    "needle",
+    "negative",
+    "negligee",
+    "negotiation",
+    "neologism",
+    "neon",
+    "nephew",
+    "nerve",
+    "nest",
+    "net",
+    "netball",
+    "netbook",
+    "netsuke",
+    "network",
+    "neurobiologist",
+    "neuropathologist",
+    "neuropsychiatry",
+    "news",
+    "newspaper",
+    "newsprint",
+    "newsstand",
+    "nexus",
+    "nicety",
+    "niche",
+    "nickel",
+    "niece",
+    "night",
+    "nightclub",
+    "nightgown",
+    "nightingale",
+    "nightlight",
+    "nitrogen",
+    "nobody",
+    "node",
+    "noise",
+    "nonbeliever",
+    "nonconformist",
+    "nondisclosure",
+    "nonsense",
+    "noodle",
+    "normal",
+    "norse",
+    "north",
+    "nose",
+    "note",
+    "notebook",
+    "nothing",
+    "notice",
+    "notify",
+    "notoriety",
+    "nougat",
+    "novel",
+    "nudge",
+    "number",
+    "numeracy",
+    "numeric",
+    "numismatist",
+    "nurse",
+    "nursery",
+    "nurture",
+    "nut",
+    "nutrition",
+    "nylon",
+    "oak",
+    "oar",
+    "oasis",
+    "oatmeal",
+    "obedience",
+    "obesity",
+    "obi",
+    "object",
+    "objective",
+    "obligation",
+    "oboe",
+    "observation",
+    "observatory",
+    "occasion",
+    "occupation",
+    "ocean",
+    "ocelot",
+    "octagon",
+    "octave",
+    "octavo",
+    "octet",
+    "octopus",
+    "odometer",
+    "oeuvre",
+    "offence",
+    "offer",
+    "office",
+    "officer",
+    "official",
+    "off-ramp",
+    "oil",
+    "okra",
+    "oldie",
+    "olive",
+    "omega",
+    "omelet",
+    "oncology",
+    "one",
+    "onion",
+    "open",
+    "opening",
+    "opera",
+    "operation",
+    "ophthalmologist",
+    "opinion",
+    "opium",
+    "opossum",
+    "opportunist",
+    "opportunity",
+    "opposite",
+    "option",
+    "orange",
+    "orangutan",
+    "orator",
+    "orchard",
+    "orchestra",
+    "orchid",
+    "order",
+    "ordinary",
+    "ordination",
+    "organ",
+    "organisation",
+    "organization",
+    "original",
+    "ornament",
+    "osmosis",
+    "osprey",
+    "ostrich",
+    "other",
+    "others",
+    "ott",
+    "otter",
+    "ounce",
+    "outback",
+    "outcome",
+    "outfit",
+    "outhouse",
+    "outlay",
+    "output",
+    "outrigger",
+    "outset",
+    "outside",
+    "oval",
+    "ovary",
+    "oven",
+    "overcharge",
+    "overclocking",
+    "overcoat",
+    "overexertion",
+    "overflight",
+    "overnighter",
+    "overshoot",
+    "owl",
+    "owner",
+    "ox",
+    "oxen",
+    "oxford",
+    "oxygen",
+    "oyster",
+    "pace",
+    "pacemaker",
+    "pack",
+    "package",
+    "packet",
+    "pad",
+    "paddle",
+    "paddock",
+    "page",
+    "pagoda",
+    "pail",
+    "pain",
+    "paint",
+    "painter",
+    "painting",
+    "paintwork",
+    "pair",
+    "pajama",
+    "pajamas",
+    "palm",
+    "pamphlet",
+    "pan",
+    "pancake",
+    "pancreas",
+    "panda",
+    "panic",
+    "pannier",
+    "panpipe",
+    "pansy",
+    "panther",
+    "panties",
+    "pantologist",
+    "pantology",
+    "pantry",
+    "pants",
+    "pantsuit",
+    "panty",
+    "pantyhose",
+    "paper",
+    "paperback",
+    "parable",
+    "parachute",
+    "parade",
+    "parallelogram",
+    "paramedic",
+    "parcel",
+    "parchment",
+    "pard",
+    "parent",
+    "parentheses",
+    "park",
+    "parka",
+    "parking",
+    "parrot",
+    "parsnip",
+    "part",
+    "participant",
+    "particle",
+    "particular",
+    "partner",
+    "partridge",
+    "party",
+    "pass",
+    "passage",
+    "passbook",
+    "passenger",
+    "passion",
+    "passive",
+    "past",
+    "pasta",
+    "paste",
+    "pastor",
+    "pastoralist",
+    "pastry",
+    "patch",
+    "path",
+    "patience",
+    "patient",
+    "patina",
+    "patio",
+    "patriarch",
+    "patricia",
+    "patrimony",
+    "patriot",
+    "patrol",
+    "pattern",
+    "pause",
+    "pavement",
+    "pavilion",
+    "paw",
+    "pawnshop",
+    "pay",
+    "payee",
+    "payment",
+    "pea",
+    "peace",
+    "peach",
+    "peacoat",
+    "peacock",
+    "peak",
+    "peanut",
+    "pear",
+    "pearl",
+    "pedal",
+    "peen",
+    "peer",
+    "peer-to-peer",
+    "pegboard",
+    "pelican",
+    "pelt",
+    "pen",
+    "penalty",
+    "pencil",
+    "pendant",
+    "pendulum",
+    "penicillin",
+    "pension",
+    "pentagon",
+    "peony",
+    "people",
+    "pepper",
+    "percentage",
+    "perception",
+    "perch",
+    "performance",
+    "perfume",
+    "period",
+    "periodical",
+    "peripheral",
+    "permafrost",
+    "permission",
+    "permit",
+    "perp",
+    "person",
+    "personal",
+    "personality",
+    "perspective",
+    "pest",
+    "pet",
+    "petal",
+    "petticoat",
+    "pew",
+    "pha",
+    "pharmacist",
+    "pharmacopoeia",
+    "phase",
+    "pheasant",
+    "philosopher",
+    "philosophy",
+    "phone",
+    "photo",
+    "photographer",
+    "phrase",
+    "physical",
+    "physics",
+    "pianist",
+    "piano",
+    "piccolo",
+    "pick",
+    "pickax",
+    "picket",
+    "pickle",
+    "picture",
+    "pie",
+    "piece",
+    "pier",
+    "piety",
+    "pig",
+    "pigeon",
+    "pike",
+    "pile",
+    "pilgrimage",
+    "pillbox",
+    "pillow",
+    "pilot",
+    "pimp",
+    "pimple",
+    "pin",
+    "pinafore",
+    "pince-nez",
+    "pine",
+    "pineapple",
+    "pinecone",
+    "ping",
+    "pink",
+    "pinkie",
+    "pinstripe",
+    "pint",
+    "pinto",
+    "pinworm",
+    "pioneer",
+    "pipe",
+    "piracy",
+    "piss",
+    "pitch",
+    "pitching",
+    "pith",
+    "pizza",
+    "place",
+    "plain",
+    "plan",
+    "plane",
+    "planet",
+    "plant",
+    "plantation",
+    "planter",
+    "plaster",
+    "plasterboard",
+    "plastic",
+    "plate",
+    "platform",
+    "platinum",
+    "platypus",
+    "play",
+    "player",
+    "playground",
+    "playroom",
+    "pleasure",
+    "pleated",
+    "plenty",
+    "plier",
+    "plot",
+    "plough",
+    "plover",
+    "plow",
+    "plowman",
+    "plume",
+    "plunger",
+    "plywood",
+    "pneumonia",
+    "pocket",
+    "pocketbook",
+    "pocket-watch",
+    "poem",
+    "poet",
+    "poetry",
+    "poignance",
+    "point",
+    "poison",
+    "poisoning",
+    "pole",
+    "polenta",
+    "police",
+    "policeman",
+    "policy",
+    "polish",
+    "politics",
+    "pollution",
+    "polo",
+    "polyester",
+    "pompom",
+    "poncho",
+    "pond",
+    "pony",
+    "poof",
+    "pool",
+    "pop",
+    "popcorn",
+    "poppy",
+    "popsicle",
+    "population",
+    "populist",
+    "porch",
+    "porcupine",
+    "port",
+    "porter",
+    "portfolio",
+    "porthole",
+    "position",
+    "positive",
+    "possession",
+    "possibility",
+    "possible",
+    "post",
+    "postage",
+    "postbox",
+    "poster",
+    "pot",
+    "potato",
+    "potential",
+    "potty",
+    "pouch",
+    "poultry",
+    "pound",
+    "pounding",
+    "poverty",
+    "powder",
+    "power",
+    "practice",
+    "precedent",
+    "precipitation",
+    "preface",
+    "preference",
+    "prelude",
+    "premeditation",
+    "premier",
+    "preoccupation",
+    "preparation",
+    "presence",
+    "present",
+    "presentation",
+    "president",
+    "press",
+    "pressroom",
+    "pressure",
+    "pressurisation",
+    "price",
+    "pride",
+    "priest",
+    "priesthood",
+    "primary",
+    "primate",
+    "prince",
+    "princess",
+    "principal",
+    "principle",
+    "print",
+    "printer",
+    "prior",
+    "priority",
+    "prison",
+    "private",
+    "prize",
+    "prizefight",
+    "probation",
+    "problem",
+    "procedure",
+    "process",
+    "processing",
+    "produce",
+    "producer",
+    "product",
+    "production",
+    "profession",
+    "professional",
+    "professor",
+    "profile",
+    "profit",
+    "program",
+    "progress",
+    "project",
+    "promise",
+    "promotion",
+    "prompt",
+    "pronunciation",
+    "proof",
+    "proof-reader",
+    "propane",
+    "property",
+    "proposal",
+    "prose",
+    "prosecution",
+    "protection",
+    "protest",
+    "protocol",
+    "prow",
+    "pruner",
+    "pseudoscience",
+    "psychiatrist",
+    "psychoanalyst",
+    "psychologist",
+    "psychology",
+    "ptarmigan",
+    "public",
+    "publicity",
+    "publisher",
+    "pudding",
+    "puddle",
+    "puffin",
+    "pull",
+    "pulley",
+    "puma",
+    "pump",
+    "pumpkin",
+    "pumpkinseed",
+    "punch",
+    "punctuation",
+    "punishment",
+    "pupa",
+    "pupil",
+    "puppy",
+    "purchase",
+    "puritan",
+    "purple",
+    "purpose",
+    "purse",
+    "push",
+    "pusher",
+    "put",
+    "pvc",
+    "pyjama",
+    "pyramid",
+    "quadrant",
+    "quail",
+    "quality",
+    "quantity",
+    "quart",
+    "quarter",
+    "quartz",
+    "queen",
+    "question",
+    "quicksand",
+    "quiet",
+    "quill",
+    "quilt",
+    "quince",
+    "quit",
+    "quiver",
+    "quotation",
+    "quote",
+    "rabbi",
+    "rabbit",
+    "raccoon",
+    "race",
+    "racer",
+    "racing",
+    "racism",
+    "racist",
+    "rack",
+    "radar",
+    "radiator",
+    "radio",
+    "radiosonde",
+    "radish",
+    "raffle",
+    "raft",
+    "rag",
+    "rage",
+    "rail",
+    "railway",
+    "raiment",
+    "rain",
+    "rainbow",
+    "raincoat",
+    "rainmaker",
+    "rainstorm",
+    "raise",
+    "rake",
+    "ram",
+    "rambler",
+    "ramie",
+    "ranch",
+    "random",
+    "randomisation",
+    "range",
+    "rank",
+    "raspberry",
+    "rat",
+    "rate",
+    "ratio",
+    "raven",
+    "ravioli",
+    "raw",
+    "rawhide",
+    "ray",
+    "rayon",
+    "reach",
+    "reactant",
+    "reaction",
+    "read",
+    "reading",
+    "reality",
+    "reamer",
+    "rear",
+    "reason",
+    "receipt",
+    "reception",
+    "recess",
+    "recipe",
+    "recliner",
+    "recognition",
+    "recommendation",
+    "record",
+    "recorder",
+    "recording",
+    "recover",
+    "recreation",
+    "recruit",
+    "rectangle",
+    "red",
+    "redesign",
+    "rediscovery",
+    "reduction",
+    "reef",
+    "refectory",
+    "reference",
+    "reflection",
+    "refrigerator",
+    "refund",
+    "refuse",
+    "region",
+    "register",
+    "regret",
+    "regular",
+    "regulation",
+    "reindeer",
+    "reinscription",
+    "reject",
+    "relation",
+    "relationship",
+    "relative",
+    "relaxation",
+    "release",
+    "reliability",
+    "relief",
+    "religion",
+    "relish",
+    "reminder",
+    "remote",
+    "remove",
+    "rent",
+    "repair",
+    "reparation",
+    "repeat",
+    "replace",
+    "replacement",
+    "replication",
+    "reply",
+    "report",
+    "representative",
+    "reprocessing",
+    "republic",
+    "reputation",
+    "request",
+    "requirement",
+    "resale",
+    "research",
+    "reserve",
+    "resident",
+    "resist",
+    "resolution",
+    "resolve",
+    "resort",
+    "resource",
+    "respect",
+    "respite",
+    "respond",
+    "response",
+    "responsibility",
+    "rest",
+    "restaurant",
+    "result",
+    "retailer",
+    "rethinking",
+    "retina",
+    "retouch",
+    "return",
+    "reveal",
+    "revenant",
+    "revenge",
+    "revenue",
+    "review",
+    "revolution",
+    "revolve",
+    "revolver",
+    "reward",
+    "rheumatism",
+    "rhinoceros",
+    "rhyme",
+    "rhythm",
+    "rice",
+    "rich",
+    "riddle",
+    "ride",
+    "rider",
+    "ridge",
+    "rifle",
+    "right",
+    "rim",
+    "ring",
+    "ringworm",
+    "rip",
+    "ripple",
+    "rise",
+    "riser",
+    "risk",
+    "river",
+    "riverbed",
+    "rivulet",
+    "road",
+    "roadway",
+    "roast",
+    "robe",
+    "robin",
+    "rock",
+    "rocker",
+    "rocket",
+    "rocket-ship",
+    "rod",
+    "role",
+    "roll",
+    "roller",
+    "roof",
+    "room",
+    "rooster",
+    "root",
+    "rope",
+    "rose",
+    "rostrum",
+    "rotate",
+    "rough",
+    "round",
+    "roundabout",
+    "route",
+    "router",
+    "routine",
+    "row",
+    "rowboat",
+    "royal",
+    "rub",
+    "rubber",
+    "rubbish",
+    "rubric",
+    "ruckus",
+    "ruffle",
+    "rugby",
+    "ruin",
+    "rule",
+    "rum",
+    "run",
+    "runaway",
+    "runner",
+    "rush",
+    "rutabaga",
+    "ruth",
+    "ry",
+    "sabre",
+    "sack",
+    "saddle",
+    "safe",
+    "safety",
+    "sage",
+    "sail",
+    "sailboat",
+    "sailor",
+    "salad",
+    "salary",
+    "sale",
+    "salesman",
+    "salmon",
+    "salon",
+    "saloon",
+    "salt",
+    "samovar",
+    "sampan",
+    "sample",
+    "samurai",
+    "sand",
+    "sandals",
+    "sandbar",
+    "sandwich",
+    "sardine",
+    "sari",
+    "sarong",
+    "sash",
+    "satellite",
+    "satin",
+    "satire",
+    "satisfaction",
+    "sauce",
+    "sausage",
+    "save",
+    "saving",
+    "savings",
+    "savior",
+    "saviour",
+    "saw",
+    "saxophone",
+    "scale",
+    "scallion",
+    "scanner",
+    "scarecrow",
+    "scarf",
+    "scarification",
+    "scene",
+    "scenery",
+    "scent",
+    "schedule",
+    "scheme",
+    "schizophrenic",
+    "schnitzel",
+    "school",
+    "schoolhouse",
+    "schooner",
+    "science",
+    "scimitar",
+    "scissors",
+    "scooter",
+    "score",
+    "scorn",
+    "scow",
+    "scraper",
+    "scratch",
+    "screamer",
+    "screen",
+    "screenwriting",
+    "screw",
+    "screwdriver",
+    "screw-up",
+    "scrim",
+    "scrip",
+    "script",
+    "sculpting",
+    "sculpture",
+    "sea",
+    "seafood",
+    "seagull",
+    "seal",
+    "seaplane",
+    "search",
+    "seashore",
+    "seaside",
+    "season",
+    "seat",
+    "second",
+    "secret",
+    "secretariat",
+    "secretary",
+    "section",
+    "sectional",
+    "sector",
+    "secure",
+    "security",
+    "seed",
+    "seeder",
+    "segment",
+    "select",
+    "selection",
+    "self",
+    "sell",
+    "semicircle",
+    "semicolon",
+    "senator",
+    "senior",
+    "sense",
+    "sensitive",
+    "sentence",
+    "sepal",
+    "septicaemia",
+    "series",
+    "servant",
+    "serve",
+    "server",
+    "service",
+    "session",
+    "set",
+    "setting",
+    "settler",
+    "sewer",
+    "sex",
+    "shack",
+    "shade",
+    "shadow",
+    "shadowbox",
+    "shake",
+    "shakedown",
+    "shaker",
+    "shallot",
+    "shame",
+    "shampoo",
+    "shanty",
+    "shape",
+    "share",
+    "shark",
+    "sharon",
+    "shawl",
+    "she",
+    "shearling",
+    "shears",
+    "sheath",
+    "shed",
+    "sheep",
+    "sheet",
+    "shelf",
+    "shell",
+    "shelter",
+    "sherry",
+    "shield",
+    "shift",
+    "shin",
+    "shine",
+    "shingle",
+    "ship",
+    "shirt",
+    "shirtdress",
+    "shoat",
+    "shock",
+    "shoe",
+    "shoehorn",
+    "shoe-horn",
+    "shoelace",
+    "shoemaker",
+    "shoes",
+    "shoestring",
+    "shofar",
+    "shoot",
+    "shootdown",
+    "shop",
+    "shopper",
+    "shopping",
+    "shore",
+    "shortage",
+    "shorts",
+    "shortwave",
+    "shot",
+    "shoulder",
+    "shovel",
+    "show",
+    "shower",
+    "show-stopper",
+    "shred",
+    "shrimp",
+    "shrine",
+    "sibling",
+    "sick",
+    "side",
+    "sideboard",
+    "sideburns",
+    "sidecar",
+    "sidestream",
+    "sidewalk",
+    "siding",
+    "sign",
+    "signal",
+    "signature",
+    "signet",
+    "significance",
+    "signup",
+    "silence",
+    "silica",
+    "silk",
+    "silkworm",
+    "sill",
+    "silly",
+    "silo",
+    "silver",
+    "simple",
+    "sing",
+    "singer",
+    "single",
+    "sink",
+    "sir",
+    "sister",
+    "sister-in-law",
+    "sitar",
+    "site",
+    "situation",
+    "size",
+    "skate",
+    "skiing",
+    "skill",
+    "skin",
+    "skirt",
+    "skull",
+    "skullcap",
+    "skullduggery",
+    "skunk",
+    "sky",
+    "skylight",
+    "skyscraper",
+    "skywalk",
+    "slapstick",
+    "slash",
+    "slave",
+    "sled",
+    "sledge",
+    "sleep",
+    "sleet",
+    "sleuth",
+    "slice",
+    "slide",
+    "slider",
+    "slime",
+    "slip",
+    "slipper",
+    "slippers",
+    "slope",
+    "sloth",
+    "smash",
+    "smell",
+    "smelting",
+    "smile",
+    "smock",
+    "smog",
+    "smoke",
+    "smoking",
+    "smuggling",
+    "snail",
+    "snake",
+    "snakebite",
+    "sneakers",
+    "sneeze",
+    "snob",
+    "snorer",
+    "snow",
+    "snowboarding",
+    "snowflake",
+    "snowman",
+    "snowmobiling",
+    "snowplow",
+    "snowstorm",
+    "snowsuit",
+    "snuggle",
+    "soap",
+    "soccer",
+    "society",
+    "sociology",
+    "sock",
+    "socks",
+    "soda",
+    "sofa",
+    "soft",
+    "softball",
+    "softdrink",
+    "softening",
+    "software",
+    "soil",
+    "soldier",
+    "solid",
+    "solitaire",
+    "solution",
+    "sombrero",
+    "somersault",
+    "somewhere",
+    "son",
+    "song",
+    "songbird",
+    "sonnet",
+    "soot",
+    "soprano",
+    "sorbet",
+    "sorrow",
+    "sort",
+    "soulmate",
+    "sound",
+    "soup",
+    "source",
+    "sourwood",
+    "sousaphone",
+    "south",
+    "south america",
+    "south korea",
+    "sow",
+    "soy",
+    "soybean",
+    "space",
+    "spacing",
+    "spade",
+    "spaghetti",
+    "spandex",
+    "spank",
+    "spare",
+    "spark",
+    "sparrow",
+    "spasm",
+    "speaker",
+    "speakerphone",
+    "spear",
+    "special",
+    "specialist",
+    "specific",
+    "spectacle",
+    "spectacles",
+    "spectrograph",
+    "speech",
+    "speed",
+    "speedboat",
+    "spell",
+    "spelling",
+    "spend",
+    "sphere",
+    "sphynx",
+    "spider",
+    "spike",
+    "spinach",
+    "spine",
+    "spiral",
+    "spirit",
+    "spiritual",
+    "spite",
+    "spleen",
+    "split",
+    "sponge",
+    "spoon",
+    "sport",
+    "spot",
+    "spotlight",
+    "spray",
+    "spread",
+    "spring",
+    "sprinter",
+    "sprout",
+    "spruce",
+    "spume",
+    "spur",
+    "spy",
+    "square",
+    "squash",
+    "squatter",
+    "squeegee",
+    "squid",
+    "squirrel",
+    "stable",
+    "stack",
+    "stacking",
+    "stadium",
+    "staff",
+    "stag",
+    "stage",
+    "stain",
+    "stair",
+    "staircase",
+    "stallion",
+    "stamen",
+    "stamina",
+    "stamp",
+    "stance",
+    "stand",
+    "standard",
+    "standoff",
+    "star",
+    "start",
+    "starter",
+    "state",
+    "statement",
+    "station",
+    "station-wagon",
+    "statistic",
+    "status",
+    "stay",
+    "steak",
+    "steal",
+    "steam",
+    "steamroller",
+    "steel",
+    "steeple",
+    "stem",
+    "stencil",
+    "step",
+    "step-aunt",
+    "step-brother",
+    "stepdaughter",
+    "step-daughter",
+    "step-father",
+    "step-grandfather",
+    "step-grandmother",
+    "stepmother",
+    "step-mother",
+    "stepping-stone",
+    "steps",
+    "step-sister",
+    "stepson",
+    "step-son",
+    "step-uncle",
+    "stew",
+    "stick",
+    "stiletto",
+    "still",
+    "stinger",
+    "stitch",
+    "stock",
+    "stocking",
+    "stockings",
+    "stock-in-trade",
+    "stole",
+    "stomach",
+    "stone",
+    "stonework",
+    "stool",
+    "stop",
+    "stopsign",
+    "stopwatch",
+    "storage",
+    "store",
+    "storey",
+    "storm",
+    "story",
+    "storyboard",
+    "story-telling",
+    "stove",
+    "strain",
+    "strait",
+    "stranger",
+    "strap",
+    "strategy",
+    "straw",
+    "strawberry",
+    "stream",
+    "street",
+    "streetcar",
+    "strength",
+    "stress",
+    "stretch",
+    "strike",
+    "string",
+    "strip",
+    "stroke",
+    "structure",
+    "struggle",
+    "stud",
+    "student",
+    "studio",
+    "study",
+    "stuff",
+    "stumbling",
+    "stupid",
+    "stupidity",
+    "sturgeon",
+    "style",
+    "styling",
+    "stylus",
+    "subcomponent",
+    "subconscious",
+    "subject",
+    "submarine",
+    "subroutine",
+    "subsidence",
+    "substance",
+    "suburb",
+    "subway",
+    "success",
+    "suck",
+    "suede",
+    "suffocation",
+    "sugar",
+    "suggestion",
+    "suit",
+    "suitcase",
+    "sultan",
+    "summer",
+    "sun",
+    "sunbeam",
+    "sunbonnet",
+    "sunday",
+    "sundial",
+    "sunflower",
+    "sunglasses",
+    "sunlamp",
+    "sunroom",
+    "sunshine",
+    "supermarket",
+    "supply",
+    "support",
+    "supporter",
+    "suppression",
+    "surface",
+    "surfboard",
+    "surgeon",
+    "surgery",
+    "surname",
+    "surprise",
+    "surround",
+    "survey",
+    "sushi",
+    "suspect",
+    "suspenders",
+    "sustainment",
+    "SUV",
+    "swallow",
+    "swamp",
+    "swan",
+    "swath",
+    "sweat",
+    "sweater",
+    "sweats",
+    "sweatshirt",
+    "sweatshop",
+    "sweatsuit",
+    "swedish",
+    "sweet",
+    "sweets",
+    "swell",
+    "swim",
+    "swimming",
+    "swimsuit",
+    "swing",
+    "swiss",
+    "switch",
+    "switchboard",
+    "swivel",
+    "sword",
+    "swordfish",
+    "sycamore",
+    "symmetry",
+    "sympathy",
+    "syndicate",
+    "synergy",
+    "synod",
+    "syrup",
+    "system",
+    "tabby",
+    "tabernacle",
+    "table",
+    "tablecloth",
+    "tabletop",
+    "tachometer",
+    "tackle",
+    "tadpole",
+    "tail",
+    "tailor",
+    "tailspin",
+    "tale",
+    "talk",
+    "tam",
+    "tambour",
+    "tambourine",
+    "tam-o'-shanter",
+    "tandem",
+    "tangerine",
+    "tank",
+    "tanker",
+    "tankful",
+    "tank-top",
+    "tap",
+    "tard",
+    "target",
+    "task",
+    "tassel",
+    "taste",
+    "tatami",
+    "tattler",
+    "tattoo",
+    "tavern",
+    "tax",
+    "taxi",
+    "taxicab",
+    "tea",
+    "teach",
+    "teacher",
+    "teaching",
+    "team",
+    "tear",
+    "technologist",
+    "technology",
+    "teen",
+    "teeth",
+    "telephone",
+    "telescreen",
+    "teletype",
+    "television",
+    "tell",
+    "teller",
+    "temp",
+    "temper",
+    "temperature",
+    "temple",
+    "tempo",
+    "temporariness",
+    "temporary",
+    "temptress",
+    "tendency",
+    "tenement",
+    "tennis",
+    "tenor",
+    "tension",
+    "tent",
+    "tepee",
+    "term",
+    "terracotta",
+    "terrapin",
+    "territory",
+    "test",
+    "text",
+    "textbook",
+    "texture",
+    "thanks",
+    "thaw",
+    "theater",
+    "theism",
+    "theme",
+    "theory",
+    "therapist",
+    "thermals",
+    "thermometer",
+    "thigh",
+    "thing",
+    "thinking",
+    "thirst",
+    "thistle",
+    "thomas",
+    "thong",
+    "thongs",
+    "thorn",
+    "thought",
+    "thread",
+    "thrill",
+    "throat",
+    "throne",
+    "thrush",
+    "thumb",
+    "thunder",
+    "thunderbolt",
+    "thunderhead",
+    "thunderstorm",
+    "tiara",
+    "tic",
+    "ticket",
+    "tie",
+    "tiger",
+    "tight",
+    "tights",
+    "tile",
+    "till",
+    "timbale",
+    "timber",
+    "time",
+    "timeline",
+    "timeout",
+    "timer",
+    "timpani",
+    "tin",
+    "tinderbox",
+    "tinkle",
+    "tintype",
+    "tip",
+    "tire",
+    "tissue",
+    "titanium",
+    "title",
+    "toad",
+    "toast",
+    "today",
+    "toe",
+    "toenail",
+    "toga",
+    "togs",
+    "toilet",
+    "tolerance",
+    "tom",
+    "tomato",
+    "tomography",
+    "tomorrow",
+    "tom-tom",
+    "ton",
+    "tone",
+    "tongue",
+    "tonight",
+    "tool",
+    "toot",
+    "tooth",
+    "toothbrush",
+    "toothpaste",
+    "toothpick",
+    "top",
+    "top-hat",
+    "topic",
+    "topsail",
+    "toque",
+    "torchiere",
+    "toreador",
+    "tornado",
+    "torso",
+    "tortellini",
+    "tortoise",
+    "tosser",
+    "total",
+    "tote",
+    "touch",
+    "tough",
+    "tough-guy",
+    "tour",
+    "tourist",
+    "towel",
+    "tower",
+    "town",
+    "townhouse",
+    "tow-truck",
+    "toy",
+    "trachoma",
+    "track",
+    "tracksuit",
+    "tractor",
+    "trade",
+    "tradition",
+    "traditionalism",
+    "traffic",
+    "trail",
+    "trailer",
+    "train",
+    "trainer",
+    "training",
+    "tram",
+    "tramp",
+    "transaction",
+    "transition",
+    "translation",
+    "transmission",
+    "transom",
+    "transport",
+    "transportation",
+    "trapdoor",
+    "trapezium",
+    "trapezoid",
+    "trash",
+    "travel",
+    "tray",
+    "treat",
+    "treatment",
+    "tree",
+    "trellis",
+    "tremor",
+    "trench",
+    "trial",
+    "triangle",
+    "tribe",
+    "trick",
+    "trigonometry",
+    "trim",
+    "trinket",
+    "trip",
+    "tripod",
+    "trolley",
+    "trombone",
+    "trooper",
+    "trouble",
+    "trousers",
+    "trout",
+    "trove",
+    "trowel",
+    "truck",
+    "truckit",
+    "trumpet",
+    "trunk",
+    "trust",
+    "truth",
+    "try",
+    "t-shirt",
+    "tsunami",
+    "tub",
+    "tuba",
+    "tube",
+    "tugboat",
+    "tulip",
+    "tummy",
+    "tuna",
+    "tune",
+    "tune-up",
+    "tunic",
+    "tunnel",
+    "turban",
+    "turkish",
+    "turn",
+    "turnip",
+    "turnover",
+    "turnstile",
+    "turret",
+    "turtle",
+    "tussle",
+    "tutu",
+    "tuxedo",
+    "tv",
+    "twig",
+    "twilight",
+    "twine",
+    "twist",
+    "twister",
+    "two",
+    "type",
+    "typewriter",
+    "typhoon",
+    "tyvek",
+    "ukulele",
+    "umbrella",
+    "unblinking",
+    "uncle",
+    "underclothes",
+    "underground",
+    "underneath",
+    "underpants",
+    "underpass",
+    "undershirt",
+    "understanding",
+    "underwear",
+    "underwire",
+    "unemployment",
+    "unibody",
+    "uniform",
+    "union",
+    "unique",
+    "unit",
+    "unity",
+    "university",
+    "upper",
+    "upstairs",
+    "urn",
+    "usage",
+    "use",
+    "user",
+    "usher",
+    "usual",
+    "utensil",
+    "vacation",
+    "vacuum",
+    "vagrant",
+    "valance",
+    "validity",
+    "valley",
+    "valuable",
+    "value",
+    "van",
+    "vane",
+    "vanity",
+    "variation",
+    "variety",
+    "vase",
+    "vast",
+    "vault",
+    "vaulting",
+    "veal",
+    "vegetable",
+    "vegetarianism",
+    "vegetation",
+    "vehicle",
+    "veil",
+    "vein",
+    "veldt",
+    "vellum",
+    "velodrome",
+    "velvet",
+    "vengeance",
+    "venom",
+    "veranda",
+    "verdict",
+    "vermicelli",
+    "verse",
+    "version",
+    "vertigo",
+    "verve",
+    "vessel",
+    "vest",
+    "vestment",
+    "vibe",
+    "vibraphone",
+    "vibration",
+    "video",
+    "view",
+    "villa",
+    "village",
+    "vineyard",
+    "vinyl",
+    "viola",
+    "violence",
+    "violet",
+    "violin",
+    "virginal",
+    "virtue",
+    "virus",
+    "viscose",
+    "vise",
+    "vision",
+    "visit",
+    "visitor",
+    "visor",
+    "visual",
+    "vitality",
+    "vixen",
+    "voice",
+    "volcano",
+    "volleyball",
+    "volume",
+    "voyage",
+    "vulture",
+    "wad",
+    "wafer",
+    "waffle",
+    "waist",
+    "waistband",
+    "wait",
+    "waiter",
+    "waitress",
+    "wake",
+    "walk",
+    "walker",
+    "walkway",
+    "wall",
+    "wallaby",
+    "wallet",
+    "walnut",
+    "walrus",
+    "wampum",
+    "wannabe",
+    "war",
+    "warden",
+    "warlock",
+    "warmth",
+    "warm-up",
+    "warning",
+    "wash",
+    "washbasin",
+    "washcloth",
+    "washer",
+    "washtub",
+    "wasp",
+    "waste",
+    "wastebasket",
+    "watch",
+    "watchmaker",
+    "water",
+    "waterbed",
+    "waterfall",
+    "waterskiing",
+    "waterspout",
+    "wave",
+    "wax",
+    "way",
+    "weakness",
+    "wealth",
+    "weapon",
+    "wear",
+    "weasel",
+    "weather",
+    "web",
+    "wedding",
+    "wedge",
+    "weed",
+    "weeder",
+    "weedkiller",
+    "week",
+    "weekend",
+    "weekender",
+    "weight",
+    "weird",
+    "welcome",
+    "welfare",
+    "well",
+    "west",
+    "western",
+    "wet-bar",
+    "wetsuit",
+    "whale",
+    "wharf",
+    "wheat",
+    "wheel",
+    "whereas",
+    "whip",
+    "whirlpool",
+    "whirlwind",
+    "whisker",
+    "whiskey",
+    "whistle",
+    "white",
+    "whole",
+    "wholesale",
+    "wholesaler",
+    "whorl",
+    "width",
+    "wife",
+    "wilderness",
+    "wildlife",
+    "will",
+    "willow",
+    "win",
+    "wind",
+    "windage",
+    "wind-chime",
+    "window",
+    "windscreen",
+    "windshield",
+    "wine",
+    "wing",
+    "wingman",
+    "wingtip",
+    "winner",
+    "winter",
+    "wire",
+    "wisdom",
+    "wiseguy",
+    "wish",
+    "wisteria",
+    "witch",
+    "witch-hunt",
+    "withdrawal",
+    "witness",
+    "wolf",
+    "wombat",
+    "women",
+    "wonder",
+    "wood",
+    "woodland",
+    "woodshed",
+    "woodwind",
+    "wool",
+    "woolen",
+    "word",
+    "work",
+    "workbench",
+    "worker",
+    "workhorse",
+    "working",
+    "worklife",
+    "workshop",
+    "world",
+    "worm",
+    "worry",
+    "worth",
+    "worthy",
+    "wound",
+    "wrap",
+    "wraparound",
+    "wrecker",
+    "wren",
+    "wrench",
+    "wrestler",
+    "wrinkle",
+    "wrist",
+    "writer",
+    "writing",
+    "wrong",
+    "xylophone",
+    "yacht",
+    "yak",
+    "yam",
+    "yard",
+    "yarmulke",
+    "yarn",
+    "yawl",
+    "year",
+    "yeast",
+    "yellow",
+    "yesterday",
+    "yew",
+    "yin",
+    "yoga",
+    "yogurt",
+    "yoke",
+    "you",
+    "young",
+    "youth",
+    "yurt",
+    "zampone",
+    "zebra",
+    "zebrafish",
+    "zephyr",
+    "ziggurat",
+    "zinc",
+    "zipper",
+    "zither",
+    "zone",
+    "zoo",
+    "zoologist",
+    "zoology",
+    "zoot-suit",
+    "zucchini" }
+
+adjectivelist = {
+    "abandoned",
+    "able",
+    "absolute",
+    "adorable",
+    "adventurous",
+    "academic",
+    "acceptable",
+    "acclaimed",
+    "accomplished",
+    "accurate",
+    "aching",
+    "acidic",
+    "acrobatic",
+    "active",
+    "actual",
+    "adept",
+    "admirable",
+    "admired",
+    "adolescent",
+    "adorable",
+    "adored",
+    "advanced",
+    "afraid",
+    "affectionate",
+    "aged",
+    "aggravating",
+    "aggressive",
+    "agile",
+    "agitated",
+    "agonizing",
+    "agreeable",
+    "ajar",
+    "alarmed",
+    "alarming",
+    "alert",
+    "alienated",
+    "alive",
+    "all",
+    "altruistic",
+    "amazing",
+    "ambitious",
+    "ample",
+    "amused",
+    "amusing",
+    "anchored",
+    "ancient",
+    "angelic",
+    "angry",
+    "anguished",
+    "animated",
+    "annual",
+    "another",
+    "antique",
+    "anxious",
+    "any",
+    "apprehensive",
+    "appropriate",
+    "apt",
+    "arctic",
+    "arid",
+    "aromatic",
+    "artistic",
+    "ashamed",
+    "assured",
+    "astonishing",
+    "athletic",
+    "attached",
+    "attentive",
+    "attractive",
+    "austere",
+    "authentic",
+    "authorized",
+    "automatic",
+    "avaricious",
+    "average",
+    "aware",
+    "awesome",
+    "awful",
+    "awkward",
+    "babyish",
+    "bad",
+    "back",
+    "baggy",
+    "bare",
+    "barren",
+    "basic",
+    "beautiful",
+    "belated",
+    "beloved",
+    "beneficial",
+    "better",
+    "best",
+    "bewitched",
+    "big",
+    "big-hearted",
+    "biodegradable",
+    "bite-sized",
+    "bitter",
+    "black",
+    "black-and-white",
+    "bland",
+    "blank",
+    "blaring",
+    "bleak",
+    "blind",
+    "blissful",
+    "blond",
+    "blue",
+    "blushing",
+    "bogus",
+    "boiling",
+    "bold",
+    "bony",
+    "boring",
+    "bossy",
+    "both",
+    "bouncy",
+    "bountiful",
+    "bowed",
+    "brave",
+    "breakable",
+    "brief",
+    "bright",
+    "brilliant",
+    "brisk",
+    "broken",
+    "bronze",
+    "brown",
+    "bruised",
+    "bubbly",
+    "bulky",
+    "bumpy",
+    "buoyant",
+    "burdensome",
+    "burly",
+    "bustling",
+    "busy",
+    "buttery",
+    "buzzing",
+    "calculating",
+    "calm",
+    "candid",
+    "canine",
+    "capital",
+    "carefree",
+    "careful",
+    "careless",
+    "caring",
+    "cautious",
+    "cavernous",
+    "celebrated",
+    "charming",
+    "cheap",
+    "cheerful",
+    "cheery",
+    "chief",
+    "chilly",
+    "chubby",
+    "circular",
+    "classic",
+    "clean",
+    "clear",
+    "clear-cut",
+    "clever",
+    "close",
+    "closed",
+    "cloudy",
+    "clueless",
+    "clumsy",
+    "cluttered",
+    "coarse",
+    "cold",
+    "colorful",
+    "colorless",
+    "colossal",
+    "comfortable",
+    "common",
+    "compassionate",
+    "competent",
+    "complete",
+    "complex",
+    "complicated",
+    "composed",
+    "concerned",
+    "concrete",
+    "confused",
+    "conscious",
+    "considerate",
+    "constant",
+    "content",
+    "conventional",
+    "cooked",
+    "cool",
+    "cooperative",
+    "coordinated",
+    "corny",
+    "corrupt",
+    "costly",
+    "courageous",
+    "courteous",
+    "crafty",
+    "crazy",
+    "creamy",
+    "creative",
+    "creepy",
+    "criminal",
+    "crisp",
+    "critical",
+    "crooked",
+    "crowded",
+    "cruel",
+    "crushing",
+    "cuddly",
+    "cultivated",
+    "cultured",
+    "cumbersome",
+    "curly",
+    "curvy",
+    "cute",
+    "cylindrical",
+    "damaged",
+    "damp",
+    "dangerous",
+    "dapper",
+    "daring",
+    "darling",
+    "dark",
+    "dazzling",
+    "dead",
+    "deadly",
+    "deafening",
+    "dear",
+    "dearest",
+    "decent",
+    "decimal",
+    "decisive",
+    "deep",
+    "defenseless",
+    "defensive",
+    "defiant",
+    "deficient",
+    "definite",
+    "definitive",
+    "delayed",
+    "delectable",
+    "delicious",
+    "delightful",
+    "delirious",
+    "demanding",
+    "dense",
+    "dental",
+    "dependable",
+    "dependent",
+    "descriptive",
+    "deserted",
+    "detailed",
+    "determined",
+    "devoted",
+    "different",
+    "difficult",
+    "digital",
+    "diligent",
+    "dim",
+    "dimpled",
+    "dimwitted",
+    "direct",
+    "disastrous",
+    "discrete",
+    "disfigured",
+    "disgusting",
+    "disloyal",
+    "dismal",
+    "distant",
+    "downright",
+    "dreary",
+    "dirty",
+    "disguised",
+    "dishonest",
+    "dismal",
+    "distant",
+    "distinct",
+    "distorted",
+    "dizzy",
+    "dopey",
+    "doting",
+    "double",
+    "downright",
+    "drab",
+    "drafty",
+    "dramatic",
+    "dreary",
+    "droopy",
+    "dry",
+    "dual",
+    "dull",
+    "dutiful",
+    "each",
+    "eager",
+    "earnest",
+    "early",
+    "easy",
+    "easy-going",
+    "ecstatic",
+    "edible",
+    "educated",
+    "elaborate",
+    "elastic",
+    "elated",
+    "elderly",
+    "electric",
+    "elegant",
+    "elementary",
+    "elliptical",
+    "embarrassed",
+    "embellished",
+    "eminent",
+    "emotional",
+    "empty",
+    "enchanted",
+    "enchanting",
+    "energetic",
+    "enlightened",
+    "enormous",
+    "enraged",
+    "entire",
+    "envious",
+    "equal",
+    "equatorial",
+    "essential",
+    "esteemed",
+    "ethical",
+    "euphoric",
+    "even",
+    "evergreen",
+    "everlasting",
+    "every",
+    "evil",
+    "exalted",
+    "excellent",
+    "exemplary",
+    "exhausted",
+    "excitable",
+    "excited",
+    "exciting",
+    "exotic",
+    "expensive",
+    "experienced",
+    "expert",
+    "extraneous",
+    "extroverted",
+    "extra-large",
+    "extra-small",
+    "fabulous",
+    "failing",
+    "faint",
+    "fair",
+    "faithful",
+    "fake",
+    "false",
+    "familiar",
+    "famous",
+    "fancy",
+    "fantastic",
+    "far",
+    "faraway",
+    "far-flung",
+    "far-off",
+    "fast",
+    "fat",
+    "fatal",
+    "fatherly",
+    "favorable",
+    "favorite",
+    "fearful",
+    "fearless",
+    "feisty",
+    "feline",
+    "female",
+    "feminine",
+    "few",
+    "fickle",
+    "filthy",
+    "fine",
+    "finished",
+    "firm",
+    "first",
+    "firsthand",
+    "fitting",
+    "fixed",
+    "flaky",
+    "flamboyant",
+    "flashy",
+    "flat",
+    "flawed",
+    "flawless",
+    "flickering",
+    "flimsy",
+    "flippant",
+    "flowery",
+    "fluffy",
+    "fluid",
+    "flustered",
+    "focused",
+    "fond",
+    "foolhardy",
+    "foolish",
+    "forceful",
+    "forked",
+    "formal",
+    "forsaken",
+    "forthright",
+    "fortunate",
+    "fragrant",
+    "frail",
+    "frank",
+    "frayed",
+    "free",
+    "French",
+    "fresh",
+    "frequent",
+    "friendly",
+    "frightened",
+    "frightening",
+    "frigid",
+    "frilly",
+    "frizzy",
+    "frivolous",
+    "front",
+    "frosty",
+    "frozen",
+    "frugal",
+    "fruitful",
+    "full",
+    "fumbling",
+    "functional",
+    "funny",
+    "fussy",
+    "fuzzy",
+    "gargantuan",
+    "gaseous",
+    "general",
+    "generous",
+    "gentle",
+    "genuine",
+    "giant",
+    "giddy",
+    "gigantic",
+    "gifted",
+    "giving",
+    "glamorous",
+    "glaring",
+    "glass",
+    "gleaming",
+    "gleeful",
+    "glistening",
+    "glittering",
+    "gloomy",
+    "glorious",
+    "glossy",
+    "glum",
+    "golden",
+    "good",
+    "good-natured",
+    "gorgeous",
+    "graceful",
+    "gracious",
+    "grand",
+    "grandiose",
+    "granular",
+    "grateful",
+    "grave",
+    "gray",
+    "great",
+    "greedy",
+    "green",
+    "gregarious",
+    "grim",
+    "grimy",
+    "gripping",
+    "grizzled",
+    "gross",
+    "grotesque",
+    "grouchy",
+    "grounded",
+    "growing",
+    "growling",
+    "grown",
+    "grubby",
+    "gruesome",
+    "grumpy",
+    "guilty",
+    "gullible",
+    "gummy",
+    "hairy",
+    "half",
+    "handmade",
+    "handsome",
+    "handy",
+    "happy",
+    "happy-go-lucky",
+    "hard",
+    "hard-to-find",
+    "harmful",
+    "harmless",
+    "harmonious",
+    "harsh",
+    "hasty",
+    "hateful",
+    "haunting",
+    "healthy",
+    "heartfelt",
+    "hearty",
+    "heavenly",
+    "heavy",
+    "hefty",
+    "helpful",
+    "helpless",
+    "hidden",
+    "hideous",
+    "high",
+    "high-level",
+    "hilarious",
+    "hoarse",
+    "hollow",
+    "homely",
+    "honest",
+    "honorable",
+    "honored",
+    "hopeful",
+    "horrible",
+    "hospitable",
+    "hot",
+    "huge",
+    "humble",
+    "humiliating",
+    "humming",
+    "humongous",
+    "hungry",
+    "hurtful",
+    "husky",
+    "icky",
+    "icy",
+    "ideal",
+    "idealistic",
+    "identical",
+    "idle",
+    "idiotic",
+    "idolized",
+    "ignorant",
+    "ill",
+    "illegal",
+    "ill-fated",
+    "ill-informed",
+    "illiterate",
+    "illustrious",
+    "imaginary",
+    "imaginative",
+    "immaculate",
+    "immaterial",
+    "immediate",
+    "immense",
+    "impassioned",
+    "impeccable",
+    "impartial",
+    "imperfect",
+    "imperturbable",
+    "impish",
+    "impolite",
+    "important",
+    "impossible",
+    "impractical",
+    "impressionable",
+    "impressive",
+    "improbable",
+    "impure",
+    "inborn",
+    "incomparable",
+    "incompatible",
+    "incomplete",
+    "inconsequential",
+    "incredible",
+    "indelible",
+    "inexperienced",
+    "indolent",
+    "infamous",
+    "infantile",
+    "infatuated",
+    "inferior",
+    "infinite",
+    "informal",
+    "innocent",
+    "insecure",
+    "insidious",
+    "insignificant",
+    "insistent",
+    "instructive",
+    "insubstantial",
+    "intelligent",
+    "intent",
+    "intentional",
+    "interesting",
+    "internal",
+    "international",
+    "intrepid",
+    "ironclad",
+    "irresponsible",
+    "irritating",
+    "itchy",
+    "jaded",
+    "jagged",
+    "jam-packed",
+    "jaunty",
+    "jealous",
+    "jittery",
+    "joint",
+    "jolly",
+    "jovial",
+    "joyful",
+    "joyous",
+    "jubilant",
+    "judicious",
+    "juicy",
+    "jumbo",
+    "junior",
+    "jumpy",
+    "juvenile",
+    "kaleidoscopic",
+    "keen",
+    "key",
+    "kind",
+    "kindhearted",
+    "kindly",
+    "klutzy",
+    "knobby",
+    "knotty",
+    "knowledgeable",
+    "knowing",
+    "known",
+    "kooky",
+    "kosher",
+    "lame",
+    "lanky",
+    "large",
+    "last",
+    "lasting",
+    "late",
+    "lavish",
+    "lawful",
+    "lazy",
+    "leading",
+    "lean",
+    "leafy",
+    "left",
+    "legal",
+    "legitimate",
+    "light",
+    "lighthearted",
+    "likable",
+    "likely",
+    "limited",
+    "limp",
+    "limping",
+    "linear",
+    "lined",
+    "liquid",
+    "little",
+    "live",
+    "lively",
+    "livid",
+    "loathsome",
+    "lone",
+    "lonely",
+    "long",
+    "long-term",
+    "loose",
+    "lopsided",
+    "lost",
+    "loud",
+    "lovable",
+    "lovely",
+    "loving",
+    "low",
+    "loyal",
+    "lucky",
+    "lumbering",
+    "luminous",
+    "lumpy",
+    "lustrous",
+    "luxurious",
+    "mad",
+    "made-up",
+    "magnificent",
+    "majestic",
+    "major",
+    "male",
+    "mammoth",
+    "married",
+    "marvelous",
+    "masculine",
+    "massive",
+    "mature",
+    "meager",
+    "mealy",
+    "mean",
+    "measly",
+    "meaty",
+    "medical",
+    "mediocre",
+    "medium",
+    "meek",
+    "mellow",
+    "melodic",
+    "memorable",
+    "menacing",
+    "merry",
+    "messy",
+    "metallic",
+    "mild",
+    "milky",
+    "mindless",
+    "miniature",
+    "minor",
+    "minty",
+    "miserable",
+    "miserly",
+    "misguided",
+    "misty",
+    "mixed",
+    "modern",
+    "modest",
+    "moist",
+    "monstrous",
+    "monthly",
+    "monumental",
+    "moral",
+    "mortified",
+    "motherly",
+    "motionless",
+    "mountainous",
+    "muddy",
+    "muffled",
+    "multicolored",
+    "mundane",
+    "murky",
+    "mushy",
+    "musty",
+    "muted",
+    "mysterious",
+    "naive",
+    "narrow",
+    "nasty",
+    "natural",
+    "naughty",
+    "nautical",
+    "near",
+    "neat",
+    "necessary",
+    "needy",
+    "negative",
+    "neglected",
+    "negligible",
+    "neighboring",
+    "nervous",
+    "new",
+    "next",
+    "nice",
+    "nifty",
+    "nimble",
+    "nippy",
+    "nocturnal",
+    "noisy",
+    "nonstop",
+    "normal",
+    "notable",
+    "noted",
+    "noteworthy",
+    "novel",
+    "noxious",
+    "numb",
+    "nutritious",
+    "nutty",
+    "obedient",
+    "obese",
+    "oblong",
+    "oily",
+    "oblong",
+    "obvious",
+    "occasional",
+    "odd",
+    "oddball",
+    "offbeat",
+    "offensive",
+    "official",
+    "old",
+    "old-fashioned",
+    "only",
+    "open",
+    "optimal",
+    "optimistic",
+    "opulent",
+    "orange",
+    "orderly",
+    "organic",
+    "ornate",
+    "ornery",
+    "ordinary",
+    "original",
+    "other",
+    "our",
+    "outlying",
+    "outgoing",
+    "outlandish",
+    "outrageous",
+    "outstanding",
+    "oval",
+    "overcooked",
+    "overdue",
+    "overjoyed",
+    "overlooked",
+    "palatable",
+    "pale",
+    "paltry",
+    "parallel",
+    "parched",
+    "partial",
+    "passionate",
+    "past",
+    "pastel",
+    "peaceful",
+    "peppery",
+    "perfect",
+    "perfumed",
+    "periodic",
+    "perky",
+    "personal",
+    "pertinent",
+    "pesky",
+    "pessimistic",
+    "petty",
+    "phony",
+    "physical",
+    "piercing",
+    "pink",
+    "pitiful",
+    "plain",
+    "plaintive",
+    "plastic",
+    "playful",
+    "pleasant",
+    "pleased",
+    "pleasing",
+    "plump",
+    "plush",
+    "polished",
+    "polite",
+    "political",
+    "pointed",
+    "pointless",
+    "poised",
+    "poor",
+    "popular",
+    "portly",
+    "posh",
+    "positive",
+    "possible",
+    "potable",
+    "powerful",
+    "powerless",
+    "practical",
+    "precious",
+    "present",
+    "prestigious",
+    "pretty",
+    "precious",
+    "previous",
+    "pricey",
+    "prickly",
+    "primary",
+    "prime",
+    "pristine",
+    "private",
+    "prize",
+    "probable",
+    "productive",
+    "profitable",
+    "profuse",
+    "proper",
+    "proud",
+    "prudent",
+    "punctual",
+    "pungent",
+    "puny",
+    "pure",
+    "purple",
+    "pushy",
+    "putrid",
+    "puzzled",
+    "puzzling",
+    "quaint",
+    "qualified",
+    "quarrelsome",
+    "quarterly",
+    "queasy",
+    "querulous",
+    "questionable",
+    "quick",
+    "quick-witted",
+    "quiet",
+    "quintessential",
+    "quirky",
+    "quixotic",
+    "quizzical",
+    "radiant",
+    "ragged",
+    "rapid",
+    "rare",
+    "rash",
+    "raw",
+    "recent",
+    "reckless",
+    "rectangular",
+    "ready",
+    "real",
+    "realistic",
+    "reasonable",
+    "red",
+    "reflecting",
+    "regal",
+    "regular",
+    "reliable",
+    "relieved",
+    "remarkable",
+    "remorseful",
+    "remote",
+    "repentant",
+    "required",
+    "respectful",
+    "responsible",
+    "repulsive",
+    "revolving",
+    "rewarding",
+    "rich",
+    "rigid",
+    "right",
+    "ringed",
+    "ripe",
+    "roasted",
+    "robust",
+    "rosy",
+    "rotating",
+    "rotten",
+    "rough",
+    "round",
+    "rowdy",
+    "royal",
+    "rubbery",
+    "rundown",
+    "ruddy",
+    "rude",
+    "runny",
+    "rural",
+    "rusty",
+    "sad",
+    "safe",
+    "salty",
+    "same",
+    "sandy",
+    "sane",
+    "sarcastic",
+    "sardonic",
+    "satisfied",
+    "scaly",
+    "scarce",
+    "scared",
+    "scary",
+    "scented",
+    "scholarly",
+    "scientific",
+    "scornful",
+    "scratchy",
+    "scrawny",
+    "second",
+    "secondary",
+    "second-hand",
+    "secret",
+    "self-assured",
+    "self-reliant",
+    "selfish",
+    "sentimental",
+    "separate",
+    "serene",
+    "serious",
+    "serpentine",
+    "several",
+    "severe",
+    "shabby",
+    "shadowy",
+    "shady",
+    "shallow",
+    "shameful",
+    "shameless",
+    "sharp",
+    "shimmering",
+    "shiny",
+    "shocked",
+    "shocking",
+    "shoddy",
+    "short",
+    "short-term",
+    "showy",
+    "shrill",
+    "shy",
+    "sick",
+    "silent",
+    "silky",
+    "silly",
+    "silver",
+    "similar",
+    "simple",
+    "simplistic",
+    "sinful",
+    "single",
+    "sizzling",
+    "skeletal",
+    "skinny",
+    "sleepy",
+    "slight",
+    "slim",
+    "slimy",
+    "slippery",
+    "slow",
+    "slushy",
+    "small",
+    "smart",
+    "smoggy",
+    "smooth",
+    "smug",
+    "snappy",
+    "snarling",
+    "sneaky",
+    "sniveling",
+    "snoopy",
+    "sociable",
+    "soft",
+    "soggy",
+    "solid",
+    "somber",
+    "some",
+    "spherical",
+    "sophisticated",
+    "sore",
+    "sorrowful",
+    "soulful",
+    "soupy",
+    "sour",
+    "Spanish",
+    "sparkling",
+    "sparse",
+    "specific",
+    "spectacular",
+    "speedy",
+    "spicy",
+    "spiffy",
+    "spirited",
+    "spiteful",
+    "splendid",
+    "spotless",
+    "spotted",
+    "spry",
+    "square",
+    "squeaky",
+    "squiggly",
+    "stable",
+    "staid",
+    "stained",
+    "stale",
+    "standard",
+    "starchy",
+    "stark",
+    "starry",
+    "steep",
+    "sticky",
+    "stiff",
+    "stimulating",
+    "stingy",
+    "stormy",
+    "straight",
+    "strange",
+    "steel",
+    "strict",
+    "strident",
+    "striking",
+    "striped",
+    "strong",
+    "studious",
+    "stunning",
+    "stupendous",
+    "stupid",
+    "sturdy",
+    "stylish",
+    "subdued",
+    "submissive",
+    "substantial",
+    "subtle",
+    "suburban",
+    "sudden",
+    "sugary",
+    "sunny",
+    "super",
+    "superb",
+    "superficial",
+    "superior",
+    "supportive",
+    "sure-footed",
+    "surprised",
+    "suspicious",
+    "svelte",
+    "sweaty",
+    "sweet",
+    "sweltering",
+    "swift",
+    "sympathetic",
+    "tall",
+    "talkative",
+    "tame",
+    "tan",
+    "tangible",
+    "tart",
+    "tasty",
+    "tattered",
+    "taut",
+    "tedious",
+    "teeming",
+    "tempting",
+    "tender",
+    "tense",
+    "tepid",
+    "terrible",
+    "terrific",
+    "testy",
+    "thankful",
+    "that",
+    "these",
+    "thick",
+    "thin",
+    "third",
+    "thirsty",
+    "this",
+    "thorough",
+    "thorny",
+    "those",
+    "thoughtful",
+    "threadbare",
+    "thrifty",
+    "thunderous",
+    "tidy",
+    "tight",
+    "timely",
+    "tinted",
+    "tiny",
+    "tired",
+    "torn",
+    "total",
+    "tough",
+    "traumatic",
+    "treasured",
+    "tremendous",
+    "tragic",
+    "trained",
+    "tremendous",
+    "triangular",
+    "tricky",
+    "trifling",
+    "trim",
+    "trivial",
+    "troubled",
+    "true",
+    "trusting",
+    "trustworthy",
+    "trusty",
+    "truthful",
+    "tubby",
+    "turbulent",
+    "twin",
+    "ugly",
+    "ultimate",
+    "unacceptable",
+    "unaware",
+    "uncomfortable",
+    "uncommon",
+    "unconscious",
+    "understated",
+    "unequaled",
+    "uneven",
+    "unfinished",
+    "unfit",
+    "unfolded",
+    "unfortunate",
+    "unhappy",
+    "unhealthy",
+    "uniform",
+    "unimportant",
+    "unique",
+    "united",
+    "unkempt",
+    "unknown",
+    "unlawful",
+    "unlined",
+    "unlucky",
+    "unnatural",
+    "unpleasant",
+    "unrealistic",
+    "unripe",
+    "unruly",
+    "unselfish",
+    "unsightly",
+    "unsteady",
+    "unsung",
+    "untidy",
+    "untimely",
+    "untried",
+    "untrue",
+    "unused",
+    "unusual",
+    "unwelcome",
+    "unwieldy",
+    "unwilling",
+    "unwitting",
+    "unwritten",
+    "upbeat",
+    "upright",
+    "upset",
+    "urban",
+    "usable",
+    "used",
+    "useful",
+    "useless",
+    "utilized",
+    "utter",
+    "vacant",
+    "vague",
+    "vain",
+    "valid",
+    "valuable",
+    "vapid",
+    "variable",
+    "vast",
+    "velvety",
+    "venerated",
+    "vengeful",
+    "verifiable",
+    "vibrant",
+    "vicious",
+    "victorious",
+    "vigilant",
+    "vigorous",
+    "villainous",
+    "violet",
+    "violent",
+    "virtual",
+    "virtuous",
+    "visible",
+    "vital",
+    "vivacious",
+    "vivid",
+    "voluminous",
+    "wan",
+    "warlike",
+    "warm",
+    "warmhearted",
+    "warped",
+    "wary",
+    "wasteful",
+    "watchful",
+    "waterlogged",
+    "watery",
+    "wavy",
+    "wealthy",
+    "weak",
+    "weary",
+    "webbed",
+    "wee",
+    "weekly",
+    "weepy",
+    "weighty",
+    "weird",
+    "welcome",
+    "well-documented",
+    "well-groomed",
+    "well-informed",
+    "well-lit",
+    "well-made",
+    "well-off",
+    "well-to-do",
+    "well-worn",
+    "wet",
+    "whimsical",
+    "whirlwind",
+    "whispered",
+    "white",
+    "whole",
+    "whopping",
+    "wicked",
+    "wide",
+    "wide-eyed",
+    "wiggly",
+    "wild",
+    "willing",
+    "wilted",
+    "winding",
+    "windy",
+    "winged",
+    "wiry",
+    "wise",
+    "witty",
+    "wobbly",
+    "woeful",
+    "wonderful",
+    "wooden",
+    "woozy",
+    "wordy",
+    "worldly",
+    "worn",
+    "worried",
+    "worrisome",
+    "worse",
+    "worst",
+    "worthless",
+    "worthwhile",
+    "worthy",
+    "wrathful",
+    "wretched",
+    "writhing",
+    "wrong",
+    "wry",
+    "yawning",
+    "yearly",
+    "yellow",
+    "yellowish",
+    "young",
+    "youthful",
+    "yummy",
+    "zany",
+    "zealous",
+    "zesty",
+    "zigzag"
+}
+
+verblist = {
+
+    "accepted",
+    "ached",
+    "acknowledged",
+    "acted",
+    "added",
+    "admired",
+    "admitted",
+    "admonished",
+    "advised",
+    "adopted",
+    "affirmed",
+    "afforded",
+    "agreed",
+    "ailed",
+    "alerted",
+    "alleged",
+    "alluded",
+    "allowed",
+    "amused",
+    "analyzed",
+    "announced",
+    "annoyed",
+    "answered",
+    "apologized",
+    "appealed",
+    "appeared",
+    "applauded",
+    "appreciated",
+    "approved",
+    "argued",
+    "arranged",
+    "arrested",
+    "arrived",
+    "articulated",
+    "asked",
+    "asserted",
+    "assured",
+    "attached",
+    "attacked",
+    "attempted",
+    "attended",
+    "attracted",
+    "auctioned",
+    "avoided",
+    "avowed",
+    "babbled",
+    "backed",
+    "baked",
+    "balanced",
+    "balked",
+    "banned",
+    "banged",
+    "bandaged",
+    "barred",
+    "bared",
+    "bargained",
+    "barked",
+    "barraged",
+    "bartered",
+    "basted",
+    "batted",
+    "bathed",
+    "battled",
+    "bawled",
+    "beamed",
+    "befriended",
+    "begged",
+    "behaved",
+    "believed",
+    "bellowed",
+    "belonged",
+    "berated",
+    "besieged",
+    "bestowed",
+    "bleached",
+    "blessed",
+    "blinded",
+    "blinked",
+    "blotted",
+    "blurted",
+    "blushed",
+    "boasted",
+    "bobbed",
+    "boiled",
+    "bolted",
+    "bombed",
+    "booked",
+    "bored",
+    "borrowed",
+    "bounced",
+    "bowed",
+    "boxed",
+    "bragged",
+    "braked",
+    "branched",
+    "branded",
+    "breathed",
+    "broiled",
+    "bruised",
+    "brushed",
+    "bubbled",
+    "bumped",
+    "burnished",
+    "buried",
+    "buzzed",
+    "cajoled",
+    "calculated",
+    "called",
+    "camped",
+    "cared",
+    "carried",
+    "carved",
+    "caused",
+    "cautioned",
+    "challenged",
+    "changed",
+    "chanted",
+    "charged",
+    "chased",
+    "cheated",
+    "checked",
+    "cheered",
+    "chewed",
+    "chided",
+    "chiped",
+    "choked",
+    "chomped",
+    "choped",
+    "claimed",
+    "claped",
+    "cleaned",
+    "cleared",
+    "climbed",
+    "cliped",
+    "closed",
+    "coached",
+    "coiled",
+    "collected",
+    "colored",
+    "combed",
+    "comforted",
+    "commanded",
+    "commented",
+    "communicated",
+    "compared",
+    "competed",
+    "complained",
+    "completed",
+    "conceded",
+    "concentrated",
+    "concerned",
+    "concluded",
+    "concurred",
+    "confessed",
+    "confided",
+    "confirmed",
+    "connected",
+    "consented",
+    "considered",
+    "consisted",
+    "contained",
+    "contended",
+    "continued",
+    "cooked",
+    "copied",
+    "corrected",
+    "coughed",
+    "counted",
+    "countered",
+    "covered",
+    "coveted",
+    "cracked",
+    "crashed",
+    "craved",
+    "crawled",
+    "crocheted",
+    "crossed",
+    "criticized",
+    "croaked",
+    "cross-examined",
+    "crowded",
+    "crushed",
+    "cried",
+    "cured",
+    "curled",
+    "cursed",
+    "curved",
+    "cycled",
+    "dammed",
+    "damaged",
+    "danced",
+    "dared",
+    "dealed",
+    "debated",
+    "decayed",
+    "deceived",
+    "decided",
+    "deciphered",
+    "declared",
+    "decorated",
+    "delayed",
+    "delighted",
+    "delivered",
+    "demanded",
+    "denied",
+    "depended",
+    "described",
+    "deserted",
+    "deserved",
+    "desired",
+    "deterred",
+    "developed",
+    "dialed",
+    "dictated",
+    "died",
+    "digressed",
+    "directed",
+    "disclosed",
+    "disliked",
+    "dived",
+    "divided",
+    "divulged",
+    "divorced",
+    "docked",
+    "doled",
+    "doted",
+    "dotted",
+    "doubled",
+    "doubted",
+    "dragged",
+    "drained",
+    "dressed",
+    "driped",
+    "drilled",
+    "droned",
+    "droped",
+    "drowned",
+    "dried",
+    "duped",
+    "dumped",
+    "dusted",
+    "died",
+    "earned",
+    "echoed",
+    "edited",
+    "educated",
+    "eloped",
+    "embarrassed",
+    "emigrated",
+    "emitted",
+    "emphasized",
+    "employed",
+    "emptied",
+    "enchanted",
+    "encoded",
+    "encouraged",
+    "ended",
+    "enjoined",
+    "enjoyed",
+    "entered",
+    "entertained",
+    "enunciated",
+    "envied",
+    "equivocated",
+    "escaped",
+    "evacuated",
+    "evaporated",
+    "exaggerated",
+    "examined",
+    "excited",
+    "excused",
+    "exercised",
+    "exclaimed",
+    "exhorted",
+    "existed",
+    "expanded",
+    "expected",
+    "expeled",
+    "explained",
+    "exploded",
+    "explored",
+    "extended",
+    "extolled",
+    "faced",
+    "faded",
+    "failed",
+    "faltered",
+    "fastened",
+    "favored",
+    "faxed",
+    "feared",
+    "fenced",
+    "fetched",
+    "filed",
+    "filled",
+    "filmed",
+    "fired",
+    "fished",
+    "fit",
+    "fixed",
+    "flaped",
+    "flashed",
+    "floated",
+    "flooded",
+    "flossed",
+    "flowed",
+    "flowered",
+    "folded",
+    "followed",
+    "fooled",
+    "forced",
+    "forgived",
+    "formed",
+    "founded",
+    "framed",
+    "fretted",
+    "frightened",
+    "fried",
+    "fumed",
+    "gardened",
+    "gasped",
+    "gathered",
+    "gazed",
+    "geled",
+    "gilded",
+    "glided",
+    "glued",
+    "gnawed",
+    "grabbed",
+    "grated",
+    "greased",
+    "greeted",
+    "grilled",
+    "grinned",
+    "griped",
+    "groaned",
+    "growled",
+    "grumbled",
+    "grunted",
+    "guaranteed",
+    "guarded",
+    "guessed",
+    "guided",
+    "gurgled",
+    "gushed",
+    "hailed",
+    "hammered",
+    "handed",
+    "handled",
+    "happened",
+    "harassed",
+    "harmed",
+    "harnessed",
+    "hated",
+    "haunted",
+    "headed",
+    "healed",
+    "heaped",
+    "heated",
+    "helped",
+    "highlighted",
+    "hijacked",
+    "hindered",
+    "hinted",
+    "hissed",
+    "hooked",
+    "hooted",
+    "hoped",
+    "hoped",
+    "hovered",
+    "howled",
+    "hugged",
+    "hummed",
+    "hunted",
+    "hurryed",
+    "iced",
+    "identified",
+    "ignored",
+    "imagined",
+    "immigrated",
+    "implored",
+    "impressed",
+    "improved",
+    "included",
+    "increased",
+    "infected",
+    "inflated",
+    "influenced",
+    "informed",
+    "infused",
+    "injected",
+    "injured",
+    "inquired",
+    "insisted",
+    "inspected",
+    "inspired",
+    "instructed",
+    "intended",
+    "interested",
+    "interfered",
+    "interjected",
+    "interrupted",
+    "introduced",
+    "invented",
+    "invested",
+    "invited",
+    "irritated",
+    "ironed",
+    "itched",
+    "jabbed",
+    "jabbered",
+    "jailed",
+    "jammed",
+    "jeered",
+    "jested",
+    "jogged",
+    "joined",
+    "joked",
+    "jolted",
+    "judged",
+    "juggled",
+    "jumped",
+    "kicked",
+    "killed",
+    "kissed",
+    "knocked",
+    "knotted",
+    "labeled",
+    "lamented",
+    "landed",
+    "lasted",
+    "laughed",
+    "leaned",
+    "lectured",
+    "leveled",
+    "licensed",
+    "licked",
+    "lifted",
+    "lightened",
+    "liked",
+    "listed",
+    "listened",
+    "lived",
+    "loaded",
+    "loaned",
+    "locked",
+    "longed",
+    "looked",
+    "loosened",
+    "loved",
+    "lowered",
+    "mailed",
+    "maintained",
+    "manned",
+    "managed",
+    "marred",
+    "marched",
+    "marked",
+    "married",
+    "marveled",
+    "mated",
+    "mattered",
+    "measured",
+    "melted",
+    "memorized",
+    "mended",
+    "mentioned",
+    "merged",
+    "milked",
+    "mined",
+    "missed",
+    "mixed",
+    "moaned",
+    "moored",
+    "mourned",
+    "molted",
+    "moved",
+    "mowed",
+    "mugged",
+    "multiplied",
+    "mumbled",
+    "murdered",
+    "muttered",
+    "nagged",
+    "nailed",
+    "named",
+    "naped",
+    "needed",
+    "nested",
+    "noded",
+    "noted",
+    "noticed",
+    "numbered",
+    "obeyed",
+    "objected",
+    "observed",
+    "obtained",
+    "occured",
+    "offended",
+    "offered",
+    "ogled",
+    "oiled",
+    "omitted",
+    "opened",
+    "operated",
+    "ordered",
+    "overflowed",
+    "owed",
+    "owned",
+    "packed",
+    "padded",
+    "paddled",
+    "painted",
+    "panted",
+    "parked",
+    "parted",
+    "passed",
+    "pasted",
+    "pated",
+    "paused",
+    "pecked",
+    "pedaled",
+    "peeled",
+    "peeped",
+    "peered",
+    "pegged",
+    "pelted",
+    "performed",
+    "permited",
+    "pestered",
+    "peted",
+    "phoned",
+    "picked",
+    "pinched",
+    "pinned",
+    "placed",
+    "planned",
+    "planted",
+    "played",
+    "pleaded",
+    "pleased",
+    "pledged",
+    "plowed",
+    "pluged",
+    "pointed",
+    "poked",
+    "polished",
+    "pondered",
+    "poped",
+    "possessed",
+    "posted",
+    "postulated",
+    "poured",
+    "practiced",
+    "prayed",
+    "preached",
+    "preceded",
+    "predicted",
+    "prefered",
+    "prepared",
+    "presented",
+    "preserved",
+    "pressed",
+    "pretended",
+    "prevented",
+    "pricked",
+    "printed",
+    "proceded",
+    "proclaimed",
+    "produced",
+    "professed",
+    "programmed",
+    "promised",
+    "proposed",
+    "protected",
+    "protested",
+    "provided",
+    "pryed",
+    "pulled",
+    "pumped",
+    "punched",
+    "punctured",
+    "punished",
+    "pushed",
+    "questioned",
+    "quilted",
+    "quized",
+    "quoted",
+    "raced",
+    "radiated",
+    "rained",
+    "raised",
+    "ranted",
+    "rained",
+    "rated",
+    "raved",
+    "reached",
+    "realized",
+    "rebuffed",
+    "recalled",
+    "received",
+    "recited",
+    "recognized",
+    "recommended",
+    "recorded",
+    "reduced",
+    "reflected",
+    "refused",
+    "regreted",
+    "reigned",
+    "reiterated",
+    "rejected",
+    "rejoiced",
+    "related",
+    "relaxed",
+    "released",
+    "relied",
+    "remained",
+    "remembered",
+    "reminded",
+    "removed",
+    "repaired",
+    "repeated",
+    "replaced",
+    "replied",
+    "reported",
+    "reprimanded",
+    "reproduced",
+    "requested",
+    "rescued",
+    "retired",
+    "retorted",
+    "returned",
+    "revealed",
+    "reversed",
+    "rhymed",
+    "rinsed",
+    "risked",
+    "roared",
+    "robbed",
+    "rocked",
+    "rolled",
+    "rotted",
+    "rowed",
+    "rubbed",
+    "ruined",
+    "ruled",
+    "rushed",
+    "sacked",
+    "sailed",
+    "satisfied",
+    "saved",
+    "savored",
+    "sawed",
+    "scared",
+    "scattered",
+    "scoffed",
+    "scolded",
+    "scooted",
+    "scorched",
+    "scraped",
+    "scratched",
+    "screamed",
+    "screeched",
+    "screwed",
+    "scribbled",
+    "sealed",
+    "searched",
+    "sensed",
+    "separated",
+    "served",
+    "settled",
+    "severed",
+    "shaded",
+    "shampooed",
+    "shared",
+    "shaved",
+    "sheltered",
+    "shifted",
+    "shivered",
+    "shocked",
+    "shoped",
+    "shouted",
+    "shrieked",
+    "shruged",
+    "sighed",
+    "signed",
+    "signaled",
+    "sinned",
+    "singed",
+    "siped",
+    "skated",
+    "skateboarded",
+    "sketched",
+    "skied",
+    "skiped",
+    "slaped",
+    "sliced",
+    "sliped",
+    "slowed",
+    "smashed",
+    "smelled",
+    "smiled",
+    "smoked",
+    "snaped",
+    "snarled",
+    "snatched",
+    "sneaked",
+    "sneered",
+    "sneezed",
+    "snickered",
+    "sniffed",
+    "snored",
+    "snooped",
+    "snoozed",
+    "snorted",
+    "snowed",
+    "soaked",
+    "sobbed",
+    "soothed",
+    "sounded",
+    "spanned",
+    "spared",
+    "sparked",
+    "sparkled",
+    "speculated",
+    "spelled",
+    "spilled",
+    "spoiled",
+    "spoted",
+    "sprayed",
+    "sprouted",
+    "sputtered",
+    "squashed",
+    "squeezed",
+    "stabbed",
+    "stained",
+    "stammered",
+    "stamped",
+    "stared",
+    "starred",
+    "started",
+    "stashed",
+    "stated",
+    "stayed",
+    "steered",
+    "steped",
+    "stipulated",
+    "stirred",
+    "stitched",
+    "stoped",
+    "stored",
+    "straped",
+    "stormed",
+    "stowed",
+    "strengthened",
+    "stressed",
+    "stretched",
+    "striped",
+    "stroked",
+    "stuffed",
+    "strayed",
+    "strummed",
+    "strutted",
+    "stunned",
+    "stunted",
+    "stuttered",
+    "submerged",
+    "succeeded",
+    "suffered",
+    "suggested",
+    "suited",
+    "supplied",
+    "supported",
+    "supposed",
+    "surmised",
+    "surprised",
+    "surrounded",
+    "suspected",
+    "suspended",
+    "swayed",
+    "swinged",
+    "switched",
+    "swooped",
+    "sympathized",
+    "talked",
+    "tamed",
+    "taped",
+    "tasted",
+    "taunted",
+    "teased",
+    "telephoned",
+    "tempted",
+    "terrified",
+    "tested",
+    "testified",
+    "thanked",
+    "thawed",
+    "theorized",
+    "threatened",
+    "thundered",
+    "ticked",
+    "tickled",
+    "tied",
+    "timed",
+    "tiped",
+    "tired",
+    "toasted",
+    "tossed",
+    "touched",
+    "toured",
+    "towed",
+    "traced",
+    "tracked",
+    "traded",
+    "trained",
+    "translated",
+    "transported",
+    "traped",
+    "traveled",
+    "treated",
+    "trembled",
+    "tricked",
+    "trickled",
+    "trimmed",
+    "triped",
+    "trotted",
+    "troubled",
+    "trusted",
+    "trounced",
+    "tried",
+    "tugged",
+    "tumbled",
+    "turned",
+    "twisted",
+    "typed",
+    "undressed",
+    "unfastened",
+    "united",
+    "unlocked",
+    "unpacked",
+    "upstaged",
+    "urged",
+    "untied",
+    "used",
+    "usurped",
+    "uttered",
+    "vacuumed",
+    "valued",
+    "vanished",
+    "vanquished",
+    "ventured",
+    "visited",
+    "voiced",
+    "volunteered",
+    "voted",
+    "vouched",
+    "wailed",
+    "waited",
+    "walked",
+    "wallowed",
+    "wandered",
+    "wanted",
+    "warmed",
+    "warned",
+    "washed",
+    "wasted",
+    "watched",
+    "watered",
+    "waved",
+    "wavered",
+    "wedded",
+    "weighed",
+    "welcomed",
+    "whimpered",
+    "whined",
+    "whiped",
+    "whirled",
+    "whispered",
+    "whistled",
+    "winked",
+    "wiped",
+    "wished",
+    "wobbled",
+    "wondered",
+    "worked",
+    "worried",
+    "wraped",
+    "wrecked",
+    "wrestled",
+    "wriggled",
+    "writhed",
+    "x-rayed",
+    "yawned",
+    "yelled",
+    "yelped",
+    "yielded",
+    "yodeled",
+    "ziped",
+    "zoomed",
+
+    "accepts",
+    "aches",
+    "acknowledges",
+    "acts",
+    "adds",
+    "admires",
+    "admits",
+    "admonishes",
+    "advises",
+    "adopts",
+    "affirms",
+    "affords",
+    "agrees",
+    "ails",
+    "alerts",
+    "alleges",
+    "alludes",
+    "allows",
+    "amuses",
+    "analyzes",
+    "announces",
+    "annoys",
+    "answers",
+    "apologizes",
+    "appeals",
+    "appears",
+    "applauds",
+    "appreciates",
+    "approves",
+    "argues",
+    "arranges",
+    "arrests",
+    "arrives",
+    "articulates",
+    "asks",
+    "asserts",
+    "assures",
+    "attaches",
+    "attacks",
+    "attempts",
+    "attends",
+    "attracts",
+    "auctions",
+    "avoids",
+    "avows",
+    "babbles",
+    "backs",
+    "bakes",
+    "balances",
+    "balks",
+    "bans",
+    "bangs",
+    "bandages",
+    "bars",
+    "bares",
+    "bargains",
+    "barks",
+    "barrages",
+    "barters",
+    "bastes",
+    "bats",
+    "bathes",
+    "battles",
+    "bawls",
+    "beams",
+    "befriends",
+    "begs",
+    "behaves",
+    "believes",
+    "bellows",
+    "belongs",
+    "berates",
+    "besieges",
+    "bestows",
+    "bleaches",
+    "blesss",
+    "blinds",
+    "blinks",
+    "blots",
+    "blurts",
+    "blushes",
+    "boasts",
+    "bobs",
+    "boils",
+    "bolts",
+    "bombs",
+    "books",
+    "bores",
+    "borrows",
+    "bounces",
+    "bows",
+    "boxs",
+    "brags",
+    "brakes",
+    "branches",
+    "brands",
+    "breathes",
+    "broils",
+    "bruises",
+    "brushes",
+    "bubbles",
+    "bumps",
+    "burnishes",
+    "buries",
+    "buzzs",
+    "cajoles",
+    "calculates",
+    "calls",
+    "camps",
+    "cares",
+    "carries",
+    "carves",
+    "causes",
+    "cautions",
+    "challenges",
+    "changes",
+    "chants",
+    "charges",
+    "chases",
+    "cheats",
+    "checks",
+    "cheers",
+    "chews",
+    "chides",
+    "chips",
+    "chokes",
+    "chomps",
+    "chops",
+    "claims",
+    "claps",
+    "cleans",
+    "clears",
+    "climbs",
+    "clips",
+    "closes",
+    "coaches",
+    "coils",
+    "collects",
+    "colors",
+    "combs",
+    "comforts",
+    "commands",
+    "comments",
+    "communicates",
+    "compares",
+    "competes",
+    "complains",
+    "completes",
+    "concedes",
+    "concentrates",
+    "concerns",
+    "concludes",
+    "concurs",
+    "confesss",
+    "confides",
+    "confirms",
+    "connects",
+    "consents",
+    "considers",
+    "consists",
+    "contains",
+    "contends",
+    "continues",
+    "cooks",
+    "copies",
+    "corrects",
+    "coughs",
+    "counts",
+    "counters",
+    "covers",
+    "covets",
+    "cracks",
+    "crashes",
+    "craves",
+    "crawls",
+    "crochets",
+    "crosss",
+    "criticizes",
+    "croaks",
+    "cross-examines",
+    "crowds",
+    "crushes",
+    "cries",
+    "cures",
+    "curls",
+    "curses",
+    "curves",
+    "cycles",
+    "dams",
+    "damages",
+    "dances",
+    "dares",
+    "deals",
+    "debates",
+    "decays",
+    "deceives",
+    "decides",
+    "deciphers",
+    "declares",
+    "decorates",
+    "delays",
+    "delights",
+    "delivers",
+    "demands",
+    "denies",
+    "depends",
+    "describes",
+    "deserts",
+    "deserves",
+    "desires",
+    "deters",
+    "develops",
+    "dials",
+    "dictates",
+    "dies",
+    "digresss",
+    "directs",
+    "discloses",
+    "dislikes",
+    "dives",
+    "divides",
+    "divulges",
+    "divorces",
+    "docks",
+    "doles",
+    "dotes",
+    "doubles",
+    "doubts",
+    "drags",
+    "drains",
+    "dresss",
+    "drips",
+    "drills",
+    "drones",
+    "drops",
+    "drowns",
+    "dries",
+    "dupes",
+    "dumps",
+    "dusts",
+    "dyes",
+    "earns",
+    "echos",
+    "edits",
+    "educates",
+    "elopes",
+    "embarrasss",
+    "emigrates",
+    "emits",
+    "emphasizes",
+    "employs",
+    "emptys",
+    "enchants",
+    "encodes",
+    "encourages",
+    "ends",
+    "enjoins",
+    "enjoys",
+    "enters",
+    "entertains",
+    "enunciates",
+    "envys",
+    "equivocates",
+    "escapes",
+    "evacuates",
+    "evaporates",
+    "exaggerates",
+    "examines",
+    "excites",
+    "excuses",
+    "exercises",
+    "exclaims",
+    "exhorts",
+    "exists",
+    "expands",
+    "expects",
+    "expels",
+    "explains",
+    "explodes",
+    "explores",
+    "extends",
+    "extolls",
+    "faces",
+    "fades",
+    "fails",
+    "falters",
+    "fastens",
+    "favors",
+    "faxs",
+    "fears",
+    "fences",
+    "fetches",
+    "files",
+    "fills",
+    "films",
+    "fires",
+    "fishes",
+    "fits",
+    "fixs",
+    "flaps",
+    "flashes",
+    "floats",
+    "floods",
+    "flosss",
+    "flows",
+    "flowers",
+    "folds",
+    "follows",
+    "fools",
+    "forces",
+    "forgives",
+    "forms",
+    "founds",
+    "frames",
+    "frets",
+    "frightens",
+    "fries",
+    "fumes",
+    "gardens",
+    "gasps",
+    "gathers",
+    "gazes",
+    "gels",
+    "gilds",
+    "glides",
+    "glues",
+    "gnaws",
+    "grabs",
+    "grates",
+    "greases",
+    "greets",
+    "grills",
+    "grins",
+    "grips",
+    "groans",
+    "growls",
+    "grumbles",
+    "grunts",
+    "guarantees",
+    "guards",
+    "guesss",
+    "guides",
+    "gurgles",
+    "gushes",
+    "hails",
+    "hammers",
+    "hands",
+    "handles",
+    "happens",
+    "harasss",
+    "harms",
+    "harnesss",
+    "hates",
+    "haunts",
+    "heads",
+    "heals",
+    "heaps",
+    "heats",
+    "helps",
+    "highlights",
+    "hijacks",
+    "hinders",
+    "hints",
+    "hisss",
+    "hooks",
+    "hoots",
+    "hops",
+    "hopes",
+    "hovers",
+    "howls",
+    "hugs",
+    "hums",
+    "hunts",
+    "hurrys",
+    "ices",
+    "identifies",
+    "ignores",
+    "imagines",
+    "immigrates",
+    "implores",
+    "impresss",
+    "improves",
+    "includes",
+    "increases",
+    "infects",
+    "inflates",
+    "influences",
+    "informs",
+    "infuses",
+    "injects",
+    "injures",
+    "inquires",
+    "insists",
+    "inspects",
+    "inspires",
+    "instructs",
+    "intends",
+    "interests",
+    "interferes",
+    "interjects",
+    "interrupts",
+    "introduces",
+    "invents",
+    "invests",
+    "invites",
+    "irritates",
+    "irons",
+    "itches",
+    "jabs",
+    "jabbers",
+    "jails",
+    "jams",
+    "jeers",
+    "jests",
+    "jogs",
+    "joins",
+    "jokes",
+    "jolts",
+    "judges",
+    "juggles",
+    "jumps",
+    "kicks",
+    "kills",
+    "kisss",
+    "knocks",
+    "knots",
+    "labels",
+    "laments",
+    "lands",
+    "lasts",
+    "laughs",
+    "leans",
+    "lectures",
+    "levels",
+    "licenses",
+    "licks",
+    "lifts",
+    "lightens",
+    "likes",
+    "lists",
+    "listens",
+    "lives",
+    "loads",
+    "loans",
+    "locks",
+    "longs",
+    "looks",
+    "loosens",
+    "loves",
+    "lowers",
+    "mails",
+    "maintains",
+    "mans",
+    "manages",
+    "mars",
+    "marches",
+    "marks",
+    "marries",
+    "marvels",
+    "mates",
+    "matters",
+    "measures",
+    "melts",
+    "memorizes",
+    "mends",
+    "mentions",
+    "merges",
+    "milks",
+    "mines",
+    "misss",
+    "mixs",
+    "moans",
+    "moors",
+    "mourns",
+    "molts",
+    "moves",
+    "mows",
+    "mugs",
+    "multiplies",
+    "mumbles",
+    "murders",
+    "mutters",
+    "nags",
+    "nails",
+    "names",
+    "naps",
+    "needs",
+    "nests",
+    "nods",
+    "notes",
+    "notices",
+    "numbers",
+    "obeys",
+    "objects",
+    "observes",
+    "obtains",
+    "occurs",
+    "offends",
+    "offers",
+    "ogles",
+    "oils",
+    "omits",
+    "opens",
+    "operates",
+    "orders",
+    "overflows",
+    "owes",
+    "owns",
+    "packs",
+    "pads",
+    "paddles",
+    "paints",
+    "pants",
+    "parks",
+    "parts",
+    "passs",
+    "pastes",
+    "pats",
+    "pauses",
+    "pecks",
+    "pedals",
+    "peels",
+    "peeps",
+    "peers",
+    "pegs",
+    "pelts",
+    "performs",
+    "permits",
+    "pesters",
+    "pets",
+    "phones",
+    "picks",
+    "pinches",
+    "pines",
+    "places",
+    "plans",
+    "plants",
+    "plays",
+    "pleads",
+    "pleases",
+    "pledges",
+    "plows",
+    "plugs",
+    "points",
+    "pokes",
+    "polishes",
+    "ponders",
+    "pops",
+    "possesss",
+    "posts",
+    "postulates",
+    "pours",
+    "practices",
+    "prays",
+    "preaches",
+    "precedes",
+    "predicts",
+    "prefers",
+    "prepares",
+    "presents",
+    "preserves",
+    "presss",
+    "pretends",
+    "prevents",
+    "pricks",
+    "prints",
+    "proceeds",
+    "proclaims",
+    "produces",
+    "professs",
+    "programs",
+    "promises",
+    "proposes",
+    "protects",
+    "protests",
+    "provides",
+    "prys",
+    "pulls",
+    "pumps",
+    "punches",
+    "punctures",
+    "punishes",
+    "pushes",
+    "questions",
+    "quilts",
+    "quizs",
+    "quotes",
+    "races",
+    "radiates",
+    "rains",
+    "raises",
+    "rants",
+    "rains",
+    "rates",
+    "raves",
+    "reaches",
+    "realizes",
+    "rebuffs",
+    "recalls",
+    "receives",
+    "recites",
+    "recognizes",
+    "recommends",
+    "records",
+    "reduces",
+    "reflects",
+    "refuses",
+    "regrets",
+    "reigns",
+    "reiterates",
+    "rejects",
+    "rejoices",
+    "relates",
+    "relaxs",
+    "releases",
+    "relies",
+    "remains",
+    "remembers",
+    "reminds",
+    "removes",
+    "repairs",
+    "repeats",
+    "replaces",
+    "replys",
+    "reports",
+    "reprimands",
+    "reproduces",
+    "requests",
+    "rescues",
+    "retires",
+    "retorts",
+    "returns",
+    "reveals",
+    "reverses",
+    "rhymes",
+    "rinses",
+    "risks",
+    "roars",
+    "robs",
+    "rocks",
+    "rolls",
+    "rots",
+    "rows",
+    "rubs",
+    "ruins",
+    "rules",
+    "rushes",
+    "sacks",
+    "sails",
+    "satisfies",
+    "saves",
+    "savors",
+    "saws",
+    "scares",
+    "scatters",
+    "scoffs",
+    "scolds",
+    "scoots",
+    "scorches",
+    "scrapes",
+    "scratches",
+    "screams",
+    "screeches",
+    "screws",
+    "scribbles",
+    "seals",
+    "searches",
+    "senses",
+    "separates",
+    "serves",
+    "settles",
+    "severs",
+    "shades",
+    "shampoos",
+    "shares",
+    "shaves",
+    "shelters",
+    "shifts",
+    "shivers",
+    "shocks",
+    "shops",
+    "shouts",
+    "shrieks",
+    "shrugs",
+    "sighs",
+    "signs",
+    "signals",
+    "sins",
+    "singes",
+    "sips",
+    "skates",
+    "skateboards",
+    "sketches",
+    "skis",
+    "skips",
+    "slaps",
+    "slices",
+    "slips",
+    "slows",
+    "smashes",
+    "smells",
+    "smiles",
+    "smokes",
+    "snaps",
+    "snarls",
+    "snatches",
+    "sneaks",
+    "sneers",
+    "sneezes",
+    "snickers",
+    "sniffs",
+    "snores",
+    "snoops",
+    "snoozes",
+    "snorts",
+    "snows",
+    "soaks",
+    "sobs",
+    "soothes",
+    "sounds",
+    "spans",
+    "spares",
+    "sparks",
+    "sparkles",
+    "speculates",
+    "spells",
+    "spills",
+    "spoils",
+    "spots",
+    "sprays",
+    "sprouts",
+    "sputters",
+    "squashes",
+    "squeezes",
+    "stabs",
+    "stains",
+    "stammers",
+    "stamps",
+    "stars",
+    "stares",
+    "starts",
+    "stashes",
+    "states",
+    "stays",
+    "steers",
+    "steps",
+    "stipulates",
+    "stirs",
+    "stitches",
+    "stops",
+    "stores",
+    "straps",
+    "storms",
+    "stows",
+    "strengthens",
+    "stresss",
+    "stretches",
+    "strips",
+    "strokes",
+    "stuffs",
+    "strays",
+    "strums",
+    "struts",
+    "stuns",
+    "stunts",
+    "stutters",
+    "submerges",
+    "succeeds",
+    "suffers",
+    "suggests",
+    "suits",
+    "supplys",
+    "supports",
+    "supposes",
+    "surmises",
+    "surprises",
+    "surrounds",
+    "suspects",
+    "suspends",
+    "sways",
+    "swears",
+    "swings",
+    "switches",
+    "swoops",
+    "sympathizes",
+    "talks",
+    "tames",
+    "taps",
+    "tastes",
+    "taunts",
+    "teases",
+    "telephones",
+    "tempts",
+    "terrifies",
+    "tests",
+    "testifies",
+    "thanks",
+    "thaws",
+    "theorizes",
+    "threatens",
+    "thunders",
+    "ticks",
+    "tickles",
+    "ties",
+    "times",
+    "tips",
+    "tires",
+    "toasts",
+    "tosss",
+    "touches",
+    "tours",
+    "tows",
+    "traces",
+    "tracks",
+    "trades",
+    "trains",
+    "translates",
+    "transports",
+    "traps",
+    "travels",
+    "treats",
+    "trembles",
+    "tricks",
+    "trickles",
+    "trims",
+    "trips",
+    "trots",
+    "troubles",
+    "trusts",
+    "trounces",
+    "tries",
+    "tugs",
+    "tumbles",
+    "turns",
+    "twists",
+    "types",
+    "undresss",
+    "unfastens",
+    "unites",
+    "unlocks",
+    "unpacks",
+    "upstages",
+    "urges",
+    "unties",
+    "uses",
+    "usurps",
+    "utters",
+    "vacuums",
+    "values",
+    "vanishes",
+    "vanquishes",
+    "ventures",
+    "visits",
+    "voices",
+    "volunteers",
+    "votes",
+    "vouches",
+    "wails",
+    "waits",
+    "walks",
+    "wallows",
+    "wanders",
+    "wants",
+    "warms",
+    "warns",
+    "washes",
+    "wastes",
+    "watches",
+    "waters",
+    "waves",
+    "wavers",
+    "weds",
+    "weighs",
+    "welcomes",
+    "whimpers",
+    "whines",
+    "whips",
+    "whirls",
+    "whispers",
+    "whistles",
+    "winks",
+    "wipes",
+    "wishes",
+    "wobbles",
+    "wonders",
+    "works",
+    "worries",
+    "wraps",
+    "wrecks",
+    "wrestles",
+    "wriggles",
+    "writhes",
+    "x-rays",
+    "yawns",
+    "yells",
+    "yelps",
+    "yields",
+    "yodels",
+    "zips",
+    "zooms"
+}
+
+local alreadytyped = {}
+
+title = game:GetService("Players").LocalPlayer.PlayerGui.GameUI.Container.GameSpace.DefaultUI.GameContainer.DesktopContainer.InfoFrameContainer.InfoFrame.Title
+title:GetPropertyChangedSignal("Text"):Connect(function()
+    if not AutoType then return end
+    if title.Text == "Quick! Type an English word containing:" then
+        task.wait(1)
+        ineed = ""
+        for i,v in game:GetService("Players").LocalPlayer.PlayerGui.GameUI.Container.GameSpace.DefaultUI.GameContainer.DesktopContainer.InfoFrameContainer.InfoFrame.TextFrame:GetChildren() do
+            if not v:IsA("Frame") then continue end
+            if not v.Visible then continue end
+            ineed ..= v.Letter.TextLabel.Text:lower()
+        end
+        for i, v in {unpack(nounlist),unpack(verblist),unpack(adjectivelist)} do
+            if string.find(v, ineed) and not table.find(alreadytyped, v) and #v >= MinLength then
+                table.insert(alreadytyped, v)
+                Logger:Log("Found word: "..v.." (required "..ineed..")")
+                for _, vv in v:split("") do
+                    keypress(keycodeMap[vv])
+                    task.wait((TypeSpeed / 1000) + (math.random(50, 100) / 1000))
+                end
+                task.wait(0.1)
+                keypress(keycodeMap["enter"])
+                break
+            end
+        end
+    end
+end)
