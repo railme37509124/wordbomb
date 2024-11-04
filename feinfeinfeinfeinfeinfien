@@ -2031,7 +2031,7 @@ end
 
 local AutoType = false
 local TypeSpeed = 111
-local MinLength = 1
+local MinLength = 0
 Window = library:AddWindow("Word Bomb")
 Typer = Window:AddTab("Typer")
 Console = Window:AddTab("Console")
@@ -2050,7 +2050,7 @@ _t3 = Typer:AddSlider("Minimum Word Length", function(value)
         Logger:Log("Min word length set to "..value)
     end
     MinLength = value
-end, {min = 1, max = 15})
+end, {min = 0, max = 9})
 
 local keycodeMap = {
     ["0"] = 0x30,
@@ -2144,7 +2144,6 @@ title:GetPropertyChangedSignal("Text"):Connect(function()
                     keypress(keycodeMap[vv])
                     task.wait((TypeSpeed / 1000) + (math.random(50, 100) / 1000))
                 end
-                task.wait(0.1)
                 keypress(keycodeMap["enter"])
                 break
             end
